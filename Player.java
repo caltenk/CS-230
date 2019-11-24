@@ -19,7 +19,7 @@ public class Player extends Moveable {
 	 * @param image The image used to represent the player.
 	 */
 	public Player(int x, int y, Image image) {
-		super(x, y, board, image);
+		super(x, y, image);
 		this.inventory = new ArrayList<Item>();
 		this.tokenNum = 0;
 	}
@@ -34,21 +34,24 @@ public class Player extends Moveable {
 		if (this.isMoveValid(nextCell)) {
 			
 			super.move(direction);
+			this.pickUpItem(nextCell.getType()); 
+			this.removeItem(nextCell.getType()); 
 			
-			if (nextCell == CellType.TELEPORTER) { //what happend when you step on a teleporter
+			if (nextCell.getType() == CellType.TELEPORTER) { //what happend when you step on a teleporter
 				
 				Cell teleporter = board.getCell(this.xCoord, this.yCoord);
 				//method names may be wrong
 				super.setPosition(teleporter.getLinkedX(), teleporter.getLinkedY());
-			} else if (nextCell == CellType.TOKEN_DOOR) {
+			} else if (nextCell.getType() == CellType.TOKEN_DOOR) {
 				
 				Cell tokenDoor = board.getCell(this.xCoord, this.yCoord);
 				this.removeTokens(tokenDoor.getNumTokensNeeded());
 				
 			} else {
-				this.pickUpItem(nextCell);
-				this.removeItem(nextCell);
+				this.pickUpItem(nextCell.getType());
+				this.removeItem(nextCell.getType());
 			}
+			
 		}
 	}
 	
@@ -57,7 +60,7 @@ public class Player extends Moveable {
 	 * @return True is the move is valid, fakse otherwise.
 	 */
 	public boolean isMoveValid(Cell cell) {
-		CellType type = CellType.getType();
+		CellType type = cell.getType();
 		switch (type) {
 			case  WALL:
 				return false;
@@ -92,9 +95,9 @@ public class Player extends Moveable {
 					return false;
 				}
 			case TOKEN_DOOR:
-				if (cell.getNumOfTokens) {
-					return true;
-				} else
+				//if (cell.getNumOfTokens) { need token door to test
+				//	return true;
+				//} else
 					return false;
 			default: 
 				return true;
@@ -133,6 +136,7 @@ public class Player extends Moveable {
 				break; //do nothing
 		}
 	}
+	
 	
 	private boolean hasItem(Item item) {
 		return this.inventory.contains(item);
