@@ -19,9 +19,9 @@ public abstract class Moveable {
 	 * @param y The initial y co-ordinate.
 	 * @param image The image used to present the moveable object
 	 */
-	public Moveable(int x, int y/*, Image image*/) {
+	public Moveable(int x, int y, Image image) {
 		setPosition(x,y);
-		/*this.image = image;*/
+		this.image = image;
 	}
 	
 	public void move(Direction direction) {
