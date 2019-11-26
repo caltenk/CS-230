@@ -33,7 +33,7 @@ public class Enemy extends Moveable {
 		}
 	}
 	
-	public abstract Direction calculateDirection() {
+	public abstract Direction calculateDirection(Board board) {
 	
 	}
 	
