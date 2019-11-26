@@ -9,7 +9,7 @@ public class WallFollowingEnemy extends Enemy {
 	 * @param image The image that will represent the Enemy.
 	 */
 	public WallFollowingEnemy(int x, int y, Image image) {
-		super.(x,y,image);
+		super(x,y,image);
 	}
 	
 	/**
@@ -17,13 +17,13 @@ public class WallFollowingEnemy extends Enemy {
 	 * @param board The Board the Enemy is moving on.
 	 * @return The direction the enemy will move in.
 	 */
-	public Direction getDirection(Board board) {
+	public Direction calculateDirection(Board board) {
 		//Gets the cells around the enemy
 		boolean down = super.isMoveValid(super.getNextCell(Direction.DOWN, board));
 		boolean up = super.isMoveValid(super.getNextCell(Direction.UP, board));
 		boolean left = super.isMoveValid(super.getNextCell(Direction.LEFT, board));
 		boolean right = super.isMoveValid(super.getNextCell(Direction.RIGHT, board));
-		
+				
 		if (!down) {
 			if (!left) {
 				if (!up) {
@@ -41,33 +41,34 @@ public class WallFollowingEnemy extends Enemy {
 					return Direction.DOWN;
 				} else {
 					return Direction.RIGHT;
-				} 
-			} else {
-				return Direction.UP;
-			}
-			
-		} else if (!up) {
-			if (!right) {
+					} 
+				} else {
+					return Direction.UP;
+				}
+			} else if (!up) {
+				if (!right) {
+					if (!down) {
+						return Direction.LEFT;
+					} else {
+						return Direction.DOWN;
+					}
+				} else {
+					return Direction.RIGHT;
+				}
+			} else if (!right) {
 				if (!down) {
-					return Direction.LEFT;
+					if (!left) {
+						return Direction.RIGHT;
+					} else {
+						return Direction.LEFT;
+					}
 				} else {
 					return Direction.DOWN;
 				}
-			} else {
-				return Direction.RIGHT;
 			}
-		} else if (!right) {
-			if (!down) {
-				if (!left) {
-					return Direction.RIGHT;
-				} else {
-					return Direction.LEFT;
-				}
-			} else {
-				return Direction.DOWN;
-			}
+				
+			return null; //he is stuck and can't move
 		}
-		
-	}
-	
 }
+	
+
