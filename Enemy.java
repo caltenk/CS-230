@@ -1,65 +1,43 @@
+import javafx.scene.image.Image;
 
-public class Enemy {
-	//add isMoveValid method with parameters of board and direction 
-	private int xCoordinate;
-	private int yCoordinate;
-	private int insertionTime;
-	private int height;
-	private int width;
-	private String enemyType;
-	private String Direction;
-	private int playerXCoordinate;
-	private int playerYCoordinate;
+public class Enemy extends Moveable {
 	
-	public boolean isMoveValid(String board, String direction) {
-		return true;
+	
+	public Enemy(int x, int y, Image image) {
+		super(x, y, image);
 	}
-	public int getxCoordinate() {
-		return xCoordinate;
+
+	//add isMoveValid method with parameters of board and direction
+	
+	
+	public boolean isMoveValid(Cell cell) {
+		CellType type = cell.getType();
+		switch (type) {
+			case  WALL:
+				return false;
+			case WATER:
+					return false;
+			case FIRE:
+					return false;
+			case RED_DOOR:
+					return false;
+			case BLUE_DOOR:
+					return false;
+			case GREEN_DOOR:
+					return false;
+			case TOKEN_DOOR:
+					return false;
+			default: 
+				return true;
+		
+		}
 	}
-	public void setxCoordinate(int xCoordinate) {
-		this.xCoordinate = xCoordinate;
-	}
-	public int getyCoordinate() {
-		return yCoordinate;
-	}
-	public void setyCoordinate(int yCoordinate) {
-		this.yCoordinate = yCoordinate;
-	}
-	public int getInsertionTime() {
-		return insertionTime;
-	}
-	public void setInsertionTime(int insertionTime) {
-		this.insertionTime = insertionTime;
-	}
-	public int getHeight() {
-		return height;
-	}
-	public void setHeight(int height) {
-		this.height = height;
-	}
-	public int getWidth() {
-		return width;
-	}
-	public void setWidth(int width) {
-		this.width = width;
-	}
-	public String getEnemyType() {
-		return enemyType;
-	}
-	public void setEnemyType(String enemyType) {
-		this.enemyType = enemyType;
-	}
-	public String getDirection() {
-		return Direction;
-	}
-	public void setDirection(String direction) {
-		Direction = direction;
-	}
-	public int getPlayerXCoordinate() {
-		return playerXCoordinate;
-	}
-	public int getPlayerYCoordinate() {
-		return playerYCoordinate;
-	}
+	
+	//public boolean isMoveValid(String board, String direction) {
+		//if ((Cell.getNext()==isEmpty()) || ) {
+			//return true;
+		//}
+		//return false;
+	//}
+	
 }
