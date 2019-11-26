@@ -33,11 +33,4 @@ public class Enemy extends Moveable {
 		}
 	}
 	
-	//public boolean isMoveValid(String board, String direction) {
-		//if ((Cell.getNext()==isEmpty()) || ) {
-			//return true;
-		//}
-		//return false;
-	//}
-	
 }
