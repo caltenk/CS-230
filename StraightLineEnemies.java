@@ -1,16 +1,17 @@
+import javafx.scene.image.Image;
 
-public class StraightLineEnemies extends Enemy{
+public class StraightLineEnemy extends Enemy{
 
 	private Direction direction;
 
-	public StraightLineEnemies(int xCoordinate, int yCoordinate, int insertionTime, int height, int width, Direction direction) {
-		super(xCoordinate, yCoordinate, insertionTime, height, width);
+	public StraightLineEnemy(int xCoordinate, int yCoordinate, Direction direction, Image image) {
+		super(xCoordinate, yCoordinate, image);
 		this.direction=direction;
 	}
 	
 	public Direction calculateDirection(Board board) {
 		Cell nextCell = super.getNextCell(this.direction, board);
-		if (!super.isMoveValid(nextCell) {
+		if (!super.isMoveValid(nextCell)) {
 			switch (direction) {
 				case LEFT:
 					this.direction = Direction.RIGHT;
@@ -27,5 +28,8 @@ public class StraightLineEnemies extends Enemy{
 				default: //do nothing
 					break;
 			}
+		}
+		
 		return this.direction;
+	}
 }
