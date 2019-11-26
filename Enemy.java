@@ -33,6 +33,10 @@ public class Enemy extends Moveable {
 		}
 	}
 	
+	public Cell getNextCell(Direction direction, Board board) {
+		super.getNextCell(direction, board);
+	}
+	
 	public abstract Direction calculateDirection(Board board) {
 	
 	}
