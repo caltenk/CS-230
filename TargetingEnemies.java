@@ -9,6 +9,12 @@ public class TargetingEnemies extends Enemy{
 		super(x, y, image);
 	}	
 	
+	public int getEnemyX() {
+		return super.getXCoord();
+	}
+	public int getEnemyY() {
+		return super.getYCoord();
+	}
 	public int getPlayerX() {
 		return player.super.getXCoord();
 	}
