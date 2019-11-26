@@ -47,25 +47,4 @@ public class UserProfile {
     public int getHighestLevel() {
         return highestLevel;
     }
-
-    public String toString() {
-        return name + ":" + highestLevel;
-    }
-
-    /**
-     * Outputs the result of to string
-     * @return //TODO: figure our what to put here lol
-     */
-    public String fromString() {
-        String[] output = toString().split(":");
-        for (String word : output) {
-            System.out.println(word);
-        }
-        return "";
-    }
-
-    public static void main(String[] args) {
-        UserProfile t = new UserProfile("Jimmy", 5);
-        System.out.println(t.fromString());
-    }
 }
