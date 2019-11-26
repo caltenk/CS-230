@@ -14,7 +14,11 @@ public class Cell {
             image = new Image("wall.png",70,70,true,true);
         }
     }
-
+    
+    public CellType getType() {
+        return this.type;
+    }
+    
     public Image getImage () {
         return this.image;
     }
