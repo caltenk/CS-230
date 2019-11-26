@@ -6,15 +6,13 @@ public class Enemy extends Moveable {
 	public Enemy(int x, int y, Image image) {
 		super(x, y, image);
 	}
-
-	//add isMoveValid method with parameters of board and direction
 	
 	
 	public boolean isMoveValid(Cell cell) {
 		CellType type = cell.getType();
 		switch (type) {
 			case  WALL:
-				return false;
+				        return false;
 			case WATER:
 					return false;
 			case FIRE:
