@@ -24,7 +24,24 @@ public class SmartTargetingEnemies extends TargetingEnemies {
 		return yDifference;	
 	}
 	
-	
+	public Direction calcDirection (Board board) {
+		if (xDifference > yDifference) {
+			if (player.getXCoord() > enemy.getXCoord()) {
+				return Direction.RIGHT;
+			}
+			else if (player.getXCoord() < enemy.getXCoord()) {
+				return Direction.LEFT;
+			}
+		}
+		else if (xDifference < yDifference) {
+			if (player.getYCoord() > enemy.getYCoord()) {
+				return Direction.UP;
+			}
+			else if (player.getYCoord() < enemy.getYCoord()) {
+				return Direction.DOWN;
+			}
+		}
+	}
 	
 	public int getShortestDistance() {
 		return shortestDistance;
