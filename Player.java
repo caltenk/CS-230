@@ -1,12 +1,13 @@
+
 import javafx.scene.image.Image;
 import java.util.ArrayList;
 
 /**
  * Class represents the character the user controls.
+ *
  * @author George Manning
  * @version 1.0
  */
-
 public class Player extends Moveable {
 
     private ArrayList<Item> inventory;
@@ -14,6 +15,7 @@ public class Player extends Moveable {
 
     /**
      * Comstructor for the player class.
+     *
      * @param x The initial x co-ordinate of the player.
      * @param y The initial y co-ordinate of the player.
      * @param image The image used to represent the player.
@@ -25,7 +27,49 @@ public class Player extends Moveable {
     }
 
     /**
+     * suggested to allow filehandling -Dan. note: if player image is to be set
+     * here as suggested in Moveable() then that should be added here, not
+     * tested.
+     *
+     * @param playerData
+     */
+    public Player(String playerData) {
+        super(playerData);
+        String playerObjData = playerData.split(";")[1];
+        String[] splitData = playerObjData.split("/");
+
+        tokenNum = Integer.parseInt(splitData[0]);
+
+        for (int i = 1; i < splitData.length; i++) {
+            if (splitData[i] != null) {
+                inventory.add(Item.valueOf(splitData[i]));
+            }
+        }
+    }
+
+    /**
+     * suggested to allow filehandling -Dan. note: untested.
+     *
+     * @param playerData
+     * @return
+     */
+    @Override
+    public String toString() {
+        String playerData = super.toString() + ";";
+        playerData += Integer.toString(tokenNum);
+        Item[] inventory = (Item[]) this.inventory.toArray();
+
+        for (int i = 0; i < inventory.length; i++) {
+            if (inventory[i] != null) {
+                playerData += "/" + inventory[i].toString();
+            }
+        }
+        return playerData;
+    }
+
+    /**
      * Moves the player in a user specified direction
+     *
      * @param direction The direction to be moved to
      */
     public void move(Direction direction, Board board) {
@@ -47,19 +91,20 @@ public class Player extends Moveable {
                 TokenDoor tokenDoor = (TokenDoor) board.getCell(this.xCoord, this.yCoord);
                 this.removeTokens(tokenDoor.getNumTokensNeeded());
 
-            } 
+            }
 
         }
     }
 
     /**
      * Works out if a move is valid.
+     *
      * @return True is the move is valid, fakse otherwise.
      */
     public boolean isMoveValid(Cell cell) {
         CellType type = cell.getType();
         switch (type) {
-            case  WALL:
+            case WALL:
                 return false;
             case WATER:
                 if (this.hasItem(Item.FLIPPERS)) {
@@ -92,11 +137,12 @@ public class Player extends Moveable {
                     return false;
                 }
             case TOKEN_DOOR:
-            	TokenDoor tCell = (TokenDoor) cell;
+                TokenDoor tCell = (TokenDoor) cell;
                 if (tCell.getNumTokensNeeded() >= this.tokenNum) { //need token door to test
-                	return true;
-                } else
-                return false;
+                    return true;
+                } else {
+                    return false;
+                }
             default:
                 return true;
 
@@ -135,7 +181,6 @@ public class Player extends Moveable {
         }
     }
 
-
     private boolean hasItem(Item item) {
         return this.inventory.contains(item);
     }
@@ -157,5 +202,3 @@ public class Player extends Moveable {
     }
 
 }
-
-
