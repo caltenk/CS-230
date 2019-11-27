@@ -23,6 +23,40 @@ public class Player extends Moveable {
         this.inventory = new ArrayList<Item>();
         this.tokenNum = 0;
     }
+    
+    /** suggested to allow filehandling -Dan
+     * note: not compiled with Item class, 
+     * Item class may require its own sub constructor and toString methods.
+     * @param playerData 
+     */
+    public Player(String playerData){
+        String[] splitData = playerData.split(";");
+        
+        tokenNum = Integer.parseInt(splitData[0]);
+        
+        for(int i = 1; i < splitData.length; i++){
+            if(splitData[i] != null){
+                inventory.add(new Item(splitData[i]));
+            }
+        }
+    }
+    
+    /** suggested to allow filehandling -Dan
+     * note: Override not necessary due to being subclass, check that doesnt cause problems
+     * note: not compiled with Item class, 
+     * Item class may require its own sub constructor and toString methods.
+     * @param playerData 
+     */
+    public String toString(){
+        String playerData = Integer.toString(tokenNum);
+        Item[] inventory = this.inventory.toArray();
+        
+        for(int i = 0; i < inventory.size(); i++){
+            if(inventory[i] != null){
+                playerData += ";" + inventory[i].toString();
+            }
+        }
+    }
 
     /**
      * Moves the player in a user specified direction
