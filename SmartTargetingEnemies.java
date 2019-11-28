@@ -1,6 +1,5 @@
 
 public class SmartTargetingEnemies extends TargetingEnemies {
-	private int shortestDistance;
 	private int xDifference;
 	private int yDifference;
 
@@ -35,20 +34,11 @@ public class SmartTargetingEnemies extends TargetingEnemies {
 		}
 		else if (xDifference < yDifference) {
 			if (player.getYCoord() > enemy.getYCoord()) {
-				return Direction.UP;
+				return Direction.DOWN;
 			}
 			else if (player.getYCoord() < enemy.getYCoord()) {
-				return Direction.DOWN;
+				return Direction.UP;
 			}
 		}
 	}
-	
-	public int getShortestDistance() {
-		return shortestDistance;
-	}
-
-	public void setShortestDistance(int shortestDistance) {
-		this.shortestDistance = shortestDistance;
-	}
-	
 }
