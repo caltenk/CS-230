@@ -1,3 +1,9 @@
+/**
+ * A smart targeting enemy. Always moves in the shortest route towards the player.
+ * @author Liam Date
+ * @version 1.0
+ *
+ */
 
 public class SmartTargetingEnemy extends TargetingEnemies {
 	private int xDifference;
