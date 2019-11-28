@@ -21,7 +21,7 @@ public class Cell {
      */
     public Cell(String cellData){
         String[] splitData = cellData.split("#"); //allows additional data eg teleported co-ords
-        type = new CellType(splitData[0]); //or whatever syntax, idk innumeration
+        type = CellType.valueOf(splitData[0]);
         //...
         //suggest selecting cell image be a seperate method so it can be called from both constructors
     }
