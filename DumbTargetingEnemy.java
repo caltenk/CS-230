@@ -1,6 +1,6 @@
 /**
  * A dumb targeting enemy. Always moves in a straight line towards the player, regardless of obstacles.
- * @author Liam Date
+ * @author Ahmed Ajaj
  * @version 1.0
  *
  */
