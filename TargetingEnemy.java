@@ -3,14 +3,20 @@ import javafx.scene.image.Image;
 
 /**
  * a targeting enemy: Enemy that moves towards the position of the player
- *
  * @author Ahmed Ajaj
  * @version 1.0
  */
 public abstract class TargetingEnemy extends Enemy {
 
     protected Player player;
-
+    /**
+     * This method constructs a targeting enemy using the constructor in the super class
+     * with addition of a reference to the player as a parameter
+     * @param x The initial x co-ordinate.
+     * @param y The initial y co-ordinate.
+     * @param image The image used to present the moveable object
+     * @param player Reference to the player
+     */
     public TargetingEnemy(int x, int y, Image image, Player player) {
         super(x, y, image);
         this.player = player;

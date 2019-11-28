@@ -3,12 +3,15 @@ import javafx.scene.image.Image;
 
 /**
  * A general enemy which moves towards the player
- *
  * @author Ahmed Ajaj
  * @version 1.0
  */
 public class Enemy extends Moveable {
-
+    /** This method constructs an enemy using the constructor in the superclass
+     * @param x The initial x co-ordinate.
+     * @param y The initial y co-ordinate.
+     * @param image The image used to present the moveable object
+     */
     public Enemy(int x, int y, Image image) {
         super(x, y, image);
     }
@@ -34,6 +37,11 @@ public class Enemy extends Moveable {
         //any added enemy data here
     }
 
+    /**
+     * This emthod computes whether the move the enemy wishes to make is valid
+     * @param cell Reference to the cell on the board the enemy is trying to move to
+     * @return Boolean declaring if the move is valid or not
+     */
     public boolean isMoveValid(Cell cell) {
         CellType type = cell.getType();
         switch (type) {
@@ -57,9 +65,19 @@ public class Enemy extends Moveable {
         }
     }
 
+    /**
+     * This method computes the next cell
+     * @param direction The direction the enemy wishes to move in
+     * @param board The board the enemy is currently on
+     * @return The next cell
+     */
     public Cell getNextCell(Direction direction, Board board) {
         super.getNextCell(direction, board);
     }
 
+    /**
+     * Abstract method to calculate the direction the enemy will move in
+     * @param board The board the enemy is on
+     */
     public abstract Direction calculateDirection(Board board);
 }

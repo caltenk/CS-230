@@ -4,7 +4,6 @@ import javafx.scene.image.Image;
 /**
  * A wall following enemy: Enemy that moves in the direction of walls towards
  * the player
- *
  * @author Ahmed Ajaj
  * @version 1.0
  */
