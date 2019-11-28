@@ -1,4 +1,7 @@
 
+import javafx.scene.image.Image;
+
+
 /**
  * A dumb targeting enemy. Enemy that always moves in a straight line towards the player, regardless of obstacles.
  * @author Ahmed Ajaj
@@ -47,10 +50,10 @@ public class DumbTargetingEnemy extends TargetingEnemy {
      * @return The difference between the x coordinates of the enemy and the player
      */
     public int xDifference() {
-        if (player.getXCoord() < enemy.getXCoord()) {
-            xDifference = enemy.getXCoord() - player.getXCoord();
+        if (player.getXCoord() < super.getXCoord()) {
+            xDifference = super.getXCoord() - player.getXCoord();
         } else {
-            xDifference = player.getXCoord() - enemy.getXCoord();
+            xDifference = player.getXCoord() - super.getXCoord();
         }
         return xDifference;
     }
@@ -59,10 +62,10 @@ public class DumbTargetingEnemy extends TargetingEnemy {
      * @return The difference between the y coordinates of the enemy and the player
      */
     public int yDifference() {
-        if (player.getYCoord() < enemy.getYCoord()) {
-            yDifference = enemy.getXCoord() - player.getYCoord();
+        if (player.getYCoord() < super.getYCoord()) {
+            yDifference = super.getXCoord() - player.getYCoord();
         } else {
-            yDifference = player.getYCoord() - enemy.getYCoord();
+            yDifference = player.getYCoord() - super.getYCoord();
         }
         return yDifference;
     }
@@ -75,15 +78,15 @@ public class DumbTargetingEnemy extends TargetingEnemy {
      */
     public Direction calcDirection(Board board) {
         if (xDifference >= yDifference) {
-            if (player.getXCoord() > enemy.getXCoord()) {
+            if (player.getXCoord() > super.getXCoord()) {
                 return Direction.RIGHT;
-            } else if (player.getXCoord() < enemy.getXCoord()) {
+            } else if (player.getXCoord() < super.getXCoord()) {
                 return Direction.LEFT;
             }
         } else if (xDifference < yDifference) {
-            if (player.getYCoord() > enemy.getYCoord()) {
+            if (player.getYCoord() > super.getYCoord()) {
                 return Direction.DOWN;
-            } else if (player.getYCoord() < enemy.getYCoord()) {
+            } else if (player.getYCoord() < super.getYCoord()) {
                 return Direction.UP;
             }
         }
