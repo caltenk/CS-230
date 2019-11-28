@@ -1,5 +1,7 @@
 /**
- *
+ * A class that describes each User.
+ * @author Sean Beck
+ * @version 1.0
  */
 public class UserProfile {
 
