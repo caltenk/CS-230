@@ -34,7 +34,7 @@ public abstract class Enemy extends Moveable {
      * @return the information as a string.
      */
     public String toString() {
-        return "-;" + super.toString();
+        return super.toString() + ";-";
         //any added enemy data here
     }
 

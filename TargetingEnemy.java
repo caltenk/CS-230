@@ -41,7 +41,7 @@ public abstract class TargetingEnemy extends Enemy {
      */
     @Override
     public String toString() {
-        return "-;" + super.toString();
+        return super.toString() + ";-";
     }
 
     public int getEnemyX() {
