@@ -8,6 +8,23 @@ public class Enemy extends Moveable {
 	public Enemy(int x, int y, Image image) {
 		super(x, y, image);
 	}
+        
+        /**
+         * suggested to allow fileHandling -Dan
+         * @param enemyData 
+         */
+        public Enemy(String enemyData){
+            super(enemyData);
+        }
+        
+        /**
+         * suggested to allow fileHandling -Dan
+         * @param enemyData 
+         */
+        public String toString(){
+            return ";" + super.toString();
+            //any added enemy data here
+        }
 
 	public boolean isMoveValid(Cell cell) {
 		CellType type = cell.getType();

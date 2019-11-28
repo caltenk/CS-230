@@ -11,6 +11,23 @@ public class SmartTargetingEnemy extends TargetingEnemies {
 	public SmartTargetingEnemy(int x, int y, Image image, Player player) {
 		super(x, y, image,player);
 	}
+        
+        /**
+         * suggested to allow fileHandling -Dan
+         * @param enemyData 
+         */
+        public SmartTargetingEnemy(String smartData){
+            super(smartData);
+        }
+        
+        /**
+         * suggested to allow fileHandling -Dan
+         * @param enemyData 
+         */
+        @Override
+        public String toString(){
+            return EnemyType.SMART_TARGETING + ";" + super.toString();
+        }
 	
 	public int xDifference() {
 		if (player.getXCoord() < enemy.getXCoord()) {
