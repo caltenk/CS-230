@@ -24,7 +24,7 @@ public class Player {
         switch(direction) {
             case RIGHT:
                 newPlayerX = playerX + 1;
-                if (isMoveValid(newPlayerX)) {
+                if (isMoveValid(newPlayerX, playerY)) {
                     playerX += 1;
                 }
                 else {
@@ -33,7 +33,7 @@ public class Player {
                 break;
             case DOWN:
                 newPlayerY = playerY + 1;
-                if (isMoveValid(newPlayerY)) {
+                if (isMoveValid(playerX, newPlayerY)) {
                     playerY += 1;
                 }
                 else {
@@ -42,7 +42,7 @@ public class Player {
                 break;
             case LEFT:
                 newPlayerX = playerX - 1;
-                if (isMoveValid(newPlayerX)) {
+                if (isMoveValid(newPlayerX, playerY)) {
                     playerX -= 1;
                 }
                 else {
@@ -51,7 +51,7 @@ public class Player {
                 break;
             case UP:
                 newPlayerY = playerY - 1;
-                if (isMoveValid(newPlayerY)) {
+                if (isMoveValid(playerX, newPlayerY)) {
                     playerY -= 1;
                 }
                 else {
@@ -61,8 +61,8 @@ public class Player {
         }
     }
 
-    private boolean isMoveValid(int newPlayerCoord) {
-        if ((newPlayerCoord * cellSize) > (boardSize - 10) || (newPlayerCoord * cellSize) < 0) {
+    private boolean isMoveValid(int newPlayerX, int newPlayerY) {
+        if (game.getBoard()[newPlayerY][newPlayerX].getType() == CellType.WALL) {
             return false;
         }
         else {
@@ -88,6 +88,10 @@ public class Player {
 
     public Image getImage() {
         return this.image;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 
 }

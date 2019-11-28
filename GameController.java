@@ -4,6 +4,9 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
 
+import java.awt.*;
+import java.util.concurrent.RecursiveAction;
+
 public class GameController {
 
     @FXML
@@ -15,12 +18,11 @@ public class GameController {
 
 
     public void initialize() {
-        System.out.println(gameCanvas);
         player = new Player(gameCanvas);
         game = new Game(gameCanvas, player);
 
-        player.setPlayerX(0);
-        player.setPlayerY(0);
+        player.setPlayerX(4);
+        player.setPlayerY(4);
 
         game.drawGame();
     }
@@ -47,6 +49,7 @@ public class GameController {
         }
 
         game.drawGame();
+        System.out.println(player.getPlayerY() + ", " + player.getPlayerX());
         e.consume();
     }
 

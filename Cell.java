@@ -19,5 +19,9 @@ public class Cell {
         return this.image;
     }
 
+    public CellType getType() {
+        return this.type;
+    }
+
 
 }
