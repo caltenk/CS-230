@@ -3,6 +3,10 @@ public class SmartTargetingEnemies extends TargetingEnemies {
 	private int xDifference;
 	private int yDifference;
 	
+	public SmartTargetingEnemies(int x, int y, Image image, Player player) {
+		super(x, y, image,player);
+	}
+	
 	
 	public SmartTargetingEnemies(int x, int y, Image image, Player player) {
 		super(x, y, image,player);
