@@ -6,14 +6,15 @@ import javafx.scene.image.Image;
  * @author Ahmed Ajaj
  * @version 1.0
  */
-public class Enemy extends Moveable {
+public abstract class Enemy extends Moveable {
     /** This method constructs an enemy using the constructor in the superclass
      * @param x The initial x co-ordinate.
      * @param y The initial y co-ordinate.
      * @param image The image used to present the moveable object
      */
     public Enemy(int x, int y, Image image) {
-        super(x, y, image);
+        super(x, y);
+        super.setImage(image);
     }
 
     /**
@@ -72,7 +73,7 @@ public class Enemy extends Moveable {
      * @return The next cell
      */
     public Cell getNextCell(Direction direction, Board board) {
-        super.getNextCell(direction, board);
+        return super.getNextCell(direction, board);
     }
 
     /**

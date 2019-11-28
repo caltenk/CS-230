@@ -90,5 +90,6 @@ public class DumbTargetingEnemy extends TargetingEnemy {
                 return Direction.UP;
             }
         }
+        return null;
     }
 }
