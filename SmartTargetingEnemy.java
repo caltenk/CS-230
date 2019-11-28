@@ -89,7 +89,8 @@ public class SmartTargetingEnemy extends TargetingEnemy {
      * @return The direction the enemy will move in
      */
     public Direction calcDirection(Board board) {
-        while (super.isMoveValid()) { //!!!work this out
+        while (true) { 
+        //!!!previously was "while isMoveValid(...)", no logical connection
             if (xDifference >= yDifference) {
                 if (player.getXCoord() > super.getXCoord()) {
                     return Direction.RIGHT;
@@ -104,7 +105,6 @@ public class SmartTargetingEnemy extends TargetingEnemy {
                 }
             }
         }
-        return null;
     }
 
     /**
