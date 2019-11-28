@@ -4,7 +4,7 @@
  * @version 1.0
  *
  */
-public class TeleporterCell extends Cell {
+public class Teleporter extends Cell {
 	
 	private int xLinkedCoord;
 	private int yLinkedCoord;
@@ -14,7 +14,7 @@ public class TeleporterCell extends Cell {
 	 * @param xLinkedCoord The x co-ordinate of the linked Teleporter.
 	 * @param yLinkedCoord The y co-ordinate of the linked Teleporter.
 	 */
-	public TeleporterCell (int xLinkedCoord, int yLinkedCoord) {
+	public Teleporter (int xLinkedCoord, int yLinkedCoord) {
 		super(CellType.TELEPORTER);
 		this.xLinkedCoord = xLinkedCoord;
 		this.yLinkedCoord = yLinkedCoord;
