@@ -1,13 +1,12 @@
 
-import com.sun.javafx.scene.traversal.Direction;
 import javafx.scene.image.Image;
 
 public class StraightLineEnemy extends Enemy {
 
     private Direction direction;
 
-    public StraightLineEnemy(int xCoordinate, int yCoordinate, Direction direction, Image image) {
-        super(xCoordinate, yCoordinate, image);
+    public StraightLineEnemy(int xCoordinate, int yCoordinate, Direction direction) {
+        super(xCoordinate, yCoordinate);
         this.direction = direction;
     }
 
