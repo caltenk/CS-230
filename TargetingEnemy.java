@@ -1,10 +1,10 @@
 import javafx.scene.image.Image;
 
-public abstract class TargetingEnemies extends Enemy{
+public abstract class TargetingEnemy extends Enemy{
 	
 	protected Player player;
 
-	public TargetingEnemies(int x, int y, Image image, Player player) {
+	public TargetingEnemy(int x, int y, Image image, Player player) {
 		super(x, y, image);
 		this.player = player;
 	}	
