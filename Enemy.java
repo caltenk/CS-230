@@ -3,8 +3,8 @@ import javafx.scene.image.Image;
 public class Enemy extends Moveable {
 	
 	
-	public Enemy(int x, int y, Image image) {
-		super(x, y, image);
+	public Enemy(int x, int y) {
+		super(x, y);
 	}
         
         /**
