@@ -24,7 +24,7 @@ public class DumbTargetingEnemies extends TargetingEnemies{
 	}
 	
 	public Direction calcDirection (Board board) {
-		if (xDifference > yDifference) {
+		if (xDifference >= yDifference) {
 			if (player.getXCoord() > enemy.getXCoord()) {
 				return Direction.RIGHT;
 			}
