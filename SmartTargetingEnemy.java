@@ -1,14 +1,9 @@
 
-public class SmartTargetingEnemies extends TargetingEnemies {
+public class SmartTargetingEnemy extends TargetingEnemies {
 	private int xDifference;
 	private int yDifference;
 	
-	public SmartTargetingEnemies(int x, int y, Image image, Player player) {
-		super(x, y, image,player);
-	}
-	
-	
-	public SmartTargetingEnemies(int x, int y, Image image, Player player) {
+	public SmartTargetingEnemy(int x, int y, Image image, Player player) {
 		super(x, y, image,player);
 	}
 	
@@ -33,6 +28,7 @@ public class SmartTargetingEnemies extends TargetingEnemies {
 	}
 	
 	public Direction calcDirection (Board board) {
+		WHILE(isMoveValid){
 		if (xDifference >= yDifference) {
 			if (player.getXCoord() > enemy.getXCoord()) {
 				return Direction.RIGHT;
@@ -48,6 +44,7 @@ public class SmartTargetingEnemies extends TargetingEnemies {
 			else if (player.getYCoord() < enemy.getYCoord()) {
 				return Direction.UP;
 			}
+		}
 		}
 	}
 }
