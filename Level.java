@@ -28,9 +28,18 @@ public class Level {
         String[] splitData = levelData.split(":");
         String[] enemyData;
         EnemyType enemyType;
+
+        
         if (splitData.length >= 2) {
             board = new Board(splitData[0]);
             player = new Player(splitData[1]);
+
+        } else {
+            System.out.println("ERROR - level construction failure");
+        }
+        
+        if (splitData.length > 2) {
+            enemies = new Enemy[splitData.length - 2];
             for (int i = 2; i < splitData.length; i++) {
                 enemyData = splitData[i].split(";");
                 enemyType = EnemyType.valueOf(enemyData[0]);
@@ -53,12 +62,8 @@ public class Level {
 
                     default:
                         System.out.println("ERROR - enemy construction failure");
-
                 }
-
             }
-        } else {
-            System.out.println("ERROR - level construction failure");
         }
     }
 

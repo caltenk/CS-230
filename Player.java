@@ -35,11 +35,12 @@ public class Player extends Moveable {
      */
     public Player(String playerData) {
         super(playerData);
-        String playerObjData = playerData.split(";")[1];
+        String playerObjData = playerData.split(";")[2];
         String[] splitData = playerObjData.split("/");
 
         tokenNum = Integer.parseInt(splitData[0]);
 
+        this.inventory = new ArrayList<Item>();
         for (int i = 1; i < splitData.length; i++) {
             if (splitData[i] != null) {
                 inventory.add(Item.valueOf(splitData[i]));
@@ -55,7 +56,7 @@ public class Player extends Moveable {
      */
     @Override
     public String toString() {
-        String playerData = super.toString() + ";";
+        String playerData = "PLAYER;" + super.toString() + ";";
         playerData += Integer.toString(tokenNum);
 
         for (int i = 0; i < inventory.size(); i++) {

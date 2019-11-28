@@ -40,20 +40,41 @@ public class Board {
      */
     public Board(String boardData) {
         String[] splitData = boardData.split(";");
-        String[] cellColumns = splitData[2].split("/");
-        String[][] cells = null;
+        String[] cellRows = splitData[2].split("/");
+        String[] tempColumn = cellRows[0].split("'");
 
-        for (int i = 0; i < cellColumns.length; i++) {
-            cells[i] = cellColumns[i].split("|");
+        String[][] cells = new String[tempColumn.length][cellRows.length];
+
+        String[] specialCell;
+        
+        goalX = Integer.parseInt(splitData[0]);
+        goalY = Integer.parseInt(splitData[1]);
+
+        for (int i = 0; i < cellRows.length; i++) {
+            tempColumn = cellRows[i].split("'");
+            for (int j = 0; j < tempColumn.length; j++) {
+                cells[i][j] = tempColumn[j];
+            }
         }
 
-        sizeX = cellColumns.length;
+        sizeX = cellRows.length;
         sizeY = cells[0].length;
+        board = new Cell[sizeX][sizeY];
 
         for (int i = 0; i < sizeX; i++) {
             for (int j = 0; j < sizeY; j++) {
-                //add checks and additional code here for special cells
-                board[i][j] = new Cell(cells[i][j]);
+                specialCell = cells[i][j].split("#");
+                switch (CellType.valueOf(cells[i][j].split("#")[0])) {
+                    case TOKEN_DOOR:
+                        board[i][j] = new TokenDoor(Integer.parseInt(specialCell[1]));
+                        break;
+                    case TELEPORTER:
+                        board[i][j] = new Teleporter(Integer.parseInt(specialCell[1]),
+                                Integer.parseInt(specialCell[2]));
+                        break;
+                    default:
+                        board[i][j] = new Cell(cells[i][j]);
+                }
             }
         }
     }
@@ -79,9 +100,9 @@ public class Board {
                     default:
                         boardData += board[i][j].toString();
                 }
-                
+
                 if (j < sizeY - 1) {
-                    boardData += "|";
+                    boardData += "'";
                 }
             }
             if (i < sizeX - 1) {

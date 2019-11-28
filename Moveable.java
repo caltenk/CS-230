@@ -31,8 +31,8 @@ public abstract class Moveable {
      * deal with Moveable data.
      */
     public Moveable(String moveableData) {
-        String moveableObjData = moveableData.split(";")[0];
-        String[] splitData = moveableObjData.split("/");
+        String[] moveableObjData = moveableData.split(";");
+        String[] splitData = moveableObjData[1].split("/");
         
         setPosition(Integer.parseInt(splitData[0]), Integer.parseInt(splitData[1]));
         //...

@@ -85,6 +85,8 @@ public class FileHandling {
         
         savedLevel = new Level(levelSave);
 
+        System.out.println(levelSave.equals(savedLevel.toString()));
+        
         System.out.println("\n End of level test");
     }
 
