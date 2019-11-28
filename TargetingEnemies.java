@@ -1,14 +1,14 @@
 import javafx.scene.image.Image;
 
-public class TargetingEnemies extends Enemy{
+public abstract class TargetingEnemies extends Enemy{
 	
 	protected Player player;
 
 	public TargetingEnemies(int x, int y, Image image, Player player) {
-		this.player=player;
 		super(x, y, image);
+		this.player = player;
 	}	
-	
+		
 	public int getEnemyX() {
 		return super.getXCoord();
 	}
@@ -16,14 +16,15 @@ public class TargetingEnemies extends Enemy{
 		return super.getYCoord();
 	}
 	public int getPlayerX() {
-		return player.super.getXCoord();
+		return player.getXCoord();
 	}
-	
+		
 	public int getPlayerY() {
-		return player.super.getYCoord();
+		return player.getYCoord();
 	}
 
 	public Player getPlayer() {
 		return player;
 	}
+
 }
