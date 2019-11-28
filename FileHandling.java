@@ -44,6 +44,21 @@ public class FileHandling {
 
         System.out.println(saveProgress(new Level(""), new UserProfile("dan", 1)));
         System.out.println(loadProgress(new UserProfile("dan", 1)));
+        levelTest();
+    }
+    
+    public static void levelTest(){
+        Cell[][] cells;
+        Board board;
+        Player player;
+        Enemy[] enemies;
+        Level level;
+        
+        System.out.println("\n Level test:\n");
+        
+        
+        
+        System.out.println("\n End of level test");
     }
 
     /**
