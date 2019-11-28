@@ -1,12 +1,44 @@
 
 public class DumbTargetingEnemies extends TargetingEnemies{
-	private int longestDistanceToPlayer;
+	private int xDifference;
+	private int yDifference;
 
-	public int getLongestDistanceToPlayer() {
-		return longestDistanceToPlayer;
+	public int xDifference() {
+		if (player.getXCoord() < enemy.getXCoord()) {
+			xDifference = enemy.getXCoord() - player.getXCoord();
+		}
+		else {
+			xDifference = player.getXCoord() - enemy.getXCoord();
+		}
+		return xDifference;	
 	}
-
-	public void setLongestDistanceToPlayer(int longestDistanceToPlayer) {
-		this.longestDistanceToPlayer = longestDistanceToPlayer;
+	
+	public int yDifference() {
+		if (player.getYCoord() < enemy.getYCoord()) {
+			yDifference = enemy.getXCoord() - player.getYCoord();
+		}
+		else {
+			yDifference = player.getYCoord() - enemy.getYCoord();
+		}
+		return yDifference;	
+	}
+	
+	public Direction calcDirection (Board board) {
+		if (xDifference > yDifference) {
+			if (player.getXCoord() > enemy.getXCoord()) {
+				return Direction.RIGHT;
+			}
+			else if (player.getXCoord() < enemy.getXCoord()) {
+				return Direction.LEFT;
+			}
+		}
+		else if (xDifference < yDifference) {
+			if (player.getYCoord() > enemy.getYCoord()) {
+				return Direction.DOWN;
+			}
+			else if (player.getYCoord() < enemy.getYCoord()) {
+				return Direction.UP;
+			}
+		}
 	}
 }
