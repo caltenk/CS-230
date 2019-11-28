@@ -1,10 +1,16 @@
+/**
+ * A dumb targeting enemy. Always moves in a straight line towards the player, regardless of obstacles.
+ * @author Liam Date
+ * @version 1.0
+ *
+ */
 
 public class DumbTargetingEnemy extends TargetingEnemy{
 	private int xDifference;
 	private int yDifference;
 
 	public DumbTargetingEnemy(int x, int y, Image image, Player player) {
-		super(x, y, image,player);
+		super(x, y, image, player);
 	}
 	
 	public int xDifference() {
