@@ -37,7 +37,7 @@ public class FileHandling {
         System.out.println(createUser(new UserProfile("jeff", 1)));
         System.out.println(loadUser("bob").getName());
         System.out.println(deleteUser(new UserProfile("jeff", 1)) + "\n");
-        
+
         System.out.println(loadLevel(1));
         System.out.println(completeLevel(new UserProfile("bob", 1), 1, 5.3));
         System.out.println(loadLeaders(1) + "\n");
@@ -46,18 +46,37 @@ public class FileHandling {
         System.out.println(loadProgress(new UserProfile("dan", 1)));
         levelTest();
     }
-    
-    public static void levelTest(){
+
+    public static void levelTest() {
         Cell[][] cells;
         Board board;
         Player player;
         Enemy[] enemies;
         Level level;
+
+        CellType[] cellTypes = CellType.values();
+        EnemyType[] enemyTypes = EnemyType.values();
+
+        cells = new Cell[4][4];
+        for (int i = 0; i < 14; i++) {
+            cells[i / 4][i % 4] = new Cell(cellTypes[i]);
+        }
+        cells[3][2] = new TokenDoor(5);
+        cells[3][3] = new Teleporter(2, 3);
+        board = new Board(cells, 4, 4, 2, 3);
         
+        enemies = new Enemy[4];
+        enemies[0] = new StraightLineEnemy(1, 2, Direction.DOWN, null);
+        enemies[1] = new WallFollowingEnemy(1, 2, null);
+        enemies[2] = new DumbTargetingEnemy(1, 2, null, null);
+        enemies[3] = new SmartTargetingEnemy(1, 2, null, null);
+        
+        player = new Player(4, 3);
+        
+        level = new Level(board, player, enemies);
+
         System.out.println("\n Level test:\n");
-        
-        
-        
+
         System.out.println("\n End of level test");
     }
 
@@ -127,9 +146,9 @@ public class FileHandling {
     }
 
     /**
-     * checks if the user has advanced a level and updates their level in 
-     * USER_PROFILES if so (assuming the userProfile already has their level 
-     * updated), checks if they have set a high score for the level and updates 
+     * checks if the user has advanced a level and updates their level in
+     * USER_PROFILES if so (assuming the userProfile already has their level
+     * updated), checks if they have set a high score for the level and updates
      * the leader board in GAME_LEVELS if so.
      *
      * @param user
@@ -178,7 +197,7 @@ public class FileHandling {
     }
 
     /**
-     * overwrite a level to the level save in user record in the USER_PROFILES 
+     * overwrite a level to the level save in user record in the USER_PROFILES
      * file.
      *
      * @param level
@@ -201,7 +220,7 @@ public class FileHandling {
         if (userRecord != null) {
             String[] userData = userRecord.split(",");
             return new Level(userData[2]);
-        } else{
+        } else {
             return null;
         }
     }
