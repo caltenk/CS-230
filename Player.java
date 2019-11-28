@@ -83,7 +83,7 @@ public class Player extends Moveable {
 
             if (nextCell.getType().equals(CellType.TELEPORTER)) { //what happens when you step on a teleporter
 
-                TeleporterCell teleporter = (TeleporterCell) board.getCell(this.xCoord, this.yCoord);
+                Teleporter teleporter = (Teleporter) board.getCell(this.xCoord, this.yCoord);
                 //method names may be wrong
                 super.setPosition(teleporter.getLinkedX(), teleporter.getLinkedY());
             } else if (nextCell.getType().equals(CellType.TOKEN_DOOR)) {
