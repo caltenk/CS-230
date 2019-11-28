@@ -18,9 +18,10 @@ public class StraightLineEnemy extends Enemy {
     }
 
     /**
-     * suggested to allow fileHandling -Dan
+     * constructs from a string of data containing all information about the
+     * StraightLineEnemy (including superclass data).
      *
-     * @param enemyData
+     * @param smartData StraightLineEnemy data and Enemy data.
      */
     public StraightLineEnemy(String straightData) {
         super(straightData);
@@ -30,9 +31,11 @@ public class StraightLineEnemy extends Enemy {
     }
 
     /**
-     * suggested to allow fileHandling -Dan
+     * generates a string from which a duplicate StraightLineEnemy can be 
+     * constructed, containing all information about the StraightLineEnemy
+     * and its super classes.
      *
-     * @param enemyData
+     * @return the information as a string.
      */
     @Override
     public String toString() {

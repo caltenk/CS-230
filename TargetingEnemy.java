@@ -17,18 +17,21 @@ public abstract class TargetingEnemy extends Enemy {
     }
 
     /**
-     * suggested to allow fileHandling -Dan note: does not set player
+     * constructs from a string of data containing all information about the
+     * TargetingEnemy (including superclass data).
      *
-     * @param enemyData
+     * @param smartData TargetingEnemy data and Enemy data.
      */
     public TargetingEnemy(String targEnemyData) {
         super(targEnemyData);
     }
 
     /**
-     * suggested to allow fileHandling -Dan note: does not set player
+     * generates a string from which a duplicate TargetingEnemy can be 
+     * constructed, containing all information about the TargetingEnemy
+     * and its super classes.
      *
-     * @param enemyData
+     * @return the information as a string.
      */
     @Override
     public String toString() {

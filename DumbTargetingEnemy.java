@@ -16,18 +16,20 @@ public class DumbTargetingEnemy extends TargetingEnemy {
     }
 
     /**
-     * suggested to allow fileHandling -Dan
-     *
-     * @param enemyData
+     * constructs from a string of data containing all information about the
+     * dumbTargettingEnemy (including superclass data).
+     * @param dumbEnemyData DumbTargettingEnemy data and TargetingEnemy data.
      */
     public DumbTargetingEnemy(String dumbEnemyData) {
         super(dumbEnemyData);
     }
 
     /**
-     * suggested to allow fileHandling -Dan
+     * generates a string from which a duplicate DumbTargetingEnemy can be
+     * constructed, containing all information about the dumbTargetingEnemy and
+     * its super classes.
      *
-     * @param enemyData
+     * @return the information as a string.
      */
     @Override
     public String toString() {
