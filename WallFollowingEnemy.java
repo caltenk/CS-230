@@ -11,6 +11,23 @@ public class WallFollowingEnemy extends Enemy {
 	public WallFollowingEnemy(int x, int y, Image image) {
 		super(x,y,image);
 	}
+        
+        /**
+         * suggested to allow fileHandling -Dan
+         * @param enemyData 
+         */
+        public WallFollowingEnemy(String wallEnemyData){
+            super(wallEnemyData);
+        }
+        
+        /**
+         * suggested to allow fileHandling -Dan
+         * @param enemyData 
+         */
+        @Override
+        public String toString(){
+            return EnemyType.WALL_FOLLOWING + ";" + super.toString();
+        }
 	
 	/**
 	 * Calculates the direction the Enemy will move in.
