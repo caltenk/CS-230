@@ -20,8 +20,8 @@ public class Player extends Moveable {
      * @param y The initial y co-ordinate of the player.
      * @param image The image used to represent the player.
      */
-    public Player(int x, int y, Image image) {
-        super(x, y, image);
+    public Player(int x, int y) {
+        super(x, y);
         this.inventory = new ArrayList<Item>();
         this.tokenNum = 0;
     }
