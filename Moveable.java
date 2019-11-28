@@ -21,9 +21,8 @@ public abstract class Moveable {
      * @param y The initial y co-ordinate.
      * @param image The image used to present the moveable object
      */
-    public Moveable(int x, int y, Image image) {
+    public Moveable(int x, int y) {
         setPosition(x, y);
-        this.image = image;
     }
 
     /**
@@ -86,6 +85,10 @@ public abstract class Moveable {
     public void setPosition(int x, int y) {
         this.xCoord = x;
         this.yCoord = y;
+    }
+    
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     public int getXCoord() {
