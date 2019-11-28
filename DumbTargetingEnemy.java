@@ -1,5 +1,5 @@
 
-public class DumbTargetingEnemies extends TargetingEnemies{
+public class DumbTargetingEnemy extends TargetingEnemy{
 	private int xDifference;
 	private int yDifference;
 
