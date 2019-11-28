@@ -1,6 +1,6 @@
 /**
  * A smart targeting enemy. Always moves in the shortest route towards the player.
- * @author Liam Date
+ * @author Ahmed Ajaj
  * @version 1.0
  *
  */
