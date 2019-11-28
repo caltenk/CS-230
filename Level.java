@@ -18,28 +18,55 @@ public class Level {
         this.enemies = enemies;
     }
 
-    /**suggested to allow filehandling -Dan
-     * note: not compiled with Enemy class, Enemy class may require its own
-     * constructor and toString methods.
-     * @param levelData 
+    /**
+     * suggested to allow filehandling -Dan note: not compiled with Enemy class,
+     * Enemy class may require its own constructor and toString methods.
+     *
+     * @param levelData
      */
     public Level(String levelData) {
         String[] splitData = levelData.split(":");
-        if(splitData.length >= 2){
+        String[] enemyData;
+        EnemyType enemyType;
+        if (splitData.length >= 2) {
             board = new Board(splitData[0]);
             player = new Player(splitData[1]);
-            for(int i = 2; i < splitData.length; i++){
-                enemies[i-2] = new Enemy(splitData[i]);
+            for (int i = 2; i < splitData.length; i++) {
+                enemyData = splitData[i].split(";");
+                enemyType = EnemyType.valueOf(enemyData[0]);
+                switch (enemyType) {
+                    case STRAIGHT_LINE:
+                        enemies[i - 2] = new StraightLineEnemy(splitData[i]);
+                        break;
+
+                    case WALL_FOLLOWING:
+                        enemies[i - 2] = new WallFollowingEnemy(splitData[i]);
+                        break;
+
+                    case DUMB_TARGETING:
+                        enemies[i - 2] = new DumbTargetingEnemy(splitData[i]);
+                        break;
+
+                    case SMART_TARGETING:
+                        enemies[i - 2] = new SmartTargetingEnemy(splitData[i]);
+                        break;
+
+                    default:
+                        System.out.println("ERROR - enemy construction failure");
+
+                }
+
             }
-        } else{
+        } else {
             System.out.println("ERROR - level construction failure");
         }
     }
 
-    /**suggested to allow filehandling -Dan
-     * note: not compiled with Enemy class, Enemy class may require its own
-     * constructor and toString methods.
-     * @param levelData 
+    /**
+     * suggested to allow filehandling -Dan note: not compiled with Enemy class,
+     * Enemy class may require its own constructor and toString methods.
+     *
+     * @param levelData
      */
     @Override
     public String toString() {
@@ -49,18 +76,18 @@ public class Level {
         } else {
             return null;
         }
-        
+
         if (player != null) {
             levelData += player.toString() + ":";
         } else {
             return null;
         }
-        
-        for(int i = 0; i < enemies.length; i++){
-            if(enemies[i] != null){
+
+        for (int i = 0; i < enemies.length; i++) {
+            if (enemies[i] != null) {
                 levelData += enemies[i].toString();
             }
-            if(i < enemies.length - 1){
+            if (i < enemies.length - 1) {
                 levelData += ":";
             }
         }
