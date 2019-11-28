@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package filehandling;
 
-import static filehandling.FileHandling.loadUser;
 
 /**
  * holds the top 3 completion times of a level by users.
@@ -39,7 +37,7 @@ public class LeaderBoard {
         if (splitData.length == 6) {
             for (int i = 0; i < 3; i++) {
                 if (splitData[i * 2] != " ") {
-                    leaders[i] = loadUser(splitData[i * 2]);
+                    leaders[i] = FileHandling.loadUser(splitData[i * 2]);
                 }
                 if (splitData[i * 2 + 1] != "0") {
                     leaderTimes[i] = Float.parseFloat(splitData[i * 2 + 1]);
