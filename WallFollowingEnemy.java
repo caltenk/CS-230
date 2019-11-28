@@ -1,4 +1,8 @@
 import javafx.scene.image.Image;
+/**A wall following enemy: Enemy that moves in the direction of walls towards the player
+ * @author Ahmed Ajaj
+ * @version 1.0
+ */
 
 public class WallFollowingEnemy extends Enemy {
 	
@@ -8,26 +12,9 @@ public class WallFollowingEnemy extends Enemy {
 	 * @param y The starting y co-ordiante.
 	 * @param image The image that will represent the Enemy.
 	 */
-	public WallFollowingEnemy(int x, int y) {
-		super(x,y);
+	public WallFollowingEnemy(int x, int y, Image image) {
+		super(x,y,image);
 	}
-        
-        /**
-         * suggested to allow fileHandling -Dan
-         * @param enemyData 
-         */
-        public WallFollowingEnemy(String wallEnemyData){
-            super(wallEnemyData);
-        }
-        
-        /**
-         * suggested to allow fileHandling -Dan
-         * @param enemyData 
-         */
-        @Override
-        public String toString(){
-            return EnemyType.WALL_FOLLOWING + ";" + super.toString();
-        }
 	
 	/**
 	 * Calculates the direction the Enemy will move in.

@@ -1,29 +1,14 @@
 import javafx.scene.image.Image;
 
+/** A general enemy which moves towards the player
+ * @author Ahmed Ajaj
+ * @version 1.0
+ */
 public class Enemy extends Moveable {
-	
-	
-	public Enemy(int x, int y) {
-		super(x, y);
+	public Enemy(int x, int y, Image image) {
+		super(x, y, image);
 	}
-        
-        /**
-         * suggested to allow fileHandling -Dan
-         * @param enemyData 
-         */
-        public Enemy(String enemyData){
-            super(enemyData);
-        }
-        
-        /**
-         * suggested to allow fileHandling -Dan
-         * @param enemyData 
-         */
-        public String toString(){
-            return ";" + super.toString();
-            //any added enemy data here
-        }
-	
+
 	public boolean isMoveValid(Cell cell) {
 		CellType type = cell.getType();
 		switch (type) {
@@ -50,9 +35,5 @@ public class Enemy extends Moveable {
 	public Cell getNextCell(Direction direction, Board board) {
 		super.getNextCell(direction, board);
 	}
-	
-	public abstract Direction calculateDirection(Board board) {
-	
-	}
-	
+	public abstract Direction calculateDirection(Board board);
 }
