@@ -16,6 +16,13 @@ public class TokenDoor extends Cell {
 		super(CellType.TOKEN_DOOR);
 		this.numTokensNeeded = numTokensNeeded;
 	}
+        
+        @Override
+        public String toString(){
+            String tokenDoorData = super.toString();
+            tokenDoorData += "#" + Integer.toString(getNumTokensNeeded());
+            return tokenDoorData;
+        }
 	
 	/**
 	 * Get method for the number of tokens need to unlock the door.

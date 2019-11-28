@@ -36,10 +36,8 @@ public class LeaderBoard {
         String[] splitData = leaderData.split(":");
         if (splitData.length == 6) {
             for (int i = 0; i < 3; i++) {
-                if (splitData[i * 2] != " ") {
+                if (!splitData[i * 2].equals("-")) {
                     leaders[i] = FileHandling.loadUser(splitData[i * 2]);
-                }
-                if (splitData[i * 2 + 1] != "0") {
                     leaderTimes[i] = Float.parseFloat(splitData[i * 2 + 1]);
                 }
             }
@@ -105,7 +103,7 @@ public class LeaderBoard {
             if (leaders[i] != null) {
                 leadData += leaders[i].getName() + ":";
             } else {
-                leadData += " ";
+                leadData += "-:";
             }
 
             if (leaderTimes[i] != 0) {

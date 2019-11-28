@@ -8,10 +8,15 @@ public class Cell {
 
     public Cell(CellType type) {
         this.type = type;
+        
+        try{
         if (this.type == CellType.GROUND) {
             image = new Image("floor.png", 70, 70, true, true);
         } else if (this.type == CellType.WALL) {
             image = new Image("wall.png", 70, 70, true, true);
+        }
+        }catch(IllegalArgumentException e){
+            System.out.println("ERROR - cell image not found");
         }
     }
     

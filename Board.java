@@ -33,8 +33,9 @@ public class Board {
     }
 
     /**
-     * suggested to allow filehandling -Dan.
-     * note: not yet compiled with Cell, not tested.
+     * suggested to allow filehandling -Dan. note: not yet compiled with Cell,
+     * not tested.
+     *
      * @param boardData
      */
     public Board(String boardData) {
@@ -58,8 +59,9 @@ public class Board {
     }
 
     /**
-     * suggested to allow filehandling -Dan.
-     * note: not yet compiled with Cell, not tested.
+     * suggested to allow filehandling -Dan. note: not yet compiled with Cell,
+     * not tested.
+     *
      * @return
      */
     @Override
@@ -67,8 +69,17 @@ public class Board {
         String boardData = goalX + ";" + goalY + ";";
         for (int i = 0; i < sizeX; i++) {
             for (int j = 0; j < sizeY; j++) {
-                //add checks and additional code here for special cells
-                boardData += board[i][j].toString();
+                switch (board[i][j].getType()) {
+                    case TOKEN_DOOR:
+                        boardData += ((TokenDoor) board[i][j]).toString();
+                        break;
+                    case TELEPORTER:
+                        boardData += ((Teleporter) board[i][j]).toString();
+                        break;
+                    default:
+                        boardData += board[i][j].toString();
+                }
+                
                 if (j < sizeY - 1) {
                     boardData += "|";
                 }

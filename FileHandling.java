@@ -52,7 +52,12 @@ public class FileHandling {
         Board board;
         Player player;
         Enemy[] enemies;
-        Level level;
+        Level originalLevel;
+        Level savedLevel;
+
+        String levelSave;
+
+        System.out.println("\n Level test:\n");
 
         CellType[] cellTypes = CellType.values();
         EnemyType[] enemyTypes = EnemyType.values();
@@ -64,18 +69,21 @@ public class FileHandling {
         cells[3][2] = new TokenDoor(5);
         cells[3][3] = new Teleporter(2, 3);
         board = new Board(cells, 4, 4, 2, 3);
-        
+
         enemies = new Enemy[4];
         enemies[0] = new StraightLineEnemy(1, 2, Direction.DOWN, null);
         enemies[1] = new WallFollowingEnemy(1, 2, null);
         enemies[2] = new DumbTargetingEnemy(1, 2, null, null);
         enemies[3] = new SmartTargetingEnemy(1, 2, null, null);
-        
-        player = new Player(4, 3);
-        
-        level = new Level(board, player, enemies);
 
-        System.out.println("\n Level test:\n");
+        player = new Player(4, 3);
+        player.giveStuff();
+
+        originalLevel = new Level(board, player, enemies);
+
+        levelSave = originalLevel.toString();
+        
+        savedLevel = new Level(levelSave);
 
         System.out.println("\n End of level test");
     }
@@ -130,7 +138,7 @@ public class FileHandling {
     }
 
     /**
-     * loads a level from GAME_LEVELS if it exists there.
+     * loads a originalLevel from GAME_LEVELS if it exists there.
      *
      * @param levelNum
      * @return the requested Level if found, null if not.
@@ -146,59 +154,64 @@ public class FileHandling {
     }
 
     /**
-     * checks if the user has advanced a level and updates their level in
-     * USER_PROFILES if so (assuming the userProfile already has their level
-     * updated), checks if they have set a high score for the level and updates
-     * the leader board in GAME_LEVELS if so.
+     * checks if the user has advanced a originalLevel and updates their originalLevel in
+ USER_PROFILES if so (assuming the userProfile already has their originalLevel
+ updated), checks if they have set a high score for the originalLevel and updates
+ the leader board in GAME_LEVELS if so.
      *
      * @param user
      * @param levelNum
-     * @param time time in which the level was completed.
+     * @param time time in which the originalLevel was completed.
      */
     public static boolean completeLevel(UserProfile user, int levelNum, double time) {
 
-        Level userSave = new Level(searchFile(GAME_LEVELS, Integer.toString(levelNum)));
+        String[] oldUserRecord = searchFile(USER_PROFILES, user.getName()).split(",");
         String newUserRecord;
 
         String[] levelRecord = searchFile(GAME_LEVELS, Integer.toString(levelNum)).split(",");
-        LeaderBoard leaders = new LeaderBoard(levelRecord[1]);
-        Level completedLevel = new Level(levelRecord[2]);
+        LeaderBoard leaders;
+        Level completedLevel;
         String newLevelRecord;
+        if (oldUserRecord.length == 3 && levelRecord.length == 3) {
+            leaders = new LeaderBoard(levelRecord[1]);
+            completedLevel = new Level(levelRecord[2]);
+            //update user originalLevel reached if applicable
+            if (user.getHighestLevel() == levelNum) {
 
-        //update user level reached if applicable
-        if (user.getHighestLevel() == levelNum) {
+                newUserRecord = oldUserRecord[0] + ","
+                        + Integer.toString(user.getHighestLevel() + 1) + ","
+                        + oldUserRecord[2];
 
-            newUserRecord = user.getName() + ","
-                    + Integer.toString(user.getHighestLevel() + 1) + ","
-                    + userSave.toString();
-
-            if (!editFile(USER_PROFILES, user.getName(), newUserRecord)) {
-                System.out.println("ERROR - update user higest level failure "
-                        + "check file: " + USER_PROFILES.getPath() + " :"
-                        + "for user: " + user.getName() + " :");
-                return false;
+                if (!editFile(USER_PROFILES, user.getName(), newUserRecord)) {
+                    System.out.println("ERROR - update user higest level failure "
+                            + "check file: " + USER_PROFILES.getPath() + " :"
+                            + "for user: " + user.getName() + " :");
+                    return false;
+                }
             }
-        }
 
-        //update level leaderboard if applicable
-        if (leaders.addleader(user, time)) {
+            //update originalLevel leaderboard if applicable
+            if (leaders.addleader(user, time)) {
 
-            newLevelRecord = Integer.toString(levelNum) + ",";
-            newLevelRecord += leaders.toString() + ",";
-            newLevelRecord += completedLevel.toString();
+                newLevelRecord = Integer.toString(levelNum) + ",";
+                newLevelRecord += leaders.toString() + ",";
+                newLevelRecord += completedLevel.toString();
 
-            if (!editFile(GAME_LEVELS, Integer.toString(levelNum), newLevelRecord)) {
-                System.out.println("ERROR - update leader failure "
-                        + "check file: " + GAME_LEVELS.getPath() + " :");
-                return false;
+                if (!editFile(GAME_LEVELS, Integer.toString(levelNum), newLevelRecord)) {
+                    System.out.println("ERROR - update leader failure "
+                            + "check file: " + GAME_LEVELS.getPath() + " :");
+                    return false;
+                }
             }
+            return true;
+        } else {
+            return false;
         }
-        return true;
     }
 
     /**
-     * overwrite a level to the level save in user record in the USER_PROFILES
-     * file.
+     * overwrite a originalLevel to the originalLevel save in user record in the USER_PROFILES
+ file.
      *
      * @param level
      * @param user
@@ -210,7 +223,7 @@ public class FileHandling {
     }
 
     /**
-     * load a level save from the user record in the USER_PROFILES file.
+     * load a originalLevel save from the user record in the USER_PROFILES file.
      *
      * @param user
      * @return the Level if found, null if not.
@@ -226,7 +239,7 @@ public class FileHandling {
     }
 
     /**
-     * loads the leaderboard for a level from the GAME_LEVELS file.
+     * loads the leaderboard for a originalLevel from the GAME_LEVELS file.
      *
      * @param levelNum
      * @return the leaderboard if found, null if not.

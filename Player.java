@@ -57,16 +57,24 @@ public class Player extends Moveable {
     public String toString() {
         String playerData = super.toString() + ";";
         playerData += Integer.toString(tokenNum);
-        Item[] inventory = (Item[]) this.inventory.toArray();
 
-        for (int i = 0; i < inventory.length; i++) {
-            if (inventory[i] != null) {
-                playerData += "/" + inventory[i].toString();
+        for (int i = 0; i < inventory.size(); i++) {
+            if (inventory.get(i) != null) {
+                playerData += "/" + inventory.get(i).toString();
             }
         }
         return playerData;
     }
-
+    
+    /**
+     * temporary method for testing purposes
+     */
+    public void giveStuff(){
+        tokenNum = 5;
+        inventory.add(Item.RED_KEY);
+        inventory.add(Item.FIREBOOTS);
+        inventory.add(Item.FLIPPERS);
+    }
     /**
      * Moves the player in a user specified direction
      *
