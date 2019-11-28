@@ -2,7 +2,12 @@
 public class SmartTargetingEnemies extends TargetingEnemies {
 	private int xDifference;
 	private int yDifference;
-
+	
+	
+	public SmartTargetingEnemies(int x, int y, Image image, Player player) {
+		super(x, y, image,player);
+	}
+	
 	public int xDifference() {
 		if (player.getXCoord() < enemy.getXCoord()) {
 			xDifference = enemy.getXCoord() - player.getXCoord();
