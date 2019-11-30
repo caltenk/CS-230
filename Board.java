@@ -78,6 +78,27 @@ public class Board {
             }
         }
     }
+    
+    /**
+     * returns a Cell array with each edge Cell being a wall and all others
+     * being ground cells.
+     * @param width width of the board.
+     * @param height height of the board.
+     * @return 
+     */
+    public static Cell[][] blankBoard(int width, int height){
+        Cell[][] cells = new Cell[width][height];
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                if(i == 0 || i == width-1 || j == 0 || j == height-1){
+                    cells[i][j] = new Cell(CellType.WALL);
+                } else{
+                    cells[i][j] = new Cell(CellType.GROUND);
+                }
+            }
+        }
+        return cells;
+    }
 
     /**
      * suggested to allow filehandling -Dan. note: not yet compiled with Cell,
