@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-
 /**
  * holds the top 3 completion times of a level by users.
  *
@@ -13,6 +12,7 @@
  */
 public class LeaderBoard {
 
+    //stored in order of leaderTimes[], quickest in [0], slowest in [2]
     private UserProfile[] leaders = new UserProfile[3];
     private double[] leaderTimes = new double[3];
 
@@ -69,7 +69,7 @@ public class LeaderBoard {
 
     /**
      * adds a leader to the leaderboard if they have achieved a top 3 completion
-     * times.
+     * times, the leaderboard stores leaders in order of their completion time.
      *
      * @param user
      * @param time
@@ -77,12 +77,26 @@ public class LeaderBoard {
      */
     public boolean addleader(UserProfile user, double time) {
         if (time > 0 && user != null) {
-            for (int i = 0; i < 3; i++) {
-                if (leaderTimes[i] == 0 || leaderTimes[i] < time) {
-                    leaders[i] = user;
-                    leaderTimes[i] = time;
-                    return true;
-                }
+            if (leaderTimes[0] == 0 || leaderTimes[0] > time) {
+                leaders[2] = leaders[1];
+                leaderTimes[2] = leaderTimes[1];
+                leaders[1] = leaders[0];
+                leaderTimes[1] = leaderTimes[0];
+                leaders[0] = user;
+                leaderTimes[0] = time;
+                return true;
+            } else if (leaderTimes[1] == 0 || leaderTimes[1] > time) {
+                leaders[2] = leaders[1];
+                leaderTimes[2] = leaderTimes[1];
+                leaders[1] = user;
+                leaderTimes[1] = time;
+                return true;
+            } else if (leaderTimes[2] == 0 || leaderTimes[1] > time) {
+                leaders[2] = user;
+                leaderTimes[2] = time;
+                return true;
+            } else {
+                return false;
             }
         }
         return false;
