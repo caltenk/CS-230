@@ -43,10 +43,10 @@ public class Board {
         String[] cellRows = splitData[2].split("/");
         String[] tempColumn = cellRows[0].split("'");
 
-        String[][] cells = new String[tempColumn.length][cellRows.length];
+        String[][] cells = new String[cellRows.length][tempColumn.length];
 
         String[] specialCell;
-        
+
         goalX = Integer.parseInt(splitData[0]);
         goalY = Integer.parseInt(splitData[1]);
 
@@ -78,21 +78,22 @@ public class Board {
             }
         }
     }
-    
+
     /**
      * returns a Cell array with each edge Cell being a wall and all others
      * being ground cells.
+     *
      * @param width width of the board.
      * @param height height of the board.
-     * @return 
+     * @return
      */
-    public static Cell[][] blankBoard(int width, int height){
+    public static Cell[][] blankBoard(int width, int height) {
         Cell[][] cells = new Cell[width][height];
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                if(i == 0 || i == width-1 || j == 0 || j == height-1){
+                if (i == 0 || i == width - 1 || j == 0 || j == height - 1) {
                     cells[i][j] = new Cell(CellType.WALL);
-                } else{
+                } else {
                     cells[i][j] = new Cell(CellType.GROUND);
                 }
             }

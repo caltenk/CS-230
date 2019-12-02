@@ -18,8 +18,8 @@ import java.io.File;
  */
 public class FileHandling {
 
-    private static final File USER_PROFILES = new File("testFiles\\userProfiles.txt");
-    private static final File GAME_LEVELS = new File("testFiles\\levels.txt");
+    private static final File USER_PROFILES = new File("src\\testFiles\\userProfiles.txt");
+    private static final File GAME_LEVELS = new File("src\\testFiles\\levels.txt");
 
     private static FileReader reader;
     private static BufferedReader buffRead;
@@ -39,7 +39,7 @@ public class FileHandling {
         System.out.println(deleteUser(new UserProfile("jeff", 1)) + "\n");
 
         System.out.println(loadLevel(1));
-        System.out.println(completeLevel(new UserProfile("bob", 1), 1, 5.3));
+        System.out.println(completeLevel(new UserProfile("bob", 1), 2, 5.3));
         System.out.println(loadLeaders(1) + "\n");
 
         System.out.println(saveProgress(new Level(""), new UserProfile("dan", 1)));
@@ -82,11 +82,11 @@ public class FileHandling {
         originalLevel = new Level(board, player, enemies);
 
         levelSave = originalLevel.toString();
-        
+
         savedLevel = new Level(levelSave);
 
         System.out.println(levelSave.equals(savedLevel.toString()));
-        
+
         System.out.println("\n End of level test");
     }
 
@@ -98,7 +98,7 @@ public class FileHandling {
      */
     public static boolean createUser(UserProfile user) {
         if (searchFile(USER_PROFILES, user.getName()) == null) {
-            if (!appendRecord(USER_PROFILES, user.getName() + "," + user.getHighestLevel())) {
+            if (!appendRecord(USER_PROFILES, user.getName() + "," + user.getHighestLevel() + ",-")) {
                 System.out.println("ERROR - user creation failure, "
                         + "check user: " + user.getName() + " :");
             }
@@ -156,10 +156,10 @@ public class FileHandling {
     }
 
     /**
-     * checks if the user has advanced a originalLevel and updates their originalLevel in
- USER_PROFILES if so (assuming the userProfile already has their originalLevel
- updated), checks if they have set a high score for the originalLevel and updates
- the leader board in GAME_LEVELS if so.
+     * checks if the user has advanced a originalLevel and updates their
+     * originalLevel in USER_PROFILES if so (assuming the userProfile already
+     * has their originalLevel updated), checks if they have set a high score
+     * for the originalLevel and updates the leader board in GAME_LEVELS if so.
      *
      * @param user
      * @param levelNum
@@ -212,16 +212,22 @@ public class FileHandling {
     }
 
     /**
-     * overwrite a originalLevel to the originalLevel save in user record in the USER_PROFILES
- file.
+     * overwrite a originalLevel to the originalLevel save in user record in the
+     * USER_PROFILES file.
      *
      * @param level
      * @param user
      */
     public static boolean saveProgress(Level level, UserProfile user) {
-        return editFile(USER_PROFILES, user.getName(), user.getName() + ","
-                + user.getHighestLevel() + ","
-                + level.toString());
+        if (level.getBoard() != null) {
+            return editFile(USER_PROFILES, user.getName(), user.getName() + ","
+                    + user.getHighestLevel() + ","
+                    + level.toString());
+        } else{
+            return editFile(USER_PROFILES, user.getName(), user.getName() + ","
+                    + user.getHighestLevel() + ","
+                    + "-");
+        }
     }
 
     /**

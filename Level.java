@@ -29,7 +29,6 @@ public class Level {
         String[] enemyData;
         EnemyType enemyType;
 
-        
         if (splitData.length >= 2) {
             board = new Board(splitData[0]);
             player = new Player(splitData[1]);
@@ -37,7 +36,7 @@ public class Level {
         } else {
             System.out.println("ERROR - level construction failure");
         }
-        
+
         if (splitData.length > 2) {
             enemies = new Enemy[splitData.length - 2];
             for (int i = 2; i < splitData.length; i++) {
@@ -66,40 +65,46 @@ public class Level {
             }
         }
     }
-    
-    
+
     /**
      * generates a level for testing of normal play, has no enemies.
      */
     public Level() {
         Cell[][] cells = Board.blankBoard(11, 9);
-        
+
         cells[2][2] = new Cell(CellType.FIREBOOTS);
         cells[2][4] = new Cell(CellType.FIRE);
-        
+
         cells[4][2] = new Cell(CellType.FLIPPERS);
         cells[4][4] = new Cell(CellType.WATER);
-        
+
         cells[6][2] = new Cell(CellType.RED_KEY);
         cells[6][4] = new Cell(CellType.RED_DOOR);
-        
+
         cells[8][2] = new Teleporter(8, 4);
         cells[8][4] = new Teleporter(8, 2);
 
         cells[9][3] = new Cell(CellType.GOAL);
-        
+
         cells[2][6] = new Cell(CellType.TOKEN);
         cells[3][6] = new Cell(CellType.TOKEN);
         cells[4][6] = new Cell(CellType.TOKEN);
         cells[5][6] = new Cell(CellType.TOKEN);
         cells[6][6] = new Cell(CellType.TOKEN);
-        
+
         cells[7][6] = new TokenDoor(3);
         cells[8][6] = new TokenDoor(1);
-        
+
         board = new Board(cells, 11, 9, 9, 3);
         player = new Player(1, 3);
         enemies = null;
+    }
+
+    public static void main(String[] args) {
+        Level level = new Level();
+        String test = level.toString();
+        Level compare = FileHandling.loadLevel(1);
+        System.out.println(test.equals(compare.toString()));
     }
 
     /**
@@ -123,12 +128,14 @@ public class Level {
             return null;
         }
 
-        for (int i = 0; i < enemies.length; i++) {
-            if (enemies[i] != null) {
-                levelData += enemies[i].toString();
-            }
-            if (i < enemies.length - 1) {
-                levelData += ":";
+        if (enemies != null) {
+            for (int i = 0; i < enemies.length; i++) {
+                if (enemies[i] != null) {
+                    levelData += enemies[i].toString();
+                }
+                if (i < enemies.length - 1) {
+                    levelData += ":";
+                }
             }
         }
         return levelData;
