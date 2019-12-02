@@ -1,3 +1,4 @@
+import javafx.scene.input.KeyEvent;
 
 /**
  * Class which defines a level which can be played by the user
@@ -11,6 +12,7 @@ public class Level {
     private Board board;
     private Player player;
     private Enemy[] enemies;
+    private int levelNum;
 
     public Level(Board board, Player player, Enemy[] enemies) {
         this.board = board;
@@ -98,19 +100,33 @@ public class Level {
         }
         return levelData;
     }
-
+    
     /**
-     * Preforms one turn of the level
-     *
-     * @param playerDirection The direction the player will move in
+     * Plays one rotation of the level. Using the user inputed direction.
+     * @param event The key key pressed by the user to move the player.
      */
-    public void play(Direction playerDirection) {
-        player.move(playerDirection, board);
-        for (Enemy elem : enemies) {
-            Direction direction = elem.calculateDirection(board);
-            elem.move(direction);
-        }
-    }
+	public void play(KeyEvent event) {
+		switch (event.getCode()) {
+			
+		    case RIGHT:
+		    	play(Direction.RIGHT);
+		    	break;
+		    case LEFT:
+		    	play(Direction.LEFT);
+		    	break;
+		    case UP:
+		    	play(Direction.UP);
+		    	break;
+		    case DOWN:
+		    	play(Direction.DOWN);
+		    	break;
+	        default:
+	        	// Do nothing
+	        	break;
+		}
+	}
+
+
 
     /**
      * Works out if the has been killed.
@@ -137,6 +153,14 @@ public class Level {
         return (player.getXCoord() == board.getGoalX()
                 && player.getYCoord() == board.getGoalY());
     }
+    
+    public void setLevelNum(int num) {
+    	this.levelNum = num;
+    }
+    
+    public int getLevelNum() {
+    	return this.levelNum;
+    }
 
     /**
      *
@@ -144,5 +168,52 @@ public class Level {
      */
     public Board getBoard() {
         return this.board;
+    }
+    
+    public Player getPlayer() {
+    	return this.player;
+    }
+    
+    public Enemy[] getEnemies() {
+    	return this.enemies;
+    }
+    
+    /**
+     * Preforms one turn of the level
+     *
+     * @param playerDirection The direction the player will move in
+     */
+    private void play(Direction playerDirection) {
+        player.move(playerDirection, board);
+        for (Enemy elem : enemies) {
+            Direction direction = elem.calculateDirection(board);
+            elem.move(direction);
+        }
+        
+        updateBoard();
+    }
+    
+    /**
+     * Updates the board to turn the cell the player is standing on to a ground cell, where apllicable
+     */
+    private void updateBoard() {
+    	CellType playerCell = board.getCell(player.getXCoord(), player.getYCoord()).getType();
+    	switch(playerCell) {
+    		case RED_DOOR:
+    		case BLUE_DOOR:
+    		case GREEN_DOOR:
+    		case TOKEN_DOOR:
+    		case TOKEN:
+    		case RED_KEY:
+    		case BLUE_KEY:
+    		case GREEN_KEY:
+    		case FLIPPERS:
+    		case FIREBOOTS:
+    			board.updateCell(player.getXCoord(), player.getYCoord());
+    			break;
+    		default:
+    			break; //no nothing
+    	}
+    
     }
 }
