@@ -92,14 +92,4 @@ public class DumbTargetingEnemy extends TargetingEnemy {
         }
         return null;
     }
-
-    /**
-     * !!!implement
-     * @param board
-     * @return 
-     */
-    @Override
-    public Direction calculateDirection(Board board) {
-        return null;
-    }
 }
