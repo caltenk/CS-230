@@ -18,8 +18,8 @@ import java.io.File;
  */
 public class FileHandling {
 
-    private static final File USER_PROFILES = new File("src\\testFiles\\userProfiles.txt");
-    private static final File GAME_LEVELS = new File("src\\testFiles\\levels.txt");
+    private static final File USER_PROFILES = new File("src/testFiles/userProfiles.txt");
+    private static final File GAME_LEVELS = new File("src/testFiles/levels.txt");
 
     private static FileReader reader;
     private static BufferedReader buffRead;

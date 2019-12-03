@@ -1,9 +1,15 @@
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.URL;
 
 /**
  * The UI which asks the user if they wish to login as an existing user
@@ -26,10 +32,15 @@ public class Login extends Application {
 	 * The start method for this applciaton.
 	 * @param primaryStage The stage this application is shown on.
 	 */
-	public void start(Stage primaryStage) {
-		
+	public void start(Stage primaryStage) throws IOException {
 		stage = primaryStage;
-		Pane root = buildGUI();
+
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("loginmenu.fxml"));
+		Pane root = (Pane) loader.load();
+		LoginMenuController controller = (LoginMenuController)loader.getController();
+		controller.setStage(stage);
+		//Pane root = buildGUI();
 		
 		Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
 		
