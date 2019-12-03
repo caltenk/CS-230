@@ -27,7 +27,7 @@ public class Teleporter extends Cell {
     public String toString() {
         String tokenDoorData = super.toString();
         tokenDoorData += "#" + Integer.toString(getLinkedX())
-                + "#" + Integer.toString(getLinkedX());
+                + "#" + Integer.toString(getLinkedY());
         return tokenDoorData;
     }
 

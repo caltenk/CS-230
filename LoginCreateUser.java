@@ -97,7 +97,7 @@ public class LoginCreateUser extends Application {
 			root.getChildren().add(errorMess);
 		} else if (newUser) {
 			
-			UserProfile user = new UserProfile(username, DEFAULT_LEVELS_COMPLETE);
+			UserProfile user = new UserProfile(username, DEFAULT_LEVELS_COMPLETE, "dev");
 			
 			if (FileHandling.createUser(user)) {
 				loadUser(user);

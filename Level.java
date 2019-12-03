@@ -1,5 +1,6 @@
 
 import java.io.File;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 
 /**
@@ -10,16 +11,19 @@ import javafx.scene.input.KeyEvent;
  */
 public class Level {
 
+    private static final String themeFile = "themes\\";
     //TODO: Need to implement saving.
     private Board board;
     private Player player;
     private Enemy[] enemies;
     private int levelNum;
+    private UserProfile user;
 
-    public Level(Board board, Player player, Enemy[] enemies) {
+    public Level(Board board, Player player, Enemy[] enemies, UserProfile user) {
         this.board = board;
         this.player = player;
         this.enemies = enemies;
+        this.user = user;
     }
 
     /**
@@ -103,7 +107,9 @@ public class Level {
 
         board = new Board(cells, 11, 9, 9, 3);
         player = new Player(1, 3);
-        enemies = null;
+        enemies = new Enemy[1];
+        enemies[0] = new DumbTargetingEnemy(1, 7, player);
+        setTheme("dev");
     }
 
     public static void main(String[] args) {
@@ -112,11 +118,24 @@ public class Level {
         Level compare = FileHandling.loadLevel(1);
         System.out.println(test.equals(compare.toString()));
     }
+    
+    public void setUser(UserProfile user){
+        this.user = user;
+    }
 
+    /**
+     *
+     *
+     * @param theme
+     */
     public void setTheme(String theme) {
-        board.setTheme(theme);
-        player.setImage(new Image(theme + "//PLAYER.png"));
-        
+        board.setTheme(themeFile + theme);
+        player.setImage(new Image(themeFile + theme + "\\PLAYER.png"));
+        if (enemies != null) {
+            for (int i = 0; i < enemies.length; i++) {
+                enemies[i].setImage(new Image(theme + enemies[i].getType()));
+            }
+        }
     }
 
     /**
@@ -236,9 +255,11 @@ public class Level {
      */
     private void play(Direction playerDirection) {
         player.move(playerDirection, board);
-        for (Enemy elem : enemies) {
-            Direction direction = elem.calculateDirection(board);
-            elem.move(direction);
+        if (enemies != null) {
+            for (Enemy elem : enemies) {
+                Direction direction = elem.calculateDirection(board);
+                elem.move(direction);
+            }
         }
 
         updateBoard();
@@ -261,7 +282,7 @@ public class Level {
             case GREEN_KEY:
             case FLIPPERS:
             case FIREBOOTS:
-                board.updateCell(player.getXCoord(), player.getYCoord());
+                board.updateCell(player.getXCoord(), player.getYCoord(), (themeFile + user.getTheme()));
                 break;
             default:
                 break; //no nothing

@@ -32,18 +32,18 @@ public class FileHandling {
      * @param args
      */
     public static void main(String[] args) {
-        System.out.println(createUser(new UserProfile("dan", 1)));
-        System.out.println(createUser(new UserProfile("bob", 1)));
-        System.out.println(createUser(new UserProfile("jeff", 1)));
+        System.out.println(createUser(new UserProfile("dan", 1, "dev")));
+        System.out.println(createUser(new UserProfile("bob", 1, "dev")));
+        System.out.println(createUser(new UserProfile("jeff", 1, "dev")));
         System.out.println(loadUser("bob").getName());
-        System.out.println(deleteUser(new UserProfile("jeff", 1)) + "\n");
+        System.out.println(deleteUser(new UserProfile("jeff", 1, "dev")) + "\n");
 
         System.out.println(loadLevel(1));
-        System.out.println(completeLevel(new UserProfile("bob", 1), 2, 5.3));
+        System.out.println(completeLevel(new UserProfile("bob", 1, "dev"), 2, 5.3));
         System.out.println(loadLeaders(1) + "\n");
 
-        System.out.println(saveProgress(new Level(""), new UserProfile("dan", 1)));
-        System.out.println(loadProgress(new UserProfile("dan", 1)));
+        //System.out.println(saveProgress(new Level(""), new UserProfile("dan", 1, "dev")));
+        System.out.println(loadProgress(new UserProfile("bob", 0, "dev")));
         levelTest();
     }
 
@@ -79,7 +79,7 @@ public class FileHandling {
         player = new Player(4, 3);
         player.giveStuff();
 
-        originalLevel = new Level(board, player, enemies);
+        originalLevel = new Level(board, player, enemies, null);
 
         levelSave = originalLevel.toString();
 
@@ -98,7 +98,7 @@ public class FileHandling {
      */
     public static boolean createUser(UserProfile user) {
         if (searchFile(USER_PROFILES, user.getName()) == null) {
-            if (!appendRecord(USER_PROFILES, user.getName() + "," + user.getHighestLevel() + ",-")) {
+            if (!appendRecord(USER_PROFILES, user.getName() + "," + user.getHighestLevel() + "," + user.getTheme() + ",-")) {
                 System.out.println("ERROR - user creation failure, "
                         + "check user: " + user.getName() + " :");
             }
@@ -107,7 +107,6 @@ public class FileHandling {
             return false;
         }
     }
-    
 
     /**
      * loads a UserProfile from USER_PROFILES if it exists there.
@@ -122,7 +121,7 @@ public class FileHandling {
             System.out.println("ERROR - user search failure.");
             return null;
         } else {
-            return new UserProfile(userRecord[0], Integer.parseInt(userRecord[1]));
+            return new UserProfile(userRecord[0], Integer.parseInt(userRecord[1]), userRecord[2]);
         }
     }
 
@@ -183,7 +182,8 @@ public class FileHandling {
 
                 newUserRecord = oldUserRecord[0] + ","
                         + Integer.toString(user.getHighestLevel() + 1) + ","
-                        + oldUserRecord[2];
+                        + oldUserRecord[2] + ","
+                        + oldUserRecord[3];
 
                 if (!editFile(USER_PROFILES, user.getName(), newUserRecord)) {
                     System.out.println("ERROR - update user higest level failure "
@@ -223,10 +223,12 @@ public class FileHandling {
         if (level.getBoard() != null) {
             return editFile(USER_PROFILES, user.getName(), user.getName() + ","
                     + user.getHighestLevel() + ","
+                    + user.getTheme() + ","
                     + level.toString());
-        } else{
+        } else {
             return editFile(USER_PROFILES, user.getName(), user.getName() + ","
                     + user.getHighestLevel() + ","
+                    + user.getTheme() + ","
                     + "-");
         }
     }
@@ -241,7 +243,7 @@ public class FileHandling {
         String userRecord = searchFile(USER_PROFILES, user.getName());
         if (userRecord != null) {
             String[] userData = userRecord.split(",");
-            return new Level(userData[2]);
+            return new Level(userData[3]);
         } else {
             return null;
         }
