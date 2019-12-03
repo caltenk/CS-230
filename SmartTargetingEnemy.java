@@ -88,7 +88,7 @@ public class SmartTargetingEnemy extends TargetingEnemy {
      * @param board Reference to the board class
      * @return The direction the enemy will move in
      */
-    public Direction calculateDirection(Board board) {
+    public Direction calcDirection(Board board) {
         while (true) { 
         //!!!previously was "while isMoveValid(...)", no logical connection
             if (xDifference >= yDifference) {
@@ -105,5 +105,15 @@ public class SmartTargetingEnemy extends TargetingEnemy {
                 }
             }
         }
+    }
+
+    /**
+     * !!!implement
+     * @param board
+     * @return 
+     */
+    @Override
+    public Direction calculateDirection(Board board) {
+        return null;
     }
 }

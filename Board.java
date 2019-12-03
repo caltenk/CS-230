@@ -1,4 +1,7 @@
 
+import java.io.File;
+import javafx.scene.image.Image;
+
 /**
  * A class that describes the board for each level
  *
@@ -198,6 +201,45 @@ public class Board {
      */
     public int getGoalY() {
         return this.goalY;
+    }
+
+    void setTheme(String graphicFile) {
+
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                try {
+                    switch (board[i][j].getType()) {
+                        case WALL:
+                            board[i][j].setImage(new Image(graphicFile + CellType.WALL + "png"));
+                            break;
+                        case GROUND:
+                            board[i][j].setImage(new Image(graphicFile + CellType.GROUND + "png"));
+                            break;
+                        case RED_DOOR:
+                            board[i][j].setImage(new Image(graphicFile + CellType.RED_DOOR + "png"));
+                            break;
+                        case RED_KEY:
+                            board[i][j].setImage(new Image(graphicFile + CellType.RED_KEY + "png"));
+                            break;
+                        case TELEPORTER:
+                            board[i][j].setImage(new Image(graphicFile + CellType.TELEPORTER + "png"));
+                            break;
+                        case GOAL:
+                            board[i][j].setImage(new Image(graphicFile + CellType.GOAL + "png"));
+                            break;
+                        case TOKEN:
+                            board[i][j].setImage(new Image(graphicFile + CellType.TOKEN + "png"));
+                            break;
+                        default:
+                            System.out.println("ERROR - cell type not recognised");
+                            break;
+                    }
+
+                } catch (Exception e) {
+                    System.out.println("ERROR - cell image not found");
+                }
+            }
+        }
     }
 
 }
