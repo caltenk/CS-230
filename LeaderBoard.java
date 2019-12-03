@@ -133,4 +133,12 @@ public class LeaderBoard {
 
         return leadData;
     }
+    
+    public UserProfile[] getLeaders() {
+    	return this.leaders;
+    }
+    
+    public double[] getLeaderTimes() {
+    	return this.leaderTimes;
+    }
 }

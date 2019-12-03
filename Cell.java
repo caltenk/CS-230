@@ -10,11 +10,33 @@ public class Cell {
         this.type = type;
         
         try{
-        if (this.type == CellType.GROUND) {
-            image = new Image("floor.png", 70, 70, true, true);
-        } else if (this.type == CellType.WALL) {
-            image = new Image("wall.png", 70, 70, true, true);
-        }
+        	switch (this.type) {
+           		case WALL:
+           			image = new Image("wall.png");
+           			break;
+           		case GROUND:
+           			image = new Image("ground.png");
+           			break;
+           		case RED_DOOR:
+           			image = new Image("reddoor.png");
+           			break;
+           		case RED_KEY:
+           			image = new Image("redkey.png");
+           			break;
+           		case TELEPORTER:
+           			image = new Image("teleporter.png");
+           			break;
+           		case GOAL:
+           			image = new Image("goal.png");
+           			break;
+           		case TOKEN:
+           			image = new Image("token.png");
+           			break;
+           		default:
+           			image = new Image("dirt.png");
+           			break;
+           }
+           
         }catch(IllegalArgumentException e){
             System.out.println("ERROR - cell image not found");
         }
