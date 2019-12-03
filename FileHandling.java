@@ -71,10 +71,10 @@ public class FileHandling {
         board = new Board(cells, 4, 4, 2, 3);
 
         enemies = new Enemy[4];
-        enemies[0] = new StraightLineEnemy(1, 2, Direction.DOWN, null);
-        enemies[1] = new WallFollowingEnemy(1, 2, null);
-        enemies[2] = new DumbTargetingEnemy(1, 2, null, null);
-        enemies[3] = new SmartTargetingEnemy(1, 2, null, null);
+        enemies[0] = new StraightLineEnemy(1, 2, Direction.DOWN);
+        enemies[1] = new WallFollowingEnemy(1, 2);
+        enemies[2] = new DumbTargetingEnemy(1, 2, null);
+        enemies[3] = new SmartTargetingEnemy(1, 2, null);
 
         player = new Player(4, 3);
         player.giveStuff();

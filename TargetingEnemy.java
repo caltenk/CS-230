@@ -17,8 +17,8 @@ public abstract class TargetingEnemy extends Enemy {
      * @param image The image used to present the moveable object
      * @param player Reference to the player
      */
-    public TargetingEnemy(int x, int y, Image image, Player player) {
-        super(x, y, image);
+    public TargetingEnemy(int x, int y, Player player) {
+        super(x, y);
         this.player = player;
     }
 

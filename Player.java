@@ -20,8 +20,8 @@ public class Player extends Moveable {
      * @param y The initial y co-ordinate of the player.
      * @param image The image used to represent the player.
      */
-    public Player(int x, int y, Image image) {
-        super(x, y, image);
+    public Player(int x, int y) {
+        super(x, y);
         this.inventory = new ArrayList<Item>();
         this.tokenNum = 0;
     }
@@ -66,16 +66,17 @@ public class Player extends Moveable {
         }
         return playerData;
     }
-    
+
     /**
      * temporary method for testing purposes
      */
-    public void giveStuff(){
+    public void giveStuff() {
         tokenNum = 5;
         inventory.add(Item.RED_KEY);
         inventory.add(Item.FIREBOOTS);
         inventory.add(Item.FLIPPERS);
     }
+
     /**
      * Moves the player in a user specified direction
      *
@@ -190,9 +191,9 @@ public class Player extends Moveable {
         }
         //removes the item from the board
     }
-    
+
     public int getTokenNum() {
-    	return this.tokenNum;
+        return this.tokenNum;
     }
 
     private boolean hasItem(Item item) {
@@ -214,6 +215,5 @@ public class Player extends Moveable {
                 break; //do nothing
         }
     }
-  
 
 }

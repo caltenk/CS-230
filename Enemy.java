@@ -12,9 +12,8 @@ public abstract class Enemy extends Moveable {
      * @param y The initial y co-ordinate.
      * @param image The image used to present the moveable object
      */
-    public Enemy(int x, int y, Image image) {
+    public Enemy(int x, int y) {
         super(x, y);
-        super.setImage(image);
     }
 
     /**

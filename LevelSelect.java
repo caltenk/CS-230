@@ -81,6 +81,7 @@ public class LevelSelect extends Application{
 		char[] chrArray = str.toCharArray();
 		int levelNum = Character.getNumericValue(chrArray[chrArray.length - 1]);
 		Level level = FileHandling.loadLevel(levelNum);
+                
 		level.setLevelNum(levelNum);
 		new LevelUI(stage, level, this.user);
 	}

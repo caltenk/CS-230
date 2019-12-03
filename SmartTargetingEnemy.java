@@ -22,8 +22,8 @@ public class SmartTargetingEnemy extends TargetingEnemy {
      * @param image The image used to present the moveable object
      * @param player Reference to the player
      */
-    public SmartTargetingEnemy(int x, int y, Image image, Player player) {
-        super(x, y, image, player);
+    public SmartTargetingEnemy(int x, int y, Player player) {
+        super(x, y, player);
     }
 
     /**

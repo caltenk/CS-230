@@ -20,8 +20,8 @@ public class DumbTargetingEnemy extends TargetingEnemy {
      * @param image The image used to present the moveable object
      * @param player Reference to the player
      */
-    public DumbTargetingEnemy(int x, int y, Image image, Player player) {
-        super(x, y, image, player);
+    public DumbTargetingEnemy(int x, int y, Player player) {
+        super(x, y, player);
     }
 
     /**
@@ -76,7 +76,7 @@ public class DumbTargetingEnemy extends TargetingEnemy {
      * @param board Reference to the board class
      * @return The direction the enemy will move in
      */
-    public Direction calcDirection(Board board) {
+    public Direction calculateDirection(Board board) {
         if (xDifference >= yDifference) {
             if (player.getXCoord() > super.getXCoord()) {
                 return Direction.RIGHT;

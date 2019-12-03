@@ -17,8 +17,8 @@ public class WallFollowingEnemy extends Enemy {
      * @param y The starting y co-ordiante.
      * @param image The image that will represent the Enemy.
      */
-    public WallFollowingEnemy(int x, int y, Image image) {
-        super(x, y, image);
+    public WallFollowingEnemy(int x, int y) {
+        super(x, y);
     }
 
     /**

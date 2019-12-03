@@ -19,8 +19,8 @@ public class StraightLineEnemy extends Enemy {
      * @param direction The direction that the enemy will move in
      * @param image The image used to present the moveable object
      */
-    public StraightLineEnemy(int x , int y , Direction direction, Image image) {
-        super(x, y, image);
+    public StraightLineEnemy(int x , int y , Direction direction) {
+        super(x, y);
         this.direction = direction;
     }
 

@@ -61,14 +61,14 @@ public class LevelUI extends Application {
 	private Canvas canvas;
 	private Canvas itemCanvas;
 	
-	/*
+	
 	public LevelUI(Stage stage, Level level, UserProfile user) {
 		this.stage = stage;
 		this.user = user;
 		this.level = level;
 		start(stage);
 	}
-	*/
+	
 	
 	/**
 	 * The start method for this application
@@ -201,7 +201,8 @@ public class LevelUI extends Application {
 		grid[9][9] = new Cell(CellType.WALL);
 		
 		Enemy[] enemies = new Enemy[0];
-		Player player = new Player (2,2,new Image("placeholder.png"));
+		Player player = new Player (2,2);
+                player.setImage(new Image("placeholder.png"));
 		Board board = new Board(grid,10,10,8,8);
 		this.level = new Level(board, player, enemies);
 		

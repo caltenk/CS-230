@@ -15,17 +15,16 @@ public abstract class Moveable {
     protected Image image; //Hold the sprite of the character.
 
     /**
-     * Constructor for the Moveable class.
+     * Constructor for the Moveable class (image to be set at a later point).
      *
      * @param x The inital x co-ordinate.
      * @param y The initial y co-ordinate.
      * @param image The image used to present the moveable object
      */
-    public Moveable(int x, int y, Image image) {
-    	this.image = image;
+    public Moveable(int x, int y) {
         setPosition(x, y);
     }
-
+    
     /**
      * suggested to allow filehandling -Dan
      * note: filehandling solution for inheritance not tested, does not fully
