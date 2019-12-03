@@ -61,21 +61,21 @@ public class LevelUI extends Application {
 	private Canvas canvas;
 	private Canvas itemCanvas;
 	
-	
+	/*
 	public LevelUI(Stage stage, Level level, UserProfile user) {
 		this.stage = stage;
 		this.user = user;
 		this.level = level;
 		start(stage);
 	}
-	
+	*/
 	
 	/**
 	 * The start method for this application
 	 */
 	public void start(Stage primaryStage) {
 		
-		/*
+		
 		this.stage= primaryStage;
 		
 		//Creates a board -- There is probably a better place to put this
@@ -204,7 +204,7 @@ public class LevelUI extends Application {
 		Player player = new Player (2,2,new Image("placeholder.png"));
 		Board board = new Board(grid,10,10,8,8);
 		this.level = new Level(board, player, enemies);
-		*/
+		
 		
 		// Build the GUI 
 		BorderPane root = buildGUI();
@@ -408,8 +408,8 @@ public class LevelUI extends Application {
 		gc.strokeText(Integer.toString(level.getPlayer().getTokenNum()), TOOLBAR_CELL_WIDTH - TEXT_OFFSET, TOOLBAR_HEIGHT);
 		//need to add implemetation for the rest
 	}
-	/** Ask Cameron he seemed to know what this did
-	 * Works out if the clip is at the edge.
+	/** 
+	 * Method to stop camera from going out of bounds.
 	 * @param value The current x or y location of the camera.
 	 * @param min The minimum edge.
 	 * @param max The maximun edge.

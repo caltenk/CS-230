@@ -92,12 +92,15 @@ public class LoginCreateUser extends Application {
 		
 		Label errorMess = new Label();
 		GridPane.setConstraints(errorMess, ERROR_MESS_COL, ERROR_MESS_ROW);
-		
-		if (newUser) {
+		if (username.equals("")) {
+			errorMess.setText("please enter a username");
+			root.getChildren().add(errorMess);
+		} else if (newUser) {
+			
 			UserProfile user = new UserProfile(username, DEFAULT_LEVELS_COMPLETE);
 			
 			if (FileHandling.createUser(user)) {
-				//load level select
+				loadUser(user);
 			} else {
 				errorMess.setText(username + " already exists");
 				root.getChildren().add(errorMess);
@@ -105,7 +108,8 @@ public class LoginCreateUser extends Application {
 			
 		} else {
 			try {
-				loadUser(username);
+				UserProfile user = FileHandling.loadUser(username);
+				new LevelSelect(stage, user);
 			} catch (NullPointerException error) {
 				errorMess.setText("Username not found.");
 				root.getChildren().add(errorMess);
@@ -118,9 +122,8 @@ public class LoginCreateUser extends Application {
 	 * @param username The users username.
 	 * @throws NullPointerException If user doesn't exist.
 	 */
-	private void loadUser(String username) throws NullPointerException{
-			UserProfile user = FileHandling.loadUser(username);
-		//load a new level select window thing
+	private void loadUser(UserProfile user) throws NullPointerException{
+			new LevelSelect(stage, user);
 	}
 	
 

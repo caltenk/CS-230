@@ -46,7 +46,7 @@ public class LevelSelect extends Application{
 		levelsAndLeaderboards.getChildren().add(messageOfTheDay);
 		
 		int levelButtonNum = 1; 
-		while (levelButtonNum <= user.getHighestLevel()) {
+		while (levelButtonNum <= (user.getHighestLevel() + 1)) {
 			
 			HBox hbox = new HBox();
 			Button levelButton = new Button("level " + levelButtonNum);
