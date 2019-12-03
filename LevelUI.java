@@ -61,7 +61,7 @@ public class LevelUI extends Application {
 	private Canvas canvas;
 	private Canvas itemCanvas;
 	
-	
+
 	public LevelUI(Stage stage, Level level, UserProfile user) {
 		this.stage = stage;
 		this.user = user;
@@ -423,12 +423,19 @@ public class LevelUI extends Application {
 	}
 	
 	private void win() {
-		
-		FileHandling.completeLevel(this.user, this.level.getLevelNum(),
-									this.stopwatch.calculateTime());
-		
 		BorderPane newWindow = new BorderPane();
 		VBox messageBox = new VBox();
+
+		try {
+			FileHandling.completeLevel(this.user, this.level.getLevelNum(),
+					this.stopwatch.calculateTime());
+		} catch(NullPointerException e) {
+			Label leaderboardError = new Label("Leaderboard Unavailable");
+			messageBox.getChildren().add(leaderboardError);
+		}
+
+		
+
 		Label winMess = new Label("Level Complete!");
 		Label timeMess = new Label("Time: " + this.stopwatch.calculateTime());
 		
