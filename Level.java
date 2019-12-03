@@ -1,3 +1,5 @@
+
+import java.io.File;
 import javafx.scene.input.KeyEvent;
 
 /**
@@ -31,34 +33,36 @@ public class Level {
         String[] enemyData;
         EnemyType enemyType;
 
-        if (splitData.length >= 2) {
-            board = new Board(splitData[0]);
-            player = new Player(splitData[1]);
+        levelNum = Integer.parseInt(splitData[0]);
+
+        if (splitData.length >= 3) {
+            board = new Board(splitData[1]);
+            player = new Player(splitData[2]);
 
         } else {
             System.out.println("ERROR - level construction failure");
         }
 
-        if (splitData.length > 2) {
-            enemies = new Enemy[splitData.length - 2];
-            for (int i = 2; i < splitData.length; i++) {
+        if (splitData.length > 3) {
+            enemies = new Enemy[splitData.length - 3];
+            for (int i = 3; i < splitData.length; i++) {
                 enemyData = splitData[i].split(";");
                 enemyType = EnemyType.valueOf(enemyData[0]);
                 switch (enemyType) {
                     case STRAIGHT_LINE:
-                        enemies[i - 2] = new StraightLineEnemy(splitData[i]);
+                        enemies[i - 3] = new StraightLineEnemy(splitData[i]);
                         break;
 
                     case WALL_FOLLOWING:
-                        enemies[i - 2] = new WallFollowingEnemy(splitData[i]);
+                        enemies[i - 3] = new WallFollowingEnemy(splitData[i]);
                         break;
 
                     case DUMB_TARGETING:
-                        enemies[i - 2] = new DumbTargetingEnemy(splitData[i]);
+                        enemies[i - 3] = new DumbTargetingEnemy(splitData[i]);
                         break;
 
                     case SMART_TARGETING:
-                        enemies[i - 2] = new SmartTargetingEnemy(splitData[i]);
+                        enemies[i - 3] = new SmartTargetingEnemy(splitData[i]);
                         break;
 
                     default:
@@ -109,6 +113,12 @@ public class Level {
         System.out.println(test.equals(compare.toString()));
     }
 
+    public void setTheme(String theme) {
+        board.setTheme(theme);
+        player.setImage(new Image(theme + "//PLAYER.png"));
+        
+    }
+
     /**
      * suggested to allow filehandling -Dan note: not compiled with Enemy class,
      * Enemy class may require its own constructor and toString methods.
@@ -117,7 +127,7 @@ public class Level {
      */
     @Override
     public String toString() {
-        String levelData = "";
+        String levelData = Integer.toString(levelNum) + ":";
         if (board != null) {
             levelData += board.toString() + ":";
         } else {
@@ -142,33 +152,32 @@ public class Level {
         }
         return levelData;
     }
-    
+
     /**
      * Plays one rotation of the level. Using the user inputed direction.
+     *
      * @param event The key key pressed by the user to move the player.
      */
-	public void play(KeyEvent event) {
-		switch (event.getCode()) {
-			
-		    case RIGHT:
-		    	play(Direction.RIGHT);
-		    	break;
-		    case LEFT:
-		    	play(Direction.LEFT);
-		    	break;
-		    case UP:
-		    	play(Direction.UP);
-		    	break;
-		    case DOWN:
-		    	play(Direction.DOWN);
-		    	break;
-	        default:
-	        	// Do nothing
-	        	break;
-		}
-	}
+    public void play(KeyEvent event) {
+        switch (event.getCode()) {
 
-
+            case RIGHT:
+                play(Direction.RIGHT);
+                break;
+            case LEFT:
+                play(Direction.LEFT);
+                break;
+            case UP:
+                play(Direction.UP);
+                break;
+            case DOWN:
+                play(Direction.DOWN);
+                break;
+            default:
+                // Do nothing
+                break;
+        }
+    }
 
     /**
      * Works out if the has been killed.
@@ -195,13 +204,13 @@ public class Level {
         return (player.getXCoord() == board.getGoalX()
                 && player.getYCoord() == board.getGoalY());
     }
-    
+
     public void setLevelNum(int num) {
-    	this.levelNum = num;
+        this.levelNum = num;
     }
-    
+
     public int getLevelNum() {
-    	return this.levelNum;
+        return this.levelNum;
     }
 
     /**
@@ -211,15 +220,15 @@ public class Level {
     public Board getBoard() {
         return this.board;
     }
-    
+
     public Player getPlayer() {
-    	return this.player;
+        return this.player;
     }
-    
+
     public Enemy[] getEnemies() {
-    	return this.enemies;
+        return this.enemies;
     }
-    
+
     /**
      * Preforms one turn of the level
      *
@@ -231,31 +240,32 @@ public class Level {
             Direction direction = elem.calculateDirection(board);
             elem.move(direction);
         }
-        
+
         updateBoard();
     }
-    
+
     /**
-     * Updates the board to turn the cell the player is standing on to a ground cell, where apllicable
+     * Updates the board to turn the cell the player is standing on to a ground
+     * cell, where apllicable
      */
     private void updateBoard() {
-    	CellType playerCell = board.getCell(player.getXCoord(), player.getYCoord()).getType();
-    	switch(playerCell) {
-    		case RED_DOOR:
-    		case BLUE_DOOR:
-    		case GREEN_DOOR:
-    		case TOKEN_DOOR:
-    		case TOKEN:
-    		case RED_KEY:
-    		case BLUE_KEY:
-    		case GREEN_KEY:
-    		case FLIPPERS:
-    		case FIREBOOTS:
-    			board.updateCell(player.getXCoord(), player.getYCoord());
-    			break;
-    		default:
-    			break; //no nothing
-    	}
-    
+        CellType playerCell = board.getCell(player.getXCoord(), player.getYCoord()).getType();
+        switch (playerCell) {
+            case RED_DOOR:
+            case BLUE_DOOR:
+            case GREEN_DOOR:
+            case TOKEN_DOOR:
+            case TOKEN:
+            case RED_KEY:
+            case BLUE_KEY:
+            case GREEN_KEY:
+            case FLIPPERS:
+            case FIREBOOTS:
+                board.updateCell(player.getXCoord(), player.getYCoord());
+                break;
+            default:
+                break; //no nothing
+        }
+
     }
 }

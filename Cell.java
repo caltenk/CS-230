@@ -8,38 +8,6 @@ public class Cell {
 
     public Cell(CellType type) {
         this.type = type;
-        
-        try{
-        	switch (this.type) {
-           		case WALL:
-           			image = new Image("wall.png");
-           			break;
-           		case GROUND:
-           			image = new Image("ground.png");
-           			break;
-           		case RED_DOOR:
-           			image = new Image("reddoor.png");
-           			break;
-           		case RED_KEY:
-           			image = new Image("redkey.png");
-           			break;
-           		case TELEPORTER:
-           			image = new Image("teleporter.png");
-           			break;
-           		case GOAL:
-           			image = new Image("goal.png");
-           			break;
-           		case TOKEN:
-           			image = new Image("token.png");
-           			break;
-           		default:
-           			image = new Image("dirt.png");
-           			break;
-           }
-           
-        }catch(IllegalArgumentException e){
-            System.out.println("ERROR - cell image not found");
-        }
     }
     
     /**suggested to allow filehandling -Dan
@@ -73,6 +41,10 @@ public class Cell {
 
     public Image getImage() {
         return this.image;
+    }
+    
+    public void setImage(Image image){
+        this.image = image;
     }
 
 }
