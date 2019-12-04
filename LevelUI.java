@@ -265,7 +265,10 @@ public class LevelUI extends Application {
         gameWindow.translateXProperty().bind(clip.xProperty().multiply(BIND_MULT));
         gameWindow.translateYProperty().bind(clip.yProperty().multiply(BIND_MULT));
     }
-
+    
+    /**
+     * Draws the canvas which displays the inventory.
+     */
     private void drawItemCanvas() {
     	//some local variables
         final String themeFile = "themes\\";
@@ -337,6 +340,10 @@ public class LevelUI extends Application {
        
     }
     
+    /**
+     * A method to get the number of coloured keys currently in the players inventory.
+     * @return An array where each element represents the number of keys of one colour.
+     */
     private int[] getNumKeys() {
     	int numRedKey = 0;
         int numBlueKey = 0;
@@ -381,7 +388,11 @@ public class LevelUI extends Application {
         }
         return value;
     }
-
+    
+    /**
+     * Method to update all necessary values when a player wins the game.
+     * Allows user to move to the next level.
+     */
     private void win() {
 
         FileHandling.completeLevel(this.user, this.level.getLevelNum(),
@@ -416,7 +427,10 @@ public class LevelUI extends Application {
 
         newStage.show();
     }
-
+    
+    /**
+     * Method which handles the situation where they user is killed by an enemy.
+     */
     private void gameOver() {
         BorderPane newWindow = new BorderPane();
 
@@ -444,7 +458,11 @@ public class LevelUI extends Application {
 
         newStage.show();
     }
-
+    
+    /**
+     * Changes the level the UI is playing. Or resets the level if required.
+     * @param levelNum The number of the level to be loaded.
+     */
     private void loadLevel(int levelNum) {
         this.level = FileHandling.loadLevel(levelNum);
     }

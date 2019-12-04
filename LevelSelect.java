@@ -97,6 +97,7 @@ public class LevelSelect extends Application {
                 );
 
         ComboBox<String> themes = new ComboBox<String>(options);
+        themes.setValue("dev");
         BorderPane newWindow = new BorderPane();
         newWindow.setCenter(themes);
         Scene secondScene = new Scene(newWindow, 230, 100);
@@ -112,6 +113,7 @@ public class LevelSelect extends Application {
 
         newStage.show();
         user.setTheme(themes.getValue());
+    
     }
 
     private void loadLevel(String str) {
@@ -120,11 +122,6 @@ public class LevelSelect extends Application {
         int levelNum = Character.getNumericValue(chrArray[chrArray.length - 1]);
         //Loads the new level
         Level level = FileHandling.loadLevel(levelNum);
-        if (user.getTheme() != null) {
-            level.setTheme(user.getTheme());
-        } else{
-            level.setTheme("dev");
-        }
         level.setUser(user);
         try {
             Level savedLevel = FileHandling.loadProgress(user);
@@ -177,6 +174,11 @@ public class LevelSelect extends Application {
     }
 
     private void loadLevel(Level level) {
+        if (user.getTheme() != null) {
+            level.setTheme(user.getTheme());
+        } else{
+            level.setTheme("dev");
+        }
         new LevelUI(stage, level, this.user);
     }
 
