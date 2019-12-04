@@ -113,24 +113,24 @@ public class Board {
     @Override
     public String toString() {
         String boardData = goalX + ";" + goalY + ";";
-        for (int i = 0; i < sizeY; i++) {
-            for (int j = 0; j < sizeX; j++) {
-                switch (board[i][j].getType()) {
+        for (int i = 0; i < sizeX; i++) {
+            for (int j = 0; j < sizeY; j++) {
+                switch (board[j][i].getType()) {
                     case TOKEN_DOOR:
-                        boardData += ((TokenDoor) board[i][j]).toString();
+                        boardData += ((TokenDoor) board[j][i]).toString();
                         break;
                     case TELEPORTER:
-                        boardData += ((Teleporter) board[i][j]).toString();
+                        boardData += ((Teleporter) board[j][i]).toString();
                         break;
                     default:
-                        boardData += board[i][j].toString();
+                        boardData += board[j][i].toString();
                 }
 
-                if (j < sizeX - 1) {
+                if (j < sizeY - 1) {
                     boardData += "'";
                 }
             }
-            if (i < sizeY - 1) {
+            if (i < sizeX - 1) {
                 boardData += "/";
             }
         }
