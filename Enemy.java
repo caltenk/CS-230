@@ -76,7 +76,9 @@ public abstract class Enemy extends Moveable {
     public Cell getNextCell(Direction direction, Board board) {
         return super.getNextCell(direction, board);
     }
-    
+    /**
+    *This method gets the type of the enemy 
+    */
     public EnemyType getType(){
         return type;
     }
