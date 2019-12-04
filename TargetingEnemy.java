@@ -43,23 +43,33 @@ public abstract class TargetingEnemy extends Enemy {
     public String toString() {
         return super.toString() + ";-";
     }
-
+    /**
+    *Gets the enemy's x coordinate 
+    */
     public int getEnemyX() {
         return super.getXCoord();
     }
-
+    /**
+    *Gets the enemy's y coordinate 
+    */
     public int getEnemyY() {
         return super.getYCoord();
     }
-
+    /**
+    *Gets the player's x coordinate 
+    */
     public int getPlayerX() {
         return player.getXCoord();
     }
-
+    /**
+    *Gets the player's y coordinate 
+    */
     public int getPlayerY() {
         return player.getYCoord();
     }
-
+    /**
+    * Gets the player
+    */
     public Player getPlayer() {
         return player;
     }
