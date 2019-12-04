@@ -278,8 +278,9 @@ public class LevelUI extends Application {
 
         gc.clearRect(0, 0, itemCanvas.getWidth(), itemCanvas.getHeight());
 
+        try{
         //displays num of tokens
-        gc.drawImage(new Image(themeFile + user.getTheme() + "\\TOKEN.png", TOOLBAR_CELL_WIDTH,
+        gc.drawImage(new Image(themeFile + user.getTheme() + CellType.TOKEN, TOOLBAR_CELL_WIDTH,
         		TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
         gc.strokeText(Integer.toString(level.getPlayer().getTokenNum()),
         		textPos, TOOLBAR_HEIGHT);
@@ -289,7 +290,7 @@ public class LevelUI extends Application {
         
         int[] numKeys = getNumKeys();
         
-        gc.drawImage(new Image(themeFile + user.getTheme() + "\\RED_KEY.png", TOOLBAR_CELL_WIDTH,
+        gc.drawImage(new Image(themeFile + user.getTheme() + CellType.RED_KEY, TOOLBAR_CELL_WIDTH,
         		TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
         gc.strokeText(Integer.toString(numKeys[0]),
         		textPos, TOOLBAR_HEIGHT);
@@ -297,7 +298,7 @@ public class LevelUI extends Application {
         xPos += spacing;
         textPos += spacing;
         
-        gc.drawImage(new Image(themeFile + user.getTheme() + "\\BLUE_KEY.png", TOOLBAR_CELL_WIDTH,
+        gc.drawImage(new Image(themeFile + user.getTheme() + CellType.BLUE_KEY, TOOLBAR_CELL_WIDTH,
         		TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
         gc.strokeText(Integer.toString(numKeys[1]),
         		textPos, TOOLBAR_HEIGHT);
@@ -305,10 +306,13 @@ public class LevelUI extends Application {
         xPos += spacing;
         textPos += spacing;
         
-        gc.drawImage(new Image(themeFile + user.getTheme() + "\\GREEN_KEY.png", TOOLBAR_CELL_WIDTH,
+        gc.drawImage(new Image(themeFile + user.getTheme() + CellType.GREEN_KEY, TOOLBAR_CELL_WIDTH,
         		TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
         gc.strokeText(Integer.toString(numKeys[2]),
         		textPos, TOOLBAR_HEIGHT);
+        }catch(IllegalArgumentException e){
+            System.out.println("ERROR - file not found, check file: " + themeFile + user.getTheme() + " :");
+        }
         
         xPos += spacing;
         textPos += spacing;
