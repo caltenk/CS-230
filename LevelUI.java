@@ -44,7 +44,6 @@ public class LevelUI extends Application {
     private static final int CLAMP_RANGE_MIN = 0;
 
     private static final int TOOLBAR_HEIGHT = 25;
-    private static final int TOOLBAR_CANVAS_WIDTH = 350;
     private static final int TOOLBAR_CELL_WIDTH = 25;
 
     private Level level;
@@ -58,7 +57,13 @@ public class LevelUI extends Application {
     // The canvas in the GUI. This needs to be a global variable
     private Canvas canvas;
     private Canvas itemCanvas;
-
+    
+    /**
+     * Creates a new levelUI.
+     * @param stage The stage the UI is shown on.
+     * @param level The level the UI is showing.
+     * @param user The user who is playing the level.
+     */
     public LevelUI(Stage stage, Level level, UserProfile user) {
         this.stage = stage;
         this.user = user;
@@ -112,7 +117,6 @@ public class LevelUI extends Application {
         primaryStage.show();
     }
 
-    //Might move into level class -- have done on local copy need to redo when download master
     /**
      * Process a key event due to a key being pressed, e.g., to the player.
      *
@@ -263,16 +267,97 @@ public class LevelUI extends Application {
     }
 
     private void drawItemCanvas() {
-        final int TEXT_OFFSET = 5;
+    	//some local variables
+        final String themeFile = "themes\\";
+        final int Y_POS = 0;
+        int xPos = 0;
+        int textPos = 20;
+        int spacing = 50;
 
         GraphicsContext gc = itemCanvas.getGraphicsContext2D();
 
         gc.clearRect(0, 0, itemCanvas.getWidth(), itemCanvas.getHeight());
 
         //displays num of tokens
-        //gc.drawImage(new Image("token.png", TOOLBAR_CELL_WIDTH, TOOLBAR_HEIGHT,false,false), 0, 0);
-        gc.strokeText(Integer.toString(level.getPlayer().getTokenNum()), TOOLBAR_CELL_WIDTH - TEXT_OFFSET, TOOLBAR_HEIGHT);
-        //need to add implemetation for the rest
+        gc.drawImage(new Image(themeFile + user.getTheme() + "\\TOKEN.png", TOOLBAR_CELL_WIDTH,
+        		TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
+        gc.strokeText(Integer.toString(level.getPlayer().getTokenNum()),
+        		textPos, TOOLBAR_HEIGHT);
+        
+        xPos += spacing;
+        textPos += spacing;
+        
+        int[] numKeys = getNumKeys();
+        
+        gc.drawImage(new Image(themeFile + user.getTheme() + "\\RED_KEY.png", TOOLBAR_CELL_WIDTH,
+        		TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
+        gc.strokeText(Integer.toString(numKeys[0]),
+        		textPos, TOOLBAR_HEIGHT);
+        
+        xPos += spacing;
+        textPos += spacing;
+        
+        gc.drawImage(new Image(themeFile + user.getTheme() + "\\BLUE_KEY.png", TOOLBAR_CELL_WIDTH,
+        		TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
+        gc.strokeText(Integer.toString(numKeys[1]),
+        		textPos, TOOLBAR_HEIGHT);
+        
+        xPos += spacing;
+        textPos += spacing;
+        
+        gc.drawImage(new Image(themeFile + user.getTheme() + "\\GREEN_KEY.png", TOOLBAR_CELL_WIDTH,
+        		TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
+        gc.strokeText(Integer.toString(numKeys[2]),
+        		textPos, TOOLBAR_HEIGHT);
+        
+        xPos += spacing;
+        textPos += spacing;
+        
+        /*
+        if (level.getPlayer().hasItem(Item.FLIPPERS)) {
+            gc.drawImage(new Image(themeFile + user.getTheme() + "\\FLIPPERS.png", TOOLBAR_CELL_WIDTH,
+            		TOOLBAR_HEIGHT,false,false), xPos + spacing, Y_POS);
+            
+        }
+        
+        xPos += spacing;
+        textPos += spacing;
+        
+        if (level.getPlayer().hasItem(Item.FIREBOOTS)) {
+            gc.drawImage(new Image(themeFile + user.getTheme() + "\\FIREBOOTS.png", TOOLBAR_CELL_WIDTH,
+            		TOOLBAR_HEIGHT,false,false), xPos + spacing, Y_POS);
+        }
+        */
+     
+        
+       
+    }
+    
+    private int[] getNumKeys() {
+    	int numRedKey = 0;
+        int numBlueKey = 0;
+        int numGreenKey = 0;
+        for (Item item: level.getPlayer().getInventory()) {
+        	switch (item) {
+        		case RED_KEY:
+        			numRedKey ++;
+        			break;
+        		case BLUE_KEY:
+        			numBlueKey ++;
+        			break;
+        		case GREEN_KEY:
+        			numGreenKey ++;
+        			break;
+        		default:
+        			break;
+        	}
+        }
+        int numKeys[] = new int[3];
+        numKeys[0] = numRedKey;
+        numKeys[1] = numBlueKey;
+        numKeys[2] = numGreenKey;
+        
+        return numKeys;
     }
 
     /**
@@ -360,8 +445,4 @@ public class LevelUI extends Application {
         this.level = FileHandling.loadLevel(levelNum);
     }
 
-    public static void main(String[] args) {
-        launch(args);
-
-    }
 }

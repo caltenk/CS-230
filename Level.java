@@ -12,7 +12,6 @@ import javafx.scene.input.KeyEvent;
 public class Level {
 
     private static final String themeFile = "themes\\";
-    //TODO: Need to implement saving.
     private Board board;
     private Player player;
     private Enemy[] enemies;
@@ -124,16 +123,15 @@ public class Level {
     }
 
     /**
-     *
-     *
-     * @param theme
+     * Sets the theme for each level.
+     * @param theme The selected theme.
      */
     public void setTheme(String theme) {
         board.setTheme(themeFile + theme);
         player.setImage(new Image(themeFile + theme + "\\PLAYER.png"));
         if (enemies != null) {
             for (int i = 0; i < enemies.length; i++) {
-                enemies[i].setImage(new Image(theme + enemies[i].getType()));
+                enemies[i].setImage(new Image(themeFile + theme + "\\" + enemies[i].getType() + ".png" ));
             }
         }
     }
@@ -204,14 +202,16 @@ public class Level {
      * @return True is player has been killed, false otherwise.
      */
     public boolean isPlayerDead() {
-        for (Enemy elem : enemies) {
-            if (elem.getXCoord() == player.getXCoord()
+    	if (enemies != null) {
+    		for (Enemy elem : enemies) {
+    			if (elem.getXCoord() == player.getXCoord()
                     && elem.getYCoord() == player.getYCoord()) {
-                return true;
-            }
-        }
+    				return true;
+    			}
+    		}
+    	}
 
-        return false;
+    	return false;
     }
 
     /**
@@ -255,7 +255,7 @@ public class Level {
      */
     private void play(Direction playerDirection) {
         player.move(playerDirection, board);
-        if (enemies != null) {
+        if (enemies != null && !isPlayerDead()) {
             for (Enemy elem : enemies) {
                 Direction direction = elem.calculateDirection(board);
                 elem.move(direction);

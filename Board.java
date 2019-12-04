@@ -113,8 +113,8 @@ public class Board {
     @Override
     public String toString() {
         String boardData = goalX + ";" + goalY + ";";
-        for (int i = 0; i < sizeX; i++) {
-            for (int j = 0; j < sizeY; j++) {
+        for (int i = 0; i < sizeY; i++) {
+            for (int j = 0; j < sizeX; j++) {
                 switch (board[i][j].getType()) {
                     case TOKEN_DOOR:
                         boardData += ((TokenDoor) board[i][j]).toString();
@@ -126,11 +126,11 @@ public class Board {
                         boardData += board[i][j].toString();
                 }
 
-                if (j < sizeY - 1) {
+                if (j < sizeX - 1) {
                     boardData += "'";
                 }
             }
-            if (i < sizeX - 1) {
+            if (i < sizeY - 1) {
                 boardData += "/";
             }
         }
@@ -156,7 +156,6 @@ public class Board {
      * @return The GameCell at the given co-ordinate
      */
     public Cell getCell(int x, int y) {
-        System.out.println("X " + x +  "  " + board.length + "y " + y + "  " + board[0].length);
         return this.board[y][x];
     }
 

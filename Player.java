@@ -158,15 +158,46 @@ public class Player extends Moveable {
 
         }
     }
+    /**
+     * Checks if the item exists in the player inventory.
+     * @param item The item being checked.
+     * @return True if the player item, false otherwise.
+     */
+    public boolean hasItem(Item item) {
+        return this.inventory.contains(item);
+    }
+    
+    /**
+     * Gets method for the number of tokens the player has.
+     * @return The number of tokens.
+     */
+    public int getTokenNum() {
+        return this.tokenNum;
+    }
+    
+    public ArrayList<Item> getInventory() {
+    	return this.inventory;
+    }
 
+    /**
+     * Adds one token to the player.
+     */
     private void addToken() {
         tokenNum += 1;
     }
 
+    /**
+     * Removes the requested number of tokens.
+     * @param n The number of tokens to be removed.
+     */
     private void removeTokens(int n) {
         tokenNum -= n;
     }
 
+    /**
+     * Add the item to the players inventory.
+     * @param type The type of the item cell being picked up.
+     */
     private void pickUpItem(CellType type) {
         switch (type) {
             case FLIPPERS:
@@ -192,14 +223,11 @@ public class Player extends Moveable {
         //removes the item from the board
     }
 
-    public int getTokenNum() {
-        return this.tokenNum;
-    }
 
-    private boolean hasItem(Item item) {
-        return this.inventory.contains(item);
-    }
-
+    /**
+     * Removes an item from the player.
+     * @param type The type ofthe cell that needs the item.
+     */
     private void removeItem(CellType type) {
         switch (type) {
             case RED_DOOR:

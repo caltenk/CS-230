@@ -1,8 +1,12 @@
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -41,6 +45,10 @@ public class LevelSelect extends Application{
 	
 	private ScrollPane buildGUI() {
 		ScrollPane root = new ScrollPane();
+		Button themeButton = new Button("Select Theme");
+		themeButton.setOnAction(e -> {
+			setTheme();
+		});
 		VBox levelsAndLeaderboards = new VBox();
 		Label messageOfTheDay = new Label(setMessageOfTheDay());
 		levelsAndLeaderboards.getChildren().add(messageOfTheDay);
@@ -68,6 +76,8 @@ public class LevelSelect extends Application{
 			
 			levelButtonNum ++; 
 		}
+		
+		levelsAndLeaderboards.getChildren().add(themeButton);
 		root.setContent(levelsAndLeaderboards);
 		return root;
 	}
@@ -76,14 +86,93 @@ public class LevelSelect extends Application{
 		MessageOfTheDay message = new MessageOfTheDay();
 		return message.getMessage();
 	}
+	
+	private void setTheme() {
+		
+		ObservableList<String> options = 
+				FXCollections.observableArrayList(
+					"Dev"
+					//place new theme names here or store em somewhere	
+		);
+		
+		ComboBox<String> themes = new ComboBox<String>(options);
+		BorderPane newWindow = new BorderPane();
+		newWindow.setCenter(themes);
+		Scene secondScene = new Scene(newWindow, 230, 100);
+		
+		// New window (Stage)
+		Stage newStage = new Stage();
+		newStage.setTitle("Theme Select");
+		newStage.setScene(secondScene);
+		
+		// Set position of second window, related to primary window.
+		newStage.setX(stage.getX() + 200);
+		newStage.setY(stage.getY() + 100);
+
+		newStage.show();
+		user.setTheme(themes.getValue());
+	}
+	
 	private void loadLevel(String str) {
 
 		char[] chrArray = str.toCharArray();
 		int levelNum = Character.getNumericValue(chrArray[chrArray.length - 1]);
+		//Loads the new level
 		Level level = FileHandling.loadLevel(levelNum);
-                level.setTheme(user.getTheme());
-                level.setUser(user);
-		level.setLevelNum(levelNum);
+        level.setTheme(user.getTheme());
+        level.setUser(user);
+        try {
+        	Level savedLevel = FileHandling.loadProgress(user);
+        	if (savedLevel.getLevelNum() == level.getLevelNum()) {
+            	loadSavedLevel(savedLevel, level);
+            } else {
+            	loadLevel(level);
+            }
+        } catch (NumberFormatException e) {
+        	loadLevel(level);
+        }
+       
+	}
+
+	private void loadSavedLevel(Level savedLevel, Level level) {
+        Stage newStage = new Stage();
+        
+		BorderPane newWindow = new BorderPane();
+		Label message = new Label("A save state exits for this level." +
+								"\nWould you like to continue where you left off?");
+		
+		Button yesButton = new Button("yes");
+		Button noButton = new Button("no");
+		
+		yesButton.setOnAction(e -> {
+			loadLevel(savedLevel);
+			newStage.close();
+		});
+		
+		noButton.setOnAction(e -> {
+			loadLevel(level);
+			newStage.close();
+		});
+		
+		VBox centre = new VBox();
+		centre.getChildren().addAll(message, yesButton, noButton);
+		newWindow.setCenter(centre);
+        Scene secondScene = new Scene(newWindow, 230, 100);
+
+        // New window (Stage)
+
+        newStage.setTitle("Continue?");
+        newStage.setScene(secondScene);
+
+        // Set position of second window, related to primary window.
+        newStage.setX(stage.getX() + 200);
+        newStage.setY(stage.getY() + 100);
+
+        newStage.show();
+        
+	}
+	
+	private void loadLevel(Level level) {
 		new LevelUI(stage, level, this.user);
 	}
 	
