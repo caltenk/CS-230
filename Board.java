@@ -46,7 +46,7 @@ public class Board {
         String[] cellRows = splitData[2].split("/");
         String[] tempColumn = cellRows[0].split("'");
 
-        String[][] cells = new String[cellRows.length][tempColumn.length];
+        String[][] cells = new String[tempColumn.length][cellRows.length];
 
         String[] specialCell;
 
@@ -56,16 +56,16 @@ public class Board {
         for (int i = 0; i < cellRows.length; i++) {
             tempColumn = cellRows[i].split("'");
             for (int j = 0; j < tempColumn.length; j++) {
-                cells[i][j] = tempColumn[j];
+                cells[j][i] = tempColumn[j];
             }
         }
 
         sizeX = cellRows.length;
-        sizeY = cells[0].length;
-        board = new Cell[sizeX][sizeY];
+        sizeY = cells.length;
+        board = new Cell[sizeY][sizeX];
 
-        for (int i = 0; i < sizeX; i++) {
-            for (int j = 0; j < sizeY; j++) {
+        for (int i = 0; i < sizeY; i++) {
+            for (int j = 0; j < sizeX; j++) {
                 specialCell = cells[i][j].split("#");
                 switch (CellType.valueOf(cells[i][j].split("#")[0])) {
                     case TOKEN_DOOR:
@@ -115,15 +115,15 @@ public class Board {
         String boardData = goalX + ";" + goalY + ";";
         for (int i = 0; i < sizeX; i++) {
             for (int j = 0; j < sizeY; j++) {
-                switch (board[i][j].getType()) {
+                switch (board[j][i].getType()) {
                     case TOKEN_DOOR:
-                        boardData += ((TokenDoor) board[i][j]).toString();
+                        boardData += ((TokenDoor) board[j][i]).toString();
                         break;
                     case TELEPORTER:
-                        boardData += ((Teleporter) board[i][j]).toString();
+                        boardData += ((Teleporter) board[j][i]).toString();
                         break;
                     default:
-                        boardData += board[i][j].toString();
+                        boardData += board[j][i].toString();
                 }
 
                 if (j < sizeY - 1) {
@@ -143,8 +143,9 @@ public class Board {
      * @param x The x co-ordinate of the GameCell being updated.
      * @param y The y co-ordinated of the GameCell being updated.
      */
-    public void updateCell(int x, int y) {
+    public void updateCell(int x, int y, String theme) {
         board[y][x] = new Cell(CellType.GROUND);
+        getCell(x,y).setImage(new Image(theme + "\\" + CellType.GROUND + ".png"));
     }
 
     /**
@@ -203,32 +204,32 @@ public class Board {
         return this.goalY;
     }
 
-    void setTheme(String graphicFile) {
+    void setTheme(String themeLocation) {
 
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 try {
                     switch (board[i][j].getType()) {
                         case WALL:
-                            board[i][j].setImage(new Image(graphicFile + CellType.WALL + "png"));
+                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.WALL + ".png"));
                             break;
                         case GROUND:
-                            board[i][j].setImage(new Image(graphicFile + CellType.GROUND + "png"));
+                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.GROUND + ".png"));
                             break;
                         case RED_DOOR:
-                            board[i][j].setImage(new Image(graphicFile + CellType.RED_DOOR + "png"));
+                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.RED_DOOR + ".png"));
                             break;
                         case RED_KEY:
-                            board[i][j].setImage(new Image(graphicFile + CellType.RED_KEY + "png"));
+                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.RED_KEY + ".png"));
                             break;
                         case TELEPORTER:
-                            board[i][j].setImage(new Image(graphicFile + CellType.TELEPORTER + "png"));
+                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.TELEPORTER + ".png"));
                             break;
                         case GOAL:
-                            board[i][j].setImage(new Image(graphicFile + CellType.GOAL + "png"));
+                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.GOAL + ".png"));
                             break;
                         case TOKEN:
-                            board[i][j].setImage(new Image(graphicFile + CellType.TOKEN + "png"));
+                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.TOKEN + ".png"));
                             break;
                         default:
                             System.out.println("ERROR - cell type not recognised");
@@ -241,5 +242,4 @@ public class Board {
             }
         }
     }
-
 }

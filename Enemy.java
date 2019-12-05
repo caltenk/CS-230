@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
  * @version 1.0
  */
 public abstract class Enemy extends Moveable {
+    private EnemyType type;
     /** This method constructs an enemy using the constructor in the superclass
      * @param x The initial x co-ordinate.
      * @param y The initial y co-ordinate.
@@ -24,6 +25,7 @@ public abstract class Enemy extends Moveable {
      */
     public Enemy(String enemyData) {
         super(enemyData);
+        type = EnemyType.valueOf(enemyData.split(";")[0]);
     }
 
     /**
@@ -73,6 +75,12 @@ public abstract class Enemy extends Moveable {
      */
     public Cell getNextCell(Direction direction, Board board) {
         return super.getNextCell(direction, board);
+    }
+    /**
+    *This method gets the type of the enemy 
+    */
+    public EnemyType getType(){
+        return type;
     }
 
     /**
