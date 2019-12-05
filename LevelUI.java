@@ -102,7 +102,7 @@ public class LevelUI extends Application {
         camera.setY((level.getPlayer().getYCoord()) * GRID_CELL_HEIGHT);
         gameWindow.getChildren().add(camera);
         //Creating a clip
-
+        
         createClip(scene, gameWindow);
 
         drawGame();
@@ -282,62 +282,61 @@ public class LevelUI extends Application {
         gc.clearRect(0, 0, itemCanvas.getWidth(), itemCanvas.getHeight());
 
         try{
-        //displays num of tokens
-        gc.drawImage(new Image(themeFile + user.getTheme() + CellType.TOKEN, TOOLBAR_CELL_WIDTH,
-        		TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
-        gc.strokeText(Integer.toString(level.getPlayer().getTokenNum()),
-        		textPos, TOOLBAR_HEIGHT);
+        	//displays num of tokens
+        	gc.drawImage(new Image(themeFile + user.getTheme() + "\\" + CellType.TOKEN + ".png", TOOLBAR_CELL_WIDTH,
+        			TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
+        	gc.strokeText(Integer.toString(level.getPlayer().getTokenNum()),
+        			textPos, TOOLBAR_HEIGHT);
         
-        xPos += spacing;
-        textPos += spacing;
+        	xPos += spacing;
+        	textPos += spacing;
         
-        int[] numKeys = getNumKeys();
+        	int[] numKeys = getNumKeys();
         
-        gc.drawImage(new Image(themeFile + user.getTheme() + CellType.RED_KEY, TOOLBAR_CELL_WIDTH,
-        		TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
-        gc.strokeText(Integer.toString(numKeys[0]),
-        		textPos, TOOLBAR_HEIGHT);
+        	gc.drawImage(new Image(themeFile + user.getTheme() + "\\" + CellType.RED_KEY + ".png", TOOLBAR_CELL_WIDTH,
+        			TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
+        	gc.strokeText(Integer.toString(numKeys[0]),
+        			textPos, TOOLBAR_HEIGHT);
         
-        xPos += spacing;
-        textPos += spacing;
+        	xPos += spacing;
+        	textPos += spacing;
         
-        gc.drawImage(new Image(themeFile + user.getTheme() + CellType.BLUE_KEY, TOOLBAR_CELL_WIDTH,
-        		TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
-        gc.strokeText(Integer.toString(numKeys[1]),
-        		textPos, TOOLBAR_HEIGHT);
+        	gc.drawImage(new Image(themeFile + user.getTheme() + "\\" + CellType.BLUE_KEY + ".png", TOOLBAR_CELL_WIDTH,
+        			TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
+        	gc.strokeText(Integer.toString(numKeys[1]),
+        			textPos, TOOLBAR_HEIGHT);
         
-        xPos += spacing;
-        textPos += spacing;
+        	xPos += spacing;
+        	textPos += spacing;
         
-        gc.drawImage(new Image(themeFile + user.getTheme() + CellType.GREEN_KEY, TOOLBAR_CELL_WIDTH,
-        		TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
-        gc.strokeText(Integer.toString(numKeys[2]),
-        		textPos, TOOLBAR_HEIGHT);
+        	gc.drawImage(new Image(themeFile + user.getTheme() + "\\" + CellType.GREEN_KEY + ".png", TOOLBAR_CELL_WIDTH,
+        			TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
+        	gc.strokeText(Integer.toString(numKeys[2]),
+        			textPos, TOOLBAR_HEIGHT);
+        	
+            xPos += spacing;
+            textPos += spacing;
+            
+            /*
+            if (level.getPlayer().hasItem(Item.FLIPPERS)) {
+                gc.drawImage(new Image(themeFile + user.getTheme() + "\\" + CellType.FLIPPERS + ".png", TOOLBAR_CELL_WIDTH,
+                		TOOLBAR_HEIGHT,false,false), xPos + spacing, Y_POS);
+                
+            }
+            
+            xPos += spacing;
+            textPos += spacing;
+            
+            if (level.getPlayer().hasItem(Item.FIREBOOTS)) {
+                gc.drawImage(new Image(themeFile + user.getTheme() + "\\" + CellType.FIREBOOTS +".png", TOOLBAR_CELL_WIDTH,
+                		TOOLBAR_HEIGHT,false,false), xPos + spacing, Y_POS);
+            }
+            */
+         
+            
         }catch(IllegalArgumentException e){
             System.out.println("ERROR - file not found, check file: " + themeFile + user.getTheme() + " :");
         }
-        
-        xPos += spacing;
-        textPos += spacing;
-        
-        /*
-        if (level.getPlayer().hasItem(Item.FLIPPERS)) {
-            gc.drawImage(new Image(themeFile + user.getTheme() + "\\FLIPPERS.png", TOOLBAR_CELL_WIDTH,
-            		TOOLBAR_HEIGHT,false,false), xPos + spacing, Y_POS);
-            
-        }
-        
-        xPos += spacing;
-        textPos += spacing;
-        
-        if (level.getPlayer().hasItem(Item.FIREBOOTS)) {
-            gc.drawImage(new Image(themeFile + user.getTheme() + "\\FIREBOOTS.png", TOOLBAR_CELL_WIDTH,
-            		TOOLBAR_HEIGHT,false,false), xPos + spacing, Y_POS);
-        }
-        */
-     
-        
-       
     }
     
     /**

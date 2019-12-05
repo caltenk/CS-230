@@ -122,7 +122,6 @@ public class LevelSelect extends Application {
         int levelNum = Character.getNumericValue(chrArray[chrArray.length - 1]);
         //Loads the new level
         Level level = FileHandling.loadLevel(levelNum);
-        level.setUser(user);
         try {
             Level savedLevel = FileHandling.loadProgress(user);
             if (savedLevel.getLevelNum() == level.getLevelNum()) {
@@ -174,7 +173,8 @@ public class LevelSelect extends Application {
     }
 
     private void loadLevel(Level level) {
-        if (user.getTheme() != null) {
+        level.setUser(this.user);
+    	if (user.getTheme() != null) {
             level.setTheme(user.getTheme());
         } else{
             level.setTheme("dev");
