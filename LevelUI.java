@@ -394,6 +394,9 @@ public class LevelUI extends Application {
      */
     private void win() {
 
+        if(user.getHighestLevel() == level.getLevelNum() - 1){
+            user.setHighestLevel(user.getHighestLevel() + 1);
+        }
         FileHandling.completeLevel(this.user, this.level.getLevelNum(),
                 this.stopwatch.calculateTime());
 

@@ -174,14 +174,14 @@ public class FileHandling {
         LeaderBoard leaders;
         Level completedLevel;
         String newLevelRecord;
-        if (oldUserRecord.length == 3 && levelRecord.length == 3) {
+        if (oldUserRecord.length > 1 && levelRecord.length > 1) {
             leaders = new LeaderBoard(levelRecord[1]);
             completedLevel = new Level(levelRecord[2]);
             //update user originalLevel reached if applicable
-            if (user.getHighestLevel() == levelNum) {
+            if (user.getHighestLevel() == levelNum - 1) {
 
                 newUserRecord = oldUserRecord[0] + ","
-                        + Integer.toString(user.getHighestLevel() + 1) + ","
+                        + Integer.toString(user.getHighestLevel()) + ","
                         + oldUserRecord[2] + ","
                         + oldUserRecord[3];
 
