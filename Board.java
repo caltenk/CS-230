@@ -145,7 +145,7 @@ public class Board {
      */
     public void updateCell(int x, int y, String theme) {
         board[y][x] = new Cell(CellType.GROUND);
-        getCell(x,y).setImage(new Image(theme + "\\" + CellType.GROUND + ".png"));
+        getCell(x,y).setImage(new Image(theme + File.separator + CellType.GROUND + ".png"));
     }
 
     /**
@@ -211,25 +211,25 @@ public class Board {
                 try {
                     switch (board[i][j].getType()) {
                         case WALL:
-                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.WALL + ".png"));
+                            board[i][j].setImage(new Image(themeLocation + File.separator + CellType.WALL + ".png"));
                             break;
                         case GROUND:
-                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.GROUND + ".png"));
+                            board[i][j].setImage(new Image(themeLocation + File.separator + CellType.GROUND + ".png"));
                             break;
                         case RED_DOOR:
-                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.RED_DOOR + ".png"));
+                            board[i][j].setImage(new Image(themeLocation + File.separator + CellType.RED_DOOR + ".png"));
                             break;
                         case RED_KEY:
-                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.RED_KEY + ".png"));
+                            board[i][j].setImage(new Image(themeLocation + File.separator + CellType.RED_KEY + ".png"));
                             break;
                         case TELEPORTER:
-                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.TELEPORTER + ".png"));
+                            board[i][j].setImage(new Image(themeLocation + File.separator + CellType.TELEPORTER + ".png"));
                             break;
                         case GOAL:
-                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.GOAL + ".png"));
+                            board[i][j].setImage(new Image(themeLocation + File.separator + CellType.GOAL + ".png"));
                             break;
                         case TOKEN:
-                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.TOKEN + ".png"));
+                            board[i][j].setImage(new Image(themeLocation + File.separator + CellType.TOKEN + ".png"));
                             break;
                         default:
                             System.out.println("ERROR - cell type not recognised");

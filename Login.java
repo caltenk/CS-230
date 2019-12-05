@@ -4,12 +4,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
+import javax.sound.midi.Soundbank;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLOutput;
 
 /**
  * The UI which asks the user if they wish to login as an existing user
@@ -33,6 +37,9 @@ public class Login extends Application {
 	 * @param primaryStage The stage this application is shown on.
 	 */
 	public void start(Stage primaryStage) throws IOException {
+		String musicFile = "music1.mp3";
+		Media media = new Media(new File(musicFile).toURI().toString());
+		MediaPlayer player = new MediaPlayer(media);
 		stage = primaryStage;
 
 		FXMLLoader loader = new FXMLLoader();
@@ -43,10 +50,11 @@ public class Login extends Application {
 		//Pane root = buildGUI();
 		
 		Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
-		
+		player.play();
 		primaryStage.setTitle("LOGIN");
 		primaryStage.setScene(scene);
 		primaryStage.show();
+
 	}
 	
 	/**

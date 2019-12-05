@@ -410,11 +410,11 @@ public class FileHandling {
      * @return the changed reference if successful, null if not.
      */
     private static File fileTempCopy(File original) {
-        String[] oldName = original.getName().split("\\.");
+        String[] oldName = original.getName().split(File.separator + ".");
         String newName = oldName[0] + "TEMP." + oldName[1];
 
         try {
-            return new File(original.getParent() + "\\" + newName);
+            return new File(original.getParent() + File.separator + newName);
         } catch (Exception e) {
             System.out.println("ERROR - file rename failure, "
                     + "check file: " + original.getPath() + " :");

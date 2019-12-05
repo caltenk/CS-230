@@ -23,6 +23,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.File;
+
 /**
  * Generate the UI for one level. Contains all functionality to allow a user to
  * play a Level on it.
@@ -271,7 +273,7 @@ public class LevelUI extends Application {
      */
     private void drawItemCanvas() {
     	//some local variables
-        final String themeFile = "themes\\";
+        final String themeFile = "themes" + File.separator;
         final int Y_POS = 0;
         int xPos = 0;
         int textPos = 20;
@@ -283,7 +285,7 @@ public class LevelUI extends Application {
 
         try{
         	//displays num of tokens
-        	gc.drawImage(new Image(themeFile + user.getTheme() + "\\" + CellType.TOKEN + ".png", TOOLBAR_CELL_WIDTH,
+        	gc.drawImage(new Image(themeFile + user.getTheme() + File.separator + CellType.TOKEN + ".png", TOOLBAR_CELL_WIDTH,
         			TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
         	gc.strokeText(Integer.toString(level.getPlayer().getTokenNum()),
         			textPos, TOOLBAR_HEIGHT);
@@ -293,7 +295,7 @@ public class LevelUI extends Application {
         
         	int[] numKeys = getNumKeys();
         
-        	gc.drawImage(new Image(themeFile + user.getTheme() + "\\" + CellType.RED_KEY + ".png", TOOLBAR_CELL_WIDTH,
+        	gc.drawImage(new Image(themeFile + user.getTheme() + File.separator + CellType.RED_KEY + ".png", TOOLBAR_CELL_WIDTH,
         			TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
         	gc.strokeText(Integer.toString(numKeys[0]),
         			textPos, TOOLBAR_HEIGHT);
@@ -301,7 +303,7 @@ public class LevelUI extends Application {
         	xPos += spacing;
         	textPos += spacing;
         
-        	gc.drawImage(new Image(themeFile + user.getTheme() + "\\" + CellType.BLUE_KEY + ".png", TOOLBAR_CELL_WIDTH,
+        	gc.drawImage(new Image(themeFile + user.getTheme() + File.separator + CellType.BLUE_KEY + ".png", TOOLBAR_CELL_WIDTH,
         			TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
         	gc.strokeText(Integer.toString(numKeys[1]),
         			textPos, TOOLBAR_HEIGHT);
@@ -309,7 +311,7 @@ public class LevelUI extends Application {
         	xPos += spacing;
         	textPos += spacing;
         
-        	gc.drawImage(new Image(themeFile + user.getTheme() + "\\" + CellType.GREEN_KEY + ".png", TOOLBAR_CELL_WIDTH,
+        	gc.drawImage(new Image(themeFile + user.getTheme() + File.separator + CellType.GREEN_KEY + ".png", TOOLBAR_CELL_WIDTH,
         			TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
         	gc.strokeText(Integer.toString(numKeys[2]),
         			textPos, TOOLBAR_HEIGHT);
@@ -319,7 +321,7 @@ public class LevelUI extends Application {
             
             /*
             if (level.getPlayer().hasItem(Item.FLIPPERS)) {
-                gc.drawImage(new Image(themeFile + user.getTheme() + "\\" + CellType.FLIPPERS + ".png", TOOLBAR_CELL_WIDTH,
+                gc.drawImage(new Image(themeFile + user.getTheme() + File.separator + CellType.FLIPPERS + ".png", TOOLBAR_CELL_WIDTH,
                 		TOOLBAR_HEIGHT,false,false), xPos + spacing, Y_POS);
                 
             }
