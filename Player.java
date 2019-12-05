@@ -148,7 +148,7 @@ public class Player extends Moveable {
                 }
             case TOKEN_DOOR:
                 TokenDoor tCell = (TokenDoor) cell;
-                if (tCell.getNumTokensNeeded() >= this.tokenNum) { //need token door to test
+                if (tCell.getNumTokensNeeded() <= this.tokenNum) { //need token door to test
                     return true;
                 } else {
                     return false;
