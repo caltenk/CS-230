@@ -32,8 +32,9 @@ public class SmartTargetingEnemy extends TargetingEnemy {
      *
      * @param smartData SmartTargetingEnemy data and TargetingEnemy data.
      */
-    public SmartTargetingEnemy(String smartData) {
+    public SmartTargetingEnemy(String smartData, Player player) {
         super(smartData);
+        this.player = player;
     }
 
     /**
@@ -56,10 +57,10 @@ public class SmartTargetingEnemy extends TargetingEnemy {
      * player
      */
     public int xDifference() {
-        if (player.getXCoord() < super.getXCoord()) {
-            xDifference = super.getXCoord() - player.getXCoord();
+        if (player.getXCoord() < getXCoord()) {
+            xDifference = getXCoord() - player.getXCoord();
         } else {
-            xDifference = player.getXCoord() - super.getXCoord();
+            xDifference = player.getXCoord() - getXCoord();
         }
         return xDifference;
     }
@@ -72,10 +73,10 @@ public class SmartTargetingEnemy extends TargetingEnemy {
      * player
      */
     public int yDifference() {
-        if (player.getYCoord() < super.getYCoord()) {
-            yDifference = super.getXCoord() - player.getYCoord();
+        if (player.getYCoord() < getYCoord()) {
+            yDifference = getXCoord() - player.getYCoord();
         } else {
-            yDifference = player.getYCoord() - super.getYCoord();
+            yDifference = player.getYCoord() - getYCoord();
         }
         return yDifference;
     }
@@ -91,16 +92,16 @@ public class SmartTargetingEnemy extends TargetingEnemy {
     public Direction calculateDirection(Board board) {
         while (true) { 
         //!!!previously was "while isMoveValid(...)", no logical connection
-            if (xDifference >= yDifference) {
-                if (player.getXCoord() > super.getXCoord()) {
+            if (xDifference() >= yDifference()) {
+                if (player.getXCoord() > getXCoord()) {
                     return Direction.RIGHT;
-                } else if (player.getXCoord() < super.getXCoord()) {
+                } else if (player.getXCoord() < getXCoord()) {
                     return Direction.LEFT;
                 }
-            } else if (xDifference < yDifference) {
-                if (player.getYCoord() > super.getYCoord()) {
+            } else {
+                if (player.getYCoord() > getYCoord()) {
                     return Direction.DOWN;
-                } else if (player.getYCoord() < super.getYCoord()) {
+                } else if (player.getYCoord() < getYCoord()) {
                     return Direction.UP;
                 }
             }

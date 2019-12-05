@@ -61,11 +61,11 @@ public class Level {
                         break;
 
                     case DUMB_TARGETING:
-                        enemies[i - 3] = new DumbTargetingEnemy(splitData[i]);
+                        enemies[i - 3] = new DumbTargetingEnemy(splitData[i], player);
                         break;
 
                     case SMART_TARGETING:
-                        enemies[i - 3] = new SmartTargetingEnemy(splitData[i]);
+                        enemies[i - 3] = new SmartTargetingEnemy(splitData[i], player);
                         break;
 
                     default:

@@ -1,20 +1,22 @@
 
 import javafx.scene.image.Image;
 
-
 /**
- * A dumb targeting enemy. Enemy that always moves in a straight line towards the player, regardless of obstacles.
+ * A dumb targeting enemy. Enemy that always moves in a straight line towards
+ * the player, regardless of obstacles.
+ *
  * @author Ahmed Ajaj
  * @version 1.0
  */
-
 public class DumbTargetingEnemy extends TargetingEnemy {
 
     private int xDifference;
     private int yDifference;
 
     /**
-     * This method constructs a dumb targeting enemy using the constructor in the super class
+     * This method constructs a dumb targeting enemy using the constructor in
+     * the super class
+     *
      * @param x The initial x co-ordinate.
      * @param y The initial y co-ordinate.
      * @param image The image used to present the moveable object
@@ -27,10 +29,12 @@ public class DumbTargetingEnemy extends TargetingEnemy {
     /**
      * Constructs from a string of data containing all information about the
      * dumbTargetingEnemy (including superclass data).
+     *
      * @param dumbEnemyData DumbTargetingEnemy data and TargetingEnemy data.
      */
-    public DumbTargetingEnemy(String dumbEnemyData) {
+    public DumbTargetingEnemy(String dumbEnemyData, Player player) {
         super(dumbEnemyData);
+        this.player = player;
     }
 
     /**
@@ -46,48 +50,68 @@ public class DumbTargetingEnemy extends TargetingEnemy {
     }
 
     /**
-     * This method calculates the difference between the x coordinates of the enemy and the player
-     * @return The difference between the x coordinates of the enemy and the player
+     * This method calculates the difference between the x coordinates of the
+     * enemy and the player
+     *
+     * @return The difference between the x coordinates of the enemy and the
+     * player
      */
     public int xDifference() {
-        if (player.getXCoord() < super.getXCoord()) {
-            xDifference = super.getXCoord() - player.getXCoord();
+        if (player.getXCoord() < getXCoord()) {
+            xDifference = getXCoord() - player.getXCoord();
         } else {
-            xDifference = player.getXCoord() - super.getXCoord();
+            xDifference = player.getXCoord() - getXCoord();
         }
         return xDifference;
     }
+
     /**
-     * This method calculates the difference between the y coordinates of the enemy and the player
-     * @return The difference between the y coordinates of the enemy and the player
+     * This method calculates the difference between the y coordinates of the
+     * enemy and the player
+     *
+     * @return The difference between the y coordinates of the enemy and the
+     * player
      */
     public int yDifference() {
-        if (player.getYCoord() < super.getYCoord()) {
-            yDifference = super.getXCoord() - player.getYCoord();
+        if (player.getYCoord() < getYCoord()) {
+            yDifference = getXCoord() - player.getYCoord();
         } else {
-            yDifference = player.getYCoord() - super.getYCoord();
+            yDifference = player.getYCoord() - getYCoord();
         }
         return yDifference;
     }
 
     /**
-     * This method calculates the direction the dumb targeting enemy will move in
-     * regardless of the validity of the move or obstacles
+     * This method calculates the direction the dumb targeting enemy will move
+     * in regardless of the validity of the move or obstacles
+     *
      * @param board Reference to the board class
      * @return The direction the enemy will move in
      */
     public Direction calculateDirection(Board board) {
-        if (xDifference >= yDifference) {
-            if (player.getXCoord() > super.getXCoord()) {
+        if (xDifference() >= yDifference()) {
+            if (player.getXCoord() > getXCoord()) {
                 return Direction.RIGHT;
-            } else if (player.getXCoord() < super.getXCoord()) {
+            } else if (player.getXCoord() < getXCoord()) {
                 return Direction.LEFT;
+            } else {
+                if (player.getYCoord() > getYCoord()) {
+                    return Direction.DOWN;
+                } else if (player.getYCoord() < getYCoord()) {
+                    return Direction.UP;
+                }
             }
-        } else if (xDifference < yDifference) {
-            if (player.getYCoord() > super.getYCoord()) {
+        } else {
+            if (player.getYCoord() > getYCoord()) {
                 return Direction.DOWN;
-            } else if (player.getYCoord() < super.getYCoord()) {
+            } else if (player.getYCoord() < getYCoord()) {
                 return Direction.UP;
+            } else {
+                if (player.getXCoord() > getXCoord()) {
+                    return Direction.RIGHT;
+                } else if (player.getXCoord() < getXCoord()) {
+                    return Direction.LEFT;
+                }
             }
         }
         return null;

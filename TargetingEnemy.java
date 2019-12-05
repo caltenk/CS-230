@@ -73,5 +73,4 @@ public abstract class TargetingEnemy extends Enemy {
     public Player getPlayer() {
         return player;
     }
-
 }
