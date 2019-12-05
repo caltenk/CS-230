@@ -23,6 +23,13 @@ public class Teleporter extends Cell {
         this.yLinkedCoord = yLinkedCoord;
     }
 
+    /**
+     * saves the teleporter cell as a string from which a copy can later be loaded, 
+     * used to save the teleporter cell to a text file.
+     *
+     * @return a string containing all information needed to load a copy of this
+     * teleporter cell.
+     */
     @Override
     public String toString() {
         String tokenDoorData = super.toString();

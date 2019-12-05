@@ -395,7 +395,12 @@ public class LevelUI extends Application {
      * Allows user to move to the next level.
      */
     private void win() {
-
+    	
+        Stage newStage = new Stage();
+        
+        if(user.getHighestLevel() == level.getLevelNum() - 1){
+            user.setHighestLevel(user.getHighestLevel() + 1);
+        }
         FileHandling.completeLevel(this.user, this.level.getLevelNum(),
                 this.stopwatch.calculateTime());
 
@@ -409,6 +414,7 @@ public class LevelUI extends Application {
         Button nextLevelButton = new Button("Next Level!");
         nextLevelButton.setOnAction(e -> {
             loadLevel(level.getLevelNum() + 1);
+            newStage.close();
         });
 
         newWindow.setTop(messageBox);
@@ -417,8 +423,6 @@ public class LevelUI extends Application {
         //get rid of the numbers
         Scene secondScene = new Scene(newWindow, 230, 100);
 
-        // New window (Stage)
-        Stage newStage = new Stage();
         newStage.setTitle("Congratulations!");
         newStage.setScene(secondScene);
 
@@ -433,13 +437,17 @@ public class LevelUI extends Application {
      * Method which handles the situation where they user is killed by an enemy.
      */
     private void gameOver() {
-        BorderPane newWindow = new BorderPane();
+        
+        Stage newStage = new Stage();
+        
+    	BorderPane newWindow = new BorderPane();
 
         Label winMess = new Label("You Died");
 
-        Button resetLevelButton = new Button("Next Level!");
+        Button resetLevelButton = new Button("Restart");
         resetLevelButton.setOnAction(e -> {
             loadLevel(level.getLevelNum());
+            newStage.close();
         });
 
         newWindow.setTop(winMess);
@@ -448,8 +456,6 @@ public class LevelUI extends Application {
         //get rid of the numbers
         Scene secondScene = new Scene(newWindow, 230, 100);
 
-        // New window (Stage)
-        Stage newStage = new Stage();
         newStage.setTitle(":)");
         newStage.setScene(secondScene);
 
@@ -466,6 +472,10 @@ public class LevelUI extends Application {
      */
     private void loadLevel(int levelNum) {
         this.level = FileHandling.loadLevel(levelNum);
+        level.setTheme(user.getTheme());
+        level.setUser(this.user);
+        drawGame();
+        drawItemCanvas();
     }
 
 }

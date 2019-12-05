@@ -34,16 +34,18 @@ public class LeaderBoard {
      */
     public LeaderBoard(String leaderData) {
         String[] splitData = leaderData.split(":");
-        if (splitData.length == 6) {
-            for (int i = 0; i < 3; i++) {
-                if (!splitData[i * 2].equals("-")) {
-                    leaders[i] = FileHandling.loadUser(splitData[i * 2]);
-                    leaderTimes[i] = Float.parseFloat(splitData[i * 2 + 1]);
+        if (leaderData != "-") {
+            if (splitData.length == 6) {
+                for (int i = 0; i < 3; i++) {
+                    if (!splitData[i * 2].equals("-")) {
+                        leaders[i] = FileHandling.loadUser(splitData[i * 2]);
+                        leaderTimes[i] = Float.parseFloat(splitData[i * 2 + 1]);
+                    }
                 }
+            } else {
+                System.out.println("ERROR - leaderboard construction failure, "
+                        + "incorrect input format: " + leaderData + " :");
             }
-        } else {
-            System.out.println("ERROR - leaderboard construction failure, "
-                    + "incorrect input format: " + leaderData + " :");
         }
     }
 
@@ -133,12 +135,12 @@ public class LeaderBoard {
 
         return leadData;
     }
-    
+
     public UserProfile[] getLeaders() {
-    	return this.leaders;
+        return this.leaders;
     }
-    
+
     public double[] getLeaderTimes() {
-    	return this.leaderTimes;
+        return this.leaderTimes;
     }
 }
