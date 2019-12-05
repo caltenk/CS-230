@@ -13,8 +13,8 @@ import java.io.File;
 /**
  * a class to carry out all file handling and directly related data processing.
  *
- * @author 984644
- * @version 1.0
+ * @author Daniel Rothwell
+ * @version 
  */
 public class FileHandling {
 
@@ -47,6 +47,9 @@ public class FileHandling {
         levelTest();
     }
 
+    /**
+     * a basic level saving test
+     */
     public static void levelTest() {
         Cell[][] cells;
         Board board;
@@ -93,8 +96,8 @@ public class FileHandling {
     /**
      * writes a new user record in USER_PROFILES if the username is original.
      *
-     * @param username
-     * @return success/failure
+     * @param username username the user wants to use.
+     * @return success/failure.
      */
     public static boolean createUser(UserProfile user) {
         if (searchFile(USER_PROFILES, user.getName()) == null) {
@@ -111,7 +114,7 @@ public class FileHandling {
     /**
      * loads a UserProfile from USER_PROFILES if it exists there.
      *
-     * @param username
+     * @param username username of the user being searched for.
      * @return requested UserProfile or null if not found.
      */
     public static UserProfile loadUser(String username) {
@@ -128,7 +131,8 @@ public class FileHandling {
     /**
      * deletes a user record from USER_PROFILES if they exist there.
      *
-     * @param user
+     * @param user UserProfile of the user to delete
+     * (note: deletes all with matching usernames).
      */
     public static boolean deleteUser(UserProfile user) {
         boolean success;
@@ -140,7 +144,7 @@ public class FileHandling {
     }
 
     /**
-     * loads a originalLevel from GAME_LEVELS if it exists there.
+     * loads a Level from GAME_LEVELS if it exists there.
      *
      * @param levelNum
      * @return the requested Level if found, null if not.
@@ -156,14 +160,14 @@ public class FileHandling {
     }
 
     /**
-     * checks if the user has advanced a originalLevel and updates their
-     * originalLevel in USER_PROFILES if so (assuming the userProfile already
-     * has their originalLevel updated), checks if they have set a high score
-     * for the originalLevel and updates the leader board in GAME_LEVELS if so.
+     * checks if the user has advanced a level and updates their
+     * 'level reached' in USER_PROFILES (assuming the input UserProfile already
+     * has their 'level reached' updated), checks if they have set a high score
+     * for the level and updates the leader board in GAME_LEVELS if so.
      *
-     * @param user
-     * @param levelNum
-     * @param time time in which the originalLevel was completed.
+     * @param user UserProfile of the user who completed the level.
+     * @param levelNum which level they completed.
+     * @param time the time in which the level was completed.
      */
     public static boolean completeLevel(UserProfile user, int levelNum, double time) {
 
@@ -213,11 +217,11 @@ public class FileHandling {
     }
 
     /**
-     * overwrite a originalLevel to the originalLevel save in user record in the
-     * USER_PROFILES file.
+     * save the input level as the user's 'level save' in USER_PROFILES,
+     * overwriting the previous save if there is one.
      *
-     * @param level
-     * @param user
+     * @param level level state to be saved (may be changed through gameplay)
+     * @param user UserProfile who is saving their progress.
      */
     public static boolean saveProgress(Level level, UserProfile user) {
         if (level.getBoard() != null) {
@@ -234,9 +238,11 @@ public class FileHandling {
     }
 
     /**
-     * load a originalLevel save from the user record in the USER_PROFILES file.
+     * load a user's saved level state from their user record in the 
+     * USER_PROFILES file if there is one,
+     * (note: each player can have only one save state).
      *
-     * @param user
+     * @param user the UserProfile to load the save state of.
      * @return the Level if found, null if not.
      */
     public static Level loadProgress(UserProfile user) {
@@ -250,9 +256,9 @@ public class FileHandling {
     }
 
     /**
-     * loads the leaderboard for a originalLevel from the GAME_LEVELS file.
+     * loads the leaderboard for a level from the GAME_LEVELS file.
      *
-     * @param levelNum
+     * @param levelNum which level's leaderboard is needed
      * @return the leaderboard if found, null if not.
      */
     public static LeaderBoard loadLeaders(int levelNum) {
@@ -265,9 +271,8 @@ public class FileHandling {
      * being that the first part (assuming CSV format) of matchData matches the
      * first part of the record.
      *
-     * @param file
-     * @param matchData primary key/record starting with the primary key.
-     * requested.
+     * @param file the file being searched
+     * @param matchData primary key of the requested record.
      * @return the whole record if found, null if not.
      */
     private static String searchFile(File file, String matchData) {
@@ -298,8 +303,8 @@ public class FileHandling {
     /**
      * appends a record to a file.
      *
-     * @param file
-     * @param record
+     * @param file the file being added to.
+     * @param record the record being added.
      * @return success/failure.
      */
     private static boolean appendRecord(File file, String record) {
@@ -321,13 +326,13 @@ public class FileHandling {
     }
 
     /**
-     * rewrites a file with any records matching matchData being overwritten
-     * with newRecord (or deleted if newRecord = null) if any error occurs, the
-     * changes are undone.
-     *
-     * @param file
-     * @param matchData primary key/record starting with the primary key.
-     * @param newRecord new record to replace matching records with.
+     * rewrites a file with any records matching starting with matchData being 
+     * overwritten with newRecord (or deleted if newRecord = null) if any error 
+     * occurs, the changes are undone
+     *(note: edits/deletes all matching records).
+     * @param file file being edited.
+     * @param matchData primary key of the record being edited/deleted.
+     * @param newRecord new record to replace matching records with/null to delete.
      * @return success/failure.
      */
     private static boolean editFile(File file, String matchData, String newRecord) {
@@ -376,7 +381,7 @@ public class FileHandling {
      * match conditions.
      *
      * @param matchData primary key/record starting with the primary key.
-     * @param newRecord whole record to replace matching records with.
+     * @param newRecord whole record to replace matching records with (null if deleting).
      * @return success/failure.
      */
     private static boolean editRecord(String matchData, String newRecord) {
@@ -406,7 +411,7 @@ public class FileHandling {
      * generates a File reference identical to the original but with "TEMP"
      * before the file type.
      *
-     * @param original
+     * @param original the file to generate a temporary file ref from.
      * @return the changed reference if successful, null if not.
      */
     private static File fileTempCopy(File original) {
