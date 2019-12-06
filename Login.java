@@ -31,6 +31,8 @@ public class Login extends Application {
 	
 	//The stage this application and all the connected application will perform(?) on.
 	private Stage stage;
+
+	private MediaPlayer player;
 	
 	/**
 	 * The start method for this applciaton.
@@ -39,15 +41,15 @@ public class Login extends Application {
 	public void start(Stage primaryStage) throws IOException {
 		String musicFile = "music1.mp3";
 		Media media = new Media(new File(musicFile).toURI().toString());
-		MediaPlayer player = new MediaPlayer(media);
-		stage = primaryStage;
+		player = new MediaPlayer(media);
 
+		stage = primaryStage;
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("loginmenu.fxml"));
 		Pane root = (Pane) loader.load();
 		LoginMenuController controller = (LoginMenuController)loader.getController();
 		controller.setStage(stage);
-		//Pane root = buildGUI();
+
 		
 		Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
 		player.play();

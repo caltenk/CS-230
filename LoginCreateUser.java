@@ -1,3 +1,4 @@
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -8,6 +9,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+
 /**
  * The login window for an existing user
  * @author George Manning
@@ -30,13 +34,23 @@ public class LoginCreateUser extends Application {
 	public LoginCreateUser(Stage stage, Boolean newUser) {
 		this.newUser = newUser;
 		this.stage = stage;
-		start(stage);
+		try {
+			start(stage);
+		} catch(IOException e) {
+			System.out.println("Controller not found");
+			System.out.println(e);
+		}
 	}
 	/**
 	 * The start method for this application.
 	 */
-	public void start(Stage primaryStage) {
-		Pane root = buildGUI();
+	public void start(Stage primaryStage) throws IOException{
+		stage = primaryStage;
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("usernamemenu.fxml"));
+		Pane root = (Pane) loader.load();
+		UsernameMenuController controller = (UsernameMenuController) loader.getController();
+		controller.setStage(stage, newUser);
 		
 		Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
 		

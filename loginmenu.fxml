@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="500.0" prefWidth="500.0" stylesheets="@LoginMenu.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginMenuController">
    <children>
       <SplitPane dividerPositions="0.3152610441767068" orientation="VERTICAL" prefHeight="500.0" prefWidth="500.0">
@@ -32,13 +31,13 @@
                            </VBox.margin>
                         </Button>
                         <Button fx:id="loginButton" mnemonicParsing="false" onAction="#handleLoginButton" text="Login for previous user" />
-                        <Label text="Music: Eric Skiff - We're the Resistors - Resistor Anthems - Available at " wrapText="true">
-                           <VBox.margin>
-                              <Insets top="150.0" />
-                           </VBox.margin>
+                        <Label alignment="BOTTOM_LEFT" text="Music: Eric Skiff - We're the Resistors - Resistor Anthems - Available at http://EricSkiff.com/music" wrapText="true">
                            <font>
                               <Font size="12.0" />
                            </font>
+                           <padding>
+                              <Insets top="170.0" />
+                           </padding>
                         </Label>
                      </children>
                   </VBox>
