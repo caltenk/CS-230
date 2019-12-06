@@ -20,7 +20,7 @@
 	cells[9][8] = new Cell(CellType.WALL);
 	cells[10][8] = new Cell(CellType.WALL);
 	cells[4][9] = new Cell(CellType.WALL);
-	cells[4][9] = new Cell(CellType.WALL);
+	cells[4][10] = new Cell(CellType.WALL);
 	cells[4][11] = new Cell(CellType.WALL);
 	cells[4][12] = new Cell(CellType.WALL);
 	cells[4][13] = new Cell(CellType.WALL);
@@ -80,6 +80,8 @@
 	cells[1][27] = new Cell(CellType.WALL);
 	cells[2][27] = new Cell(CellType.WALL);
 	cells[3][27] = new Cell(CellType.WALL);
+	cells[3][28] = new Cell(CellType.WALL);
+	cells[3][30] = new Cell(CellType.WALL);
 	cells[4][27] = new Cell(CellType.WALL);
 	cells[5][27] = new Cell(CellType.WALL);
 	cells[6][27] = new Cell(CellType.WALL);
@@ -111,6 +113,9 @@
 
         cells[18][29] = new Cell(CellType.RED_KEY);
         cells[6][29] = new Cell(CellType.RED_DOOR);
+	
+	cells[4][30] = new Cell(CellType.RED_KEY);
+        cells[3][29] = new Cell(CellType.RED_DOOR);
         
         cells[6][26] = new Cell(CellType.BLUE_KEY);
         cells[14][29] = new Cell(CellType.BLUE_DOOR);

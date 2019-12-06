@@ -1,5 +1,6 @@
 
 import java.io.File;
+
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 
@@ -11,7 +12,7 @@ import javafx.scene.input.KeyEvent;
  */
 public class Level {
 
-    private static final String themeFile = "themes\\";
+    private static final String themeFile = "themes" + File.separator;
     private Board board;
     private Player player;
     private Enemy[] enemies;
@@ -123,10 +124,10 @@ public class Level {
      */
     public void setTheme(String theme) {
         board.setTheme(themeFile + theme);
-        player.setImage(new Image(themeFile + theme + "\\PLAYER.png"));
+        player.setImage(new Image(themeFile + theme + File.separator + "PLAYER.png"));
         if (enemies != null) {
             for (int i = 0; i < enemies.length; i++) {
-                enemies[i].setImage(new Image(themeFile + theme + "\\" + enemies[i].getType() + ".png"));
+                enemies[i].setImage(new Image(themeFile + theme + File.separator + enemies[i].getType() + ".png"));
             }
         }
     }
