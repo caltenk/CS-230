@@ -415,7 +415,7 @@ public class FileHandling {
      * @return the changed reference if successful, null if not.
      */
     private static File fileTempCopy(File original) {
-        String[] oldName = original.getName().split(File.separator + ".");
+        String[] oldName = original.getName().split("\\.");
         String newName = oldName[0] + "TEMP." + oldName[1];
 
         try {
