@@ -86,13 +86,6 @@
 	cells[6][28] = new Cell(CellType.WALL);
 	cells[6][30] = new Cell(CellType.WALL);
 		
-	//cells[23][1] = new Cell(CellType.WALL);
-	//cells[23][2] = new Cell(CellType.WALL);
-	//cells[23][3] = new Cell(CellType.WALL);
-	//cells[24][3] = new Cell(CellType.WALL);
-	//cells[25][3] = new Cell(CellType.WALL);
-	//cells[26][3] = new Cell(CellType.WALL);
-		
 		
         cells[18][14] = new Cell(CellType.FIREBOOTS);
         cells[16][6] = new Cell(CellType.FIRE);
@@ -127,12 +120,8 @@
 		
 	cells[18][26] = new Teleporter(16, 18);
         cells[18][16] = new Teleporter(26, 18);
-		
-	//cells[1][16] = new Teleporter(1, 24);
-        //cells[24][1] = new Teleporter(16, 1);
 
         cells[17][1] = new Cell(CellType.GOAL);
-	//cells[26][1] = new Cell(CellType.GOAL);
 
         cells[15][20] = new Cell(CellType.TOKEN);
         cells[9][9] = new Cell(CellType.TOKEN);
