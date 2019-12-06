@@ -16,8 +16,8 @@
         board = new Board(cells, 16, 16, 14, 14);
         player = new Player(1, 1);
         enemies = new Enemy[2];
-	enemies[0] = new Enemy(WallFollowingEnemy(5,10));
-	enemies[1] = new Enemy(WallFollowingEnemy(11,4));
+	enemies[0] = new Enemy(WallFollowingEnemy(10,5));
+	enemies[1] = new Enemy(WallFollowingEnemy(4,11));
 		
 	level = new Level(board, player, enemies, new UserProfile("liam", 2, "dev"));
         String levelData = level.toString();
