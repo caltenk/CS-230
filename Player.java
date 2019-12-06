@@ -95,13 +95,7 @@ public class Player extends Moveable {
                 Teleporter teleporter = (Teleporter) board.getCell(this.xCoord, this.yCoord);
                 //method names may be wrong
                 super.setPosition(teleporter.getLinkedX(), teleporter.getLinkedY());
-            } else if (nextCell.getType().equals(CellType.TOKEN_DOOR)) {
-
-                TokenDoor tokenDoor = (TokenDoor) board.getCell(this.xCoord, this.yCoord);
-                this.removeTokens(tokenDoor.getNumTokensNeeded());
-
-            }
-
+            } 
         }
     }
 
