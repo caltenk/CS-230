@@ -18,8 +18,8 @@ import java.io.File;
  */
 public class FileHandling {
 
-    private static final File USER_PROFILES = new File("src\\testFiles\\userProfiles.txt");
-    private static final File GAME_LEVELS = new File("src\\testFiles\\levels.txt");
+    private static final File USER_PROFILES = new File("src" + File.separator +  "testFiles" + File.separator + "userProfiles.txt");
+    private static final File GAME_LEVELS = new File("src" + File.separator +  "testFiles" + File.separator +  "levels.txt");
 
     private static FileReader reader;
     private static BufferedReader buffRead;
@@ -419,7 +419,7 @@ public class FileHandling {
         String newName = oldName[0] + "TEMP." + oldName[1];
 
         try {
-            return new File(original.getParent() + "\\" + newName);
+            return new File(original.getParent() + File.separator + newName);
         } catch (Exception e) {
             System.out.println("ERROR - file rename failure, "
                     + "check file: " + original.getPath() + " :");
