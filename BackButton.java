@@ -13,7 +13,7 @@ public class BackButton {
         Scene scene = new Scene(root, Consts.WINDOW_WIDTH, Consts.WINDOW_HEIGHT);
 
 
-        stage.setResizable(false);
+        //stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
