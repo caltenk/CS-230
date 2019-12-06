@@ -1,5 +1,5 @@
         
-		Level level;
+	Level level;
         Board board;
         Player player;
         Enemy[] enemies;
