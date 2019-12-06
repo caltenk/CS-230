@@ -89,31 +89,40 @@ public class DumbTargetingEnemy extends TargetingEnemy {
      * @return The direction the enemy will move in
      */
     public Direction calculateDirection(Board board) {
-        if (xDifference() >= yDifference()) {
+        
+    	Direction moveDirec = null;
+    	if (xDifference() >= yDifference()) {
             if (player.getXCoord() > getXCoord()) {
-                return Direction.RIGHT;
+                moveDirec = Direction.RIGHT;
             } else if (player.getXCoord() < getXCoord()) {
-                return Direction.LEFT;
+                moveDirec = Direction.LEFT;
             } else {
                 if (player.getYCoord() > getYCoord()) {
-                    return Direction.DOWN;
+                    moveDirec = Direction.DOWN;
                 } else if (player.getYCoord() < getYCoord()) {
-                    return Direction.UP;
+                    moveDirec = Direction.UP;
                 }
             }
         } else {
             if (player.getYCoord() > getYCoord()) {
-                return Direction.DOWN;
+                moveDirec = Direction.DOWN;
             } else if (player.getYCoord() < getYCoord()) {
-                return Direction.UP;
+                moveDirec =  Direction.UP;
             } else {
                 if (player.getXCoord() > getXCoord()) {
-                    return Direction.RIGHT;
+                    moveDirec = Direction.RIGHT;
                 } else if (player.getXCoord() < getXCoord()) {
-                    return Direction.LEFT;
+                    moveDirec = Direction.LEFT;
                 }
             }
         }
-        return null;
+        
+    	if (isMoveValid(getNextCell(moveDirec, board))) {
+    		return moveDirec;
+    	} else {
+    		return null; //Doesn't move if it wants to move through a wall
+    					//cause this guy is dumb.
+    	}
+    	
     }
 }

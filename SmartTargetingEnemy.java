@@ -1,4 +1,6 @@
 
+import java.util.ArrayList;
+
 import javafx.scene.image.Image;
 
 /**
@@ -90,21 +92,17 @@ public class SmartTargetingEnemy extends TargetingEnemy {
      * @return The direction the enemy will move in
      */
     public Direction calculateDirection(Board board) {
-        while (true) { 
-        //!!!previously was "while isMoveValid(...)", no logical connection
-            if (xDifference() >= yDifference()) {
-                if (player.getXCoord() > getXCoord()) {
-                    return Direction.RIGHT;
-                } else if (player.getXCoord() < getXCoord()) {
-                    return Direction.LEFT;
-                }
-            } else {
-                if (player.getYCoord() > getYCoord()) {
-                    return Direction.DOWN;
-                } else if (player.getYCoord() < getYCoord()) {
-                    return Direction.UP;
-                }
-            }
+        ShortestPath sPath = new ShortestPath(board, getXCoord(), getYCoord(), player.getXCoord(), player.getYCoord());
+        ArrayList<Node> path = sPath.findPath(); //gets the shortest path to the player
+        Node nextMove = path.get(1);//the second node in the path is the next move
+        if (getXCoord() > nextMove.getX()) {
+        	return Direction.LEFT;
+        } else if (getXCoord() < nextMove.getX()) {
+        	return Direction.RIGHT;
+        } else if (getYCoord() > nextMove.getY()) {
+        	return Direction.UP;
+        } else {
+        	return Direction.DOWN;
         }
-    }
+    } 
 }
