@@ -33,7 +33,7 @@ public class Login extends Application {
 	 * @param primaryStage The stage this application is shown on.
 	 */
 	public void start(Stage primaryStage) throws IOException {
-		String musicFile = "music1.mp3";
+		String musicFile = "src/music.mp3";
 		Media media = new Media(new File(musicFile).toURI().toString());
 		player = new MediaPlayer(media);
 
