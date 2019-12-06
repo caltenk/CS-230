@@ -20,7 +20,7 @@
 	cells[9][8] = new Cell(CellType.WALL);
 	cells[10][8] = new Cell(CellType.WALL);
 	cells[4][9] = new Cell(CellType.WALL);
-	cells[4][9] = new Cell(CellType.WALL);
+	cells[4][10] = new Cell(CellType.WALL);
 	cells[4][11] = new Cell(CellType.WALL);
 	cells[4][12] = new Cell(CellType.WALL);
 	cells[4][13] = new Cell(CellType.WALL);
