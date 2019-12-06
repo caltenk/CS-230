@@ -24,9 +24,7 @@ public class Login extends Application {
 
 	public static List<String> fxmlval = new ArrayList<String>();
 	public static List<Stage>stageval = new ArrayList<Stage>();
-	
-	//The number of buttons displayed on the menu;
-	private static final int NUM_OF_BUTTONS = 2;
+
 	
 	//The stage this application and all the connected application will perform(?) on.
 	private Stage stage;

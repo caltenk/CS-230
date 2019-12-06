@@ -19,6 +19,10 @@ public class UserProfile {
         this.highestLevel = highestLevel;
     }
     
+    /**
+     * Sets the users theme.
+     * @param theme A string containing the filepath to the theme.
+     */
     public void setTheme(String theme){
         this.theme = theme;
     }

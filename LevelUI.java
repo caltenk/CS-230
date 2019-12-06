@@ -3,24 +3,18 @@
 import javafx.geometry.Insets;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -198,7 +192,11 @@ public class LevelUI extends Application {
 
         return root;
     }
-
+    
+    /**
+     * Adds functionality to the toolbar.
+     * @param toolbar The toolbar being built upon.
+     */
     private void buildToolBar(HBox toolbar) {
         // Create toolbar content
         Button backToLevelSelectButton = new Button("<-");

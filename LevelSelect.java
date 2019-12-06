@@ -26,13 +26,21 @@ public class LevelSelect extends Application {
 
     private static final int LB_WINDOW_WIDTH = 200;
     private static final int LB_WINDOW_HEIGHT = 200;
-
+    
+    /**
+     * constructor for the UI
+     * @param stage The stage the UI is shown on. 
+     * @param user The user of the UI.
+     */
     public LevelSelect(Stage stage, UserProfile user) {
         this.user = user;
         this.stage = stage;
         start(stage);
     }
-
+    
+    /**
+     * The start method for the application.
+     */
     public void start(Stage primaryStage) {
 
         ScrollPane root = buildGUI();
@@ -43,7 +51,11 @@ public class LevelSelect extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
+    
+    /**
+     * Builds the GUI. 
+     * @return The pane containing the GUI.
+     */
     private ScrollPane buildGUI() {
         ScrollPane root = new ScrollPane();
         Button themeButton = new Button("Select Theme");
@@ -82,12 +94,19 @@ public class LevelSelect extends Application {
         root.setContent(levelsAndLeaderboards);
         return root;
     }
-
+    
+    /**
+     * Gets the message of the day.
+     * @return The message of the day.
+     */
     private String setMessageOfTheDay() {
         MessageOfTheDay message = new MessageOfTheDay();
         return message.getMessage();
     }
-
+    
+    /**
+     * Sets the user's themes to the selected value.
+     */
     private void setTheme() {
         Stage newStage = new Stage();
         ObservableList<String> options
@@ -122,7 +141,11 @@ public class LevelSelect extends Application {
         newStage.show();
     
     }
-
+    
+    /**
+     * Loads a requested level.
+     * @param str The value of the level button.
+     */
     private void loadLevel(String str) {
 
         char[] chrArray = str.toCharArray();
@@ -141,7 +164,12 @@ public class LevelSelect extends Application {
         }
 
     }
-
+    
+    /**
+     * Asks the user if they want to load a saved state (if they have one).
+     * @param savedLevel The saved level state.
+     * @param level The reset level state.
+     */
     private void loadSavedLevel(Level savedLevel, Level level) {
         Stage newStage = new Stage();
 
@@ -178,7 +206,11 @@ public class LevelSelect extends Application {
         newStage.show();
 
     }
-
+    
+    /**
+     * Load the levelUI for the requested level.
+     * @param level The level to be loaded and played.
+     */
     private void loadLevel(Level level) {
         level.setUser(this.user);
         
@@ -190,7 +222,11 @@ public class LevelSelect extends Application {
 
         new LevelUI(stage, level, this.user);
     }
-
+    
+    /**
+     * Loads a visual representation of a requested leaderboard.
+     * @param str The value of the leaderboard button.
+     */
     private void loadLeaderBoard(String str) {
         char[] chrArray = str.toCharArray();
         int levelNum = Character.getNumericValue(chrArray[chrArray.length - 1]);

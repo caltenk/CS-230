@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  * holds the top 3 completion times of a level by users.
  *
- * @author 984644
+ * @author Daniel Rothwell
  * @version 1.0
  */
 public class LeaderBoard {
@@ -16,16 +11,6 @@ public class LeaderBoard {
     private UserProfile[] leaders = new UserProfile[3];
     private double[] leaderTimes = new double[3];
 
-    /**
-     * some basic tests.
-     *
-     * @param args
-     */
-    public static void main(String args[]) {
-        LeaderBoard test = FileHandling.loadLeaders(1);
-        System.out.println(test);
-        System.out.println(new LeaderBoard(test.toString()));
-    }
 
     /**
      * constructs from a string as it would be stored in persistent files.
@@ -135,11 +120,19 @@ public class LeaderBoard {
 
         return leadData;
     }
-
+    
+    /**
+     * Gets the array containing the leaders on the leaderboard.
+     * @return The array of leaders.
+     */
     public UserProfile[] getLeaders() {
         return this.leaders;
     }
-
+    
+    /**
+     * Gets the array containing the times of the leaderboard.
+     * @return The array containing the leader's times.
+     */
     public double[] getLeaderTimes() {
         return this.leaderTimes;
     }

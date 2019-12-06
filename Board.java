@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
  * A class that describes the board for each level
  *
  * @author George Manning
- * @version 1.0
+ * @version 4.0
  */
 public class Board {
 
@@ -19,7 +19,7 @@ public class Board {
     private int goalY;
 
     /**
-     * The constructor for a board object.
+     * The constructor for a board object. 
      *
      * @param board A 2d array of GameCells that make up the board.
      * @param x The number of columns the board has.
@@ -82,7 +82,7 @@ public class Board {
         }
     }
 
-    /**
+    /** is test code must delete before submission
      * returns a Cell array with each edge Cell being a wall and all others
      * being ground cells.
      *
@@ -196,15 +196,18 @@ public class Board {
     }
 
     /**
-     * Get method for the y co-ordinate of the goal/
-     *
+     * Get method for the y co-ordinate of the goal.
      * @return The y co-ordinate of the goal.
      */
     public int getGoalY() {
         return this.goalY;
     }
-
-    void setTheme(String themeLocation) {
+    
+    /**
+     * Sets the images for the cells in the board.
+     * @param themeLocation The file path for the images.
+     */
+    public void setTheme(String themeLocation) {
 
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {

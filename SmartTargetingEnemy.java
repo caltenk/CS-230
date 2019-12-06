@@ -1,14 +1,13 @@
 
 import java.util.ArrayList;
 
-import javafx.scene.image.Image;
 
 /**
  * A smart targeting enemy. An enemy that always moves in the shortest route
  * towards the player.
  *
  * @author Ahmed Ajaj
- * @version 1.0
+ * @version 6.0
  */
 public class SmartTargetingEnemy extends TargetingEnemy {
 

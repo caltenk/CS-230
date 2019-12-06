@@ -1,12 +1,11 @@
 
-import javafx.scene.image.Image;
 
 /**
  * A dumb targeting enemy. Enemy that always moves in a straight line towards
  * the player, regardless of obstacles.
  *
  * @author Ahmed Ajaj
- * @version 1.0
+ * @version 6.0
  */
 public class DumbTargetingEnemy extends TargetingEnemy {
 

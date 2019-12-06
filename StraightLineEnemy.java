@@ -1,6 +1,3 @@
-
-import javafx.scene.image.Image;
-
 /**
  * a straight line enemy: Enemy that moves in a straight line towards the player
  * @author Ahmed Ajaj

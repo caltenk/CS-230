@@ -1,10 +1,9 @@
 
-import javafx.scene.image.Image;
 
 /**
  * A general enemy which moves towards the player
  * @author Ahmed Ajaj
- * @version 1.0
+ * @version 2.0
  */
 public abstract class Enemy extends Moveable {
     private EnemyType type;

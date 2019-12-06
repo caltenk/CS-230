@@ -1,12 +1,10 @@
-
-import javafx.scene.image.Image;
 import java.util.ArrayList;
 
 /**
  * Class represents the character the user controls.
  *
  * @author George Manning
- * @version 1.0
+ * @version 3.0
  */
 public class Player extends Moveable {
 
@@ -66,15 +64,6 @@ public class Player extends Moveable {
         return playerData;
     }
 
-    /**
-     * temporary method for testing purposes
-     */
-    public void giveStuff() {
-        tokenNum = 5;
-        inventory.add(Item.RED_KEY);
-        inventory.add(Item.FIREBOOTS);
-        inventory.add(Item.FLIPPERS);
-    }
 
     /**
      * Moves the player in a user specified direction
@@ -168,6 +157,10 @@ public class Player extends Moveable {
         return this.tokenNum;
     }
     
+    /**
+     * Gets the inventory of the player.
+     * @return An array list containing all items the player has.
+     */
     public ArrayList<Item> getInventory() {
     	return this.inventory;
     }
@@ -179,13 +172,6 @@ public class Player extends Moveable {
         tokenNum += 1;
     }
 
-    /**
-     * Removes the requested number of tokens.
-     * @param n The number of tokens to be removed.
-     */
-    private void removeTokens(int n) {
-        tokenNum -= n;
-    }
 
     /**
      * Add the item to the players inventory.
@@ -213,7 +199,6 @@ public class Player extends Moveable {
             default:
                 break; //do nothing
         }
-        //removes the item from the board
     }
 
 

@@ -1,6 +1,3 @@
-
-import javafx.scene.image.Image;
-
 /**
  * a targeting enemy: Enemy that moves towards the position of the player
  * @author Ahmed Ajaj

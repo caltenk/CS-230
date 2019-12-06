@@ -50,7 +50,11 @@ public abstract class Moveable {
         String moveableData = Integer.toString(xCoord) + "/" + Integer.toString(yCoord);
         return moveableData;
     }
-
+    
+    /**
+     * Moves a moveable object one space in a given direction.
+     * @param direction The direction to move in.
+     */
     public void move(Direction direction) {
         if (direction != null) {
             switch (direction) {
@@ -84,24 +88,39 @@ public abstract class Moveable {
         this.xCoord = x;
         this.yCoord = y;
     }
-
+    
+    /**
+     * Sets the image.
+     * @param image The image to be set.
+     */
     public void setImage(Image image) {
         this.image = image;
     }
 
+    /**
+     * Gets the x coord of the moveable object.
+     * @return The objects x coord.
+     */
     public int getXCoord() {
         return this.xCoord;
     }
 
+    /**
+     * Gets the y coord of the moveable object.
+     * @return The objects y coord.
+     */
     public int getYCoord() {
         return this.yCoord;
     }
-
+    
+    /**
+     * Gets the image that represents the object.
+     * @return The objects image.
+     */
     public Image getImage() {
         return this.image;
     }
 
-    //THIS NEEDS BOARD AND CELL CLASSES TO BE TESTED.
     /**
      * Gets the type of the cell that the moveable object wants to move to.
      *

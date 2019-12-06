@@ -8,7 +8,7 @@ import javafx.scene.input.KeyEvent;
  * Class which defines a level which can be played by the user
  *
  * @author Sean Beck, George Manning
- * @version 1.0
+ * @version 3.0
  */
 public class Level {
 
@@ -18,7 +18,14 @@ public class Level {
     private Enemy[] enemies;
     private int levelNum;
     private UserProfile user;
-
+    
+    /**
+     * Constructor for a level object.
+     * @param board The level's board.
+     * @param player The player character for the level.
+     * @param enemies An array of the enemies.
+     * @param user The user playing the level.
+     */
     public Level(Board board, Player player, Enemy[] enemies, UserProfile user) {
         this.board = board;
         this.player = player;
@@ -76,97 +83,10 @@ public class Level {
         }
     }
 
-    /**
-     * generates a level for testing of normal play, has no enemies.
-     */
-    public Level() {
-        Cell[][] cells = Board.blankBoard(11, 9);
-
-        cells[2][2] = new Cell(CellType.FIREBOOTS);
-        cells[2][4] = new Cell(CellType.FIRE);
-
-        cells[4][2] = new Cell(CellType.FLIPPERS);
-        cells[4][4] = new Cell(CellType.WATER);
-
-        cells[6][2] = new Cell(CellType.RED_KEY);
-        cells[6][4] = new Cell(CellType.RED_DOOR);
-
-        cells[8][2] = new Teleporter(8, 4);
-        cells[8][4] = new Teleporter(8, 2);
-
-        cells[9][3] = new Cell(CellType.GOAL);
-
-        cells[2][6] = new Cell(CellType.TOKEN);
-        cells[3][6] = new Cell(CellType.TOKEN);
-        cells[4][6] = new Cell(CellType.TOKEN);
-        cells[5][6] = new Cell(CellType.TOKEN);
-        cells[6][6] = new Cell(CellType.TOKEN);
-
-        cells[7][6] = new TokenDoor(3);
-        cells[8][6] = new TokenDoor(1);
-
-        board = new Board(cells, 11, 9, 9, 3);
-        player = new Player(1, 3);
-        enemies = new Enemy[1];
-        enemies[0] = new DumbTargetingEnemy(1, 7, player);
-        setTheme("dev");
-    }
-
-
-    public void setUser(UserProfile user) {
-        this.user = user;
-    }
-
-    /**
-     * Sets the theme for each level.
-     *
-     * @param theme The selected theme.
-     */
-    public void setTheme(String theme) {
-        board.setTheme(themeFile + theme);
-        player.setImage(new Image(themeFile + theme + File.separator + "PLAYER.png"));
-        if (enemies != null) {
-            for (int i = 0; i < enemies.length; i++) {
-                enemies[i].setImage(new Image(themeFile + theme + File.separator + enemies[i].getType() + ".png"));
-            }
-        }
-    }
 
     
 
-    /**
-     * saves the level as a string from which a copy can later be loaded using
-     * the Level(String) constructor, used to save the level to a text file.
-     *
-     * @return a string containing all information needed to load a copy of this level.
-     */
-    @Override
-    public String toString() {
-        String levelData = Integer.toString(levelNum) + ":";
-        if (board != null) {
-            levelData += board.toString() + ":";
-        } else {
-            return null;
-        }
 
-        if (player != null) {
-            levelData += player.toString() + ":";
-        } else {
-            return null;
-        }
-
-        if (enemies != null) {
-            for (int i = 0; i < enemies.length; i++) {
-                if (enemies[i] != null) {
-                    levelData += enemies[i].toString();
-                }
-                if (i < enemies.length - 1) {
-                    levelData += ":";
-                }
-            }
-        }
-        return levelData;
-    }
 
     /**
      * Plays one rotation of the level. Using the user inputed direction.
@@ -221,29 +141,94 @@ public class Level {
         return (player.getXCoord() == board.getGoalX()
                 && player.getYCoord() == board.getGoalY());
     }
-
-    public void setLevelNum(int num) {
-        this.levelNum = num;
+    
+    /**
+     * Sets the value of the user.
+     * @param user The user profile being set.
+     */
+    public void setUser(UserProfile user) {
+        this.user = user;
     }
 
+    /**
+     * Sets the theme for each level.
+     *
+     * @param theme The selected theme.
+     */
+    public void setTheme(String theme) {
+        board.setTheme(themeFile + theme);
+        player.setImage(new Image(themeFile + theme + File.separator + "PLAYER.png"));
+        if (enemies != null) {
+            for (int i = 0; i < enemies.length; i++) {
+                enemies[i].setImage(new Image(themeFile + theme + File.separator + enemies[i].getType() + ".png"));
+            }
+        }
+    }
+    
+    /**
+     * Get method for the level num.
+     * @return The level number.
+     */
     public int getLevelNum() {
         return this.levelNum;
     }
 
     /**
-     *
-     * @return
+     * Get method for the level's board.
+     * @return The level's board.
      */
     public Board getBoard() {
         return this.board;
     }
-
+    
+    /**
+     * Get method for the level's playable character.
+     * @return The level's player.
+     */
     public Player getPlayer() {
         return this.player;
     }
-
+    
+    /**
+     * Get method for the level's enemies.
+     * @return An array containing all the level's enemies.
+     */
     public Enemy[] getEnemies() {
         return this.enemies;
+    }
+    
+    /**
+     * saves the level as a string from which a copy can later be loaded using
+     * the Level(String) constructor, used to save the level to a text file.
+     *
+     * @return a string containing all information needed to load a copy of this level.
+     */
+    @Override
+    public String toString() {
+        String levelData = Integer.toString(levelNum) + ":";
+        if (board != null) {
+            levelData += board.toString() + ":";
+        } else {
+            return null;
+        }
+
+        if (player != null) {
+            levelData += player.toString() + ":";
+        } else {
+            return null;
+        }
+
+        if (enemies != null) {
+            for (int i = 0; i < enemies.length; i++) {
+                if (enemies[i] != null) {
+                    levelData += enemies[i].toString();
+                }
+                if (i < enemies.length - 1) {
+                    levelData += ":";
+                }
+            }
+        }
+        return levelData;
     }
 
     /**
