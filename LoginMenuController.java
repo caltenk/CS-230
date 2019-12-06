@@ -16,8 +16,6 @@ public class LoginMenuController {
     private Button newUserButton;
 
 
-
-
     @FXML
     private void handleLoginButton(ActionEvent event) {
         new LoginCreateUser(stage, false);

@@ -50,9 +50,9 @@ public class UsernameMenuController {
         //the default number of levels a new user has completed.
         final int DEFAULT_LEVELS_COMPLETE = 0;
         //The row of the gridpane the error message is in.
-        final int ERROR_MESS_ROW = 4;
+        final int ERROR_MESS_ROW = 2;
         //The column of the gridpane the error message is in.
-        final int ERROR_MESS_COL = 1;
+        final int ERROR_MESS_COL = 0;
 
         Label errorMess = new Label();
         GridPane.setConstraints(errorMess, ERROR_MESS_COL, ERROR_MESS_ROW);

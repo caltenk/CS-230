@@ -1,19 +1,13 @@
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
-import javax.sound.midi.Soundbank;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URL;
-import java.sql.SQLOutput;
 
 /**
  * The UI which asks the user if they wish to login as an existing user
@@ -58,38 +52,6 @@ public class Login extends Application {
 		primaryStage.show();
 
 	}
-	
-	/**
-	 * Builds the UI for this application.
-	 * @return The root pane for the stage.
-	 */
-	private Pane buildGUI() {
-		VBox root = new VBox();
-		root.setPrefWidth(WINDOW_WIDTH);
-
-		
-		
-		Button loginButton = new Button("Login for a previous user");
-		loginButton.setMinWidth(WINDOW_WIDTH);
-		loginButton.setMinHeight(WINDOW_HEIGHT / NUM_OF_BUTTONS);
-		
-		loginButton.setOnAction(e -> {
-			new LoginCreateUser(stage, false);
-		});
-		
-		Button newUserButton = new Button("New user");
-		newUserButton.setMinWidth(WINDOW_WIDTH);
-		newUserButton.setMinHeight(WINDOW_HEIGHT / NUM_OF_BUTTONS);
-		
-		newUserButton.setOnAction(e -> {
-			new LoginCreateUser(stage, true);
-		});
-		
-		root.getChildren().addAll(loginButton, newUserButton);
-		
-		return root;
-	}
-	
 	
 	public static void main(String[] args) {
 		launch(args);
