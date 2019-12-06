@@ -89,10 +89,11 @@ public class LevelSelect extends Application {
     }
 
     private void setTheme() {
-
+        Stage newStage = new Stage();
         ObservableList<String> options
                 = FXCollections.observableArrayList(
-                        "dev"
+                        "dev",
+                		"Synth"
                 //place new theme names here or store em somewhere	
                 );
 
@@ -100,10 +101,17 @@ public class LevelSelect extends Application {
         themes.setValue("dev");
         BorderPane newWindow = new BorderPane();
         newWindow.setCenter(themes);
+        
+        Button selectButton = new Button("Select theme");
+        selectButton.setOnAction(e -> {
+        	this.user.setTheme(themes.getValue());
+        	newStage.close();
+        });
+        
+        newWindow.setBottom(selectButton);
         Scene secondScene = new Scene(newWindow, 230, 100);
+        
 
-        // New window (Stage)
-        Stage newStage = new Stage();
         newStage.setTitle("Theme Select");
         newStage.setScene(secondScene);
 
@@ -112,7 +120,6 @@ public class LevelSelect extends Application {
         newStage.setY(stage.getY() + 100);
 
         newStage.show();
-        user.setTheme(themes.getValue());
     
     }
 
@@ -174,11 +181,13 @@ public class LevelSelect extends Application {
 
     private void loadLevel(Level level) {
         level.setUser(this.user);
+        
     	if (user.getTheme() != null) {
             level.setTheme(user.getTheme());
         } else{
-            level.setTheme("dev");
+            level.setTheme("Synth");
         }
+
         new LevelUI(stage, level, this.user);
     }
 

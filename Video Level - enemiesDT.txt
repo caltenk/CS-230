@@ -1,0 +1,27 @@
+        
+	Level level;
+        Board board;
+        Player player;
+        Enemy[] enemies;
+		
+	Cell[][] cells = Board.blankBoard(16, 16);
+
+	cells[8][3] = new Cell(CellType.WALL);
+	cells[8][4] = new Cell(CellType.WALL);
+	cells[8][5] = new Cell(CellType.WALL);
+	cells[8][6] = new Cell(CellType.WALL);
+	cells[8][7] = new Cell(CellType.WALL);
+	cells[9][7] = new Cell(CellType.WALL);
+	cells[10][7] = new Cell(CellType.WALL);
+	cells[11][7] = new Cell(CellType.WALL);
+	cells[12][7] = new Cell(CellType.WALL)
+
+        cells[14][14] = new Cell(CellType.GOAL);
+
+        board = new Board(cells, 16, 16, 14, 14);
+        player = new Player(1, 1);
+        enemies = new Enemy[1];
+        enemies[0] = new Enemy(DumbTargetingEnemy(10,5, player));
+		
+	level = new Level(board, player, enemies, new UserProfile("liam", 2, "dev"));
+        String levelData = level.toString();

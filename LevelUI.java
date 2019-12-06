@@ -39,8 +39,8 @@ public class LevelUI extends Application {
     private static final int WINDOW_HEIGHT = 500;
 
     // The size of each cell
-    private static final int GRID_CELL_WIDTH = 50;
-    private static final int GRID_CELL_HEIGHT = 50;
+    private static final int GRID_CELL_WIDTH = 70;
+    private static final int GRID_CELL_HEIGHT = 70;
 
     //clip values
     private static final int CLAMP_RANGE_MIN = 0;
@@ -124,15 +124,15 @@ public class LevelUI extends Application {
      *
      * @param event The key event that was pressed.
      */
-    public void processKeyEvent(KeyEvent event, Pane root) {
+    public void processKeyEvent(KeyEvent event, Pane gameWindow) {
 
         level.play(event);
 
         //re clamps the camera to the player.
         camera.setX(clampRange(level.getPlayer().getXCoord() * GRID_CELL_WIDTH, CLAMP_RANGE_MIN,
-                root.getWidth() - GRID_CELL_WIDTH));
+                gameWindow.getWidth() - GRID_CELL_WIDTH));
         camera.setY(clampRange((level.getPlayer().getYCoord()) * GRID_CELL_HEIGHT, CLAMP_RANGE_MIN,
-                root.getWidth() - GRID_CELL_HEIGHT));
+                gameWindow.getHeight() - GRID_CELL_HEIGHT));
 
         drawGame();
         drawItemCanvas();
@@ -252,8 +252,8 @@ public class LevelUI extends Application {
         final int SCENE_DIVIDE = 2;
 
         Rectangle clip = new Rectangle();
-        clip.widthProperty().bind(scene.widthProperty());
-        clip.heightProperty().bind(scene.heightProperty());
+        clip.widthProperty().bind(gameWindow.widthProperty());
+        clip.heightProperty().bind(gameWindow.heightProperty());
 
         clip.xProperty().bind(Bindings.createDoubleBinding(
                 () -> clampRange(camera.getX() - scene.getWidth() / SCENE_DIVIDE, CLAMP_RANGE_MIN,
@@ -319,7 +319,7 @@ public class LevelUI extends Application {
             xPos += spacing;
             textPos += spacing;
             
-            /*
+          
             if (level.getPlayer().hasItem(Item.FLIPPERS)) {
                 gc.drawImage(new Image(themeFile + user.getTheme() + File.separator + CellType.FLIPPERS + ".png", TOOLBAR_CELL_WIDTH,
                 		TOOLBAR_HEIGHT,false,false), xPos + spacing, Y_POS);
@@ -333,7 +333,7 @@ public class LevelUI extends Application {
                 gc.drawImage(new Image(themeFile + user.getTheme() + "\\" + CellType.FIREBOOTS +".png", TOOLBAR_CELL_WIDTH,
                 		TOOLBAR_HEIGHT,false,false), xPos + spacing, Y_POS);
             }
-            */
+       
          
             
         }catch(IllegalArgumentException e){
