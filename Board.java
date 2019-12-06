@@ -222,14 +222,58 @@ public class Board {
                         case RED_KEY:
                             board[i][j].setImage(new Image(themeLocation + "\\" + CellType.RED_KEY + ".png"));
                             break;
-                        case TELEPORTER:
-                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.TELEPORTER + ".png"));
+                        case BLUE_DOOR:
+                        	board[i][j].setImage(new Image(themeLocation + "\\" + CellType.BLUE_DOOR + ".png"));
+                            break;
+                        case BLUE_KEY:
+                        	board[i][j].setImage(new Image(themeLocation + "\\" + CellType.BLUE_KEY + ".png"));
+                            break;
+                        case GREEN_DOOR:
+                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.GREEN_DOOR + ".png"));
+                            break;
+                        case GREEN_KEY:
+                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.GREEN_KEY + ".png"));
                             break;
                         case GOAL:
                             board[i][j].setImage(new Image(themeLocation + "\\" + CellType.GOAL + ".png"));
                             break;
                         case TOKEN:
                             board[i][j].setImage(new Image(themeLocation + "\\" + CellType.TOKEN + ".png"));
+                            break;
+                        case TOKEN_DOOR:
+                        	TokenDoor tokenD = (TokenDoor) board[i][j];
+                        	switch(tokenD.getNumTokensNeeded()) {
+                        		case 1:
+                        			board[i][j].setImage(new Image(themeLocation + "\\" + CellType.TOKEN_DOOR + "1.png"));
+                        			break;
+                        		case 2:
+                        			board[i][j].setImage(new Image(themeLocation + "\\" + CellType.TOKEN_DOOR + "2.png"));
+                        			break;
+                        		case 3:
+                        			board[i][j].setImage(new Image(themeLocation + "\\" + CellType.TOKEN_DOOR + "3.png"));
+                        			break;
+                        		case 4:
+                        			board[i][j].setImage(new Image(themeLocation + "\\" + CellType.TOKEN_DOOR + "4.png"));
+                        			break;
+                        		case 5:
+                        			board[i][j].setImage(new Image(themeLocation + "\\" + CellType.TOKEN_DOOR + "5.png"));
+                        			break;
+                        	}
+                        	break;
+                        case FLIPPERS:
+                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.FLIPPERS + ".png"));
+                            break;
+                        case WATER:
+                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.WATER + ".png"));
+                            break;
+                        case FIREBOOTS:
+                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.FIREBOOTS + ".png"));
+                            break;
+                        case FIRE:
+                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.FIRE + ".png"));
+                            break;
+                        case TELEPORTER:
+                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.TELEPORTER + ".png"));
                             break;
                         default:
                             System.out.println("ERROR - cell type not recognised");

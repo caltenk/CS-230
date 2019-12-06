@@ -317,7 +317,7 @@ public class LevelUI extends Application {
             xPos += spacing;
             textPos += spacing;
             
-            /*
+          
             if (level.getPlayer().hasItem(Item.FLIPPERS)) {
                 gc.drawImage(new Image(themeFile + user.getTheme() + "\\" + CellType.FLIPPERS + ".png", TOOLBAR_CELL_WIDTH,
                 		TOOLBAR_HEIGHT,false,false), xPos + spacing, Y_POS);
@@ -331,7 +331,7 @@ public class LevelUI extends Application {
                 gc.drawImage(new Image(themeFile + user.getTheme() + "\\" + CellType.FIREBOOTS +".png", TOOLBAR_CELL_WIDTH,
                 		TOOLBAR_HEIGHT,false,false), xPos + spacing, Y_POS);
             }
-            */
+       
          
             
         }catch(IllegalArgumentException e){
