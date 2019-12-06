@@ -25,7 +25,7 @@
         board = new Board(cells, 16, 16, 14, 14);
         player = new Player(1, 1);
         enemies = new Enemy[0];
-        enemies[0] = new Enemy(DumbTargetingEnemy(5,10, player));
+        enemies[0] = new Enemy(SmartTargetingEnemy(10,5, player));
 		
 	level = new Level(board, player, enemies, new UserProfile("liam", 2, "dev"));
         String levelData = level.toString();
