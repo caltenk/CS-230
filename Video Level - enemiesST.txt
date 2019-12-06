@@ -6,19 +6,19 @@
 		
 	Cell[][] cells = Board.blankBoard(16,16);
 		
-	cells[3][9] = new Cell(CellType.WALL);
-	cells[3][10] = new Cell(CellType.WALL);
-	cells[3][11] = new Cell(CellType.WALL);
-	cells[3][12] = new Cell(CellType.WALL);
-	cells[3][8] = new Cell(CellType.WALL);
-	cells[4][8] = new Cell(CellType.WALL);
-	cells[5][8] = new Cell(CellType.WALL);
-	cells[6][8] = new Cell(CellType.WALL);
-	cells[7][8] = new Cell(CellType.WALL);
-	cells[7][9] = new Cell(CellType.WALL);
-	cells[7][10] = new Cell(CellType.WALL);
-	cells[7][11] = new Cell(CellType.WALL);
-	cells[7][12] = new Cell(CellType.WALL)
+	cells[9][3] = new Cell(CellType.WALL);
+	cells[10][3] = new Cell(CellType.WALL);
+	cells[11][3] = new Cell(CellType.WALL);
+	cells[12][3] = new Cell(CellType.WALL);
+	cells[8][3] = new Cell(CellType.WALL);
+	cells[8][4] = new Cell(CellType.WALL);
+	cells[8][5] = new Cell(CellType.WALL);
+	cells[8][6] = new Cell(CellType.WALL);
+	cells[8][7] = new Cell(CellType.WALL);
+	cells[9][7] = new Cell(CellType.WALL);
+	cells[10][7] = new Cell(CellType.WALL);
+	cells[11][7] = new Cell(CellType.WALL);
+	cells[12][7] = new Cell(CellType.WALL)
 
         cells[14][14] = new Cell(CellType.GOAL);
 
