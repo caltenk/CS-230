@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The UI which asks the user if they wish to login as an existing user
@@ -19,6 +21,9 @@ public class Login extends Application {
 	
 	private static final int WINDOW_WIDTH = 500;
 	private static final int WINDOW_HEIGHT = 500;
+
+	public static List<String> fxmlval = new ArrayList<String>();
+	public static List<Stage>stageval = new ArrayList<Stage>();
 	
 	//The number of buttons displayed on the menu;
 	private static final int NUM_OF_BUTTONS = 2;

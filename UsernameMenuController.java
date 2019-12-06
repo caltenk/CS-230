@@ -89,4 +89,18 @@ public class UsernameMenuController {
     private void loadUser(UserProfile user) throws NullPointerException{
         new LevelSelect(stage, user);
     }
+
+    @FXML
+    private void handleBackButton() {
+        BackButton bb = new BackButton();
+        try {
+            bb.back(Login.fxmlval.get(Login.fxmlval.size() - 1),
+                    Login.stageval.get(Login.stageval.size() - 1));
+        } catch(Exception e) {
+            System.out.println(e);
+            System.out.println("Error occurred in back button");
+        }
+        Login.fxmlval.remove(Login.fxmlval.size() -1 );
+        Login.stageval.remove(Login.stageval.size() - 1);
+    }
 }

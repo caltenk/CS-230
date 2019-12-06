@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
@@ -31,6 +32,11 @@
                      <bottom>
                         <VBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="0.0" BorderPane.alignment="CENTER">
                            <children>
+                              <Button mnemonicParsing="false" onAction="#handleBackButton" text="Back">
+                                 <VBox.margin>
+                                    <Insets bottom="50.0" />
+                                 </VBox.margin>
+                              </Button>
                               <Label alignment="BOTTOM_LEFT" text="Music: Eric Skiff - We're the Resistors - Resistor Anthems - Available at http://EricSkiff.com/music" wrapText="true">
                                  <font>
                                     <Font size="12.0" />

@@ -45,7 +45,7 @@ public class LoginCreateUser extends Application {
 	 * The start method for this application.
 	 */
 	public void start(Stage primaryStage) throws IOException{
-		stage = primaryStage;
+		stage = Login.stageval.get(Login.stageval.size() - 1);
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("usernamemenu.fxml"));
 		Pane root = (Pane) loader.load();
@@ -54,8 +54,10 @@ public class LoginCreateUser extends Application {
 		
 		Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
 		
-		primaryStage.setScene(scene);
-		primaryStage.show();
+		stage.setScene(scene);
+		stage.show();
+
+
 		
 	}
 

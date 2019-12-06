@@ -18,11 +18,18 @@ public class LoginMenuController {
 
     @FXML
     private void handleLoginButton(ActionEvent event) {
+        Login.fxmlval.add("loginmenu.fxml");
+        stage = (Stage)loginButton.getScene().getWindow();
+        Login.stageval.add(stage);
         new LoginCreateUser(stage, false);
+
     }
 
     @FXML
     private void handleNewUserButton(ActionEvent event) {
+        Login.fxmlval.add("loginmenu.fxml");
+        stage = (Stage)loginButton.getScene().getWindow();
+        Login.stageval.add(stage);
         new LoginCreateUser(stage, true);
     }
 
