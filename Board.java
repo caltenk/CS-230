@@ -91,13 +91,13 @@ public class Board {
      * @return
      */
     public static Cell[][] blankBoard(int width, int height) {
-        Cell[][] cells = new Cell[width][height];
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                if (i == 0 || i == width - 1 || j == 0 || j == height - 1) {
-                    cells[i][j] = new Cell(CellType.WALL);
+        Cell[][] cells = new Cell[height][width];
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                if (y == 0 || y == height - 1 || x == 0 || x == width - 1) {
+                    cells[y][x] = new Cell(CellType.WALL);
                 } else {
-                    cells[i][j] = new Cell(CellType.GROUND);
+                    cells[y][x] = new Cell(CellType.GROUND);
                 }
             }
         }

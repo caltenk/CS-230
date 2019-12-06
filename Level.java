@@ -116,9 +116,10 @@ public class Level {
         Board board;
         Player player;
         Enemy[] enemies;
-
-        Cell[][] cells = Board.blankBoard(32, 20);
-
+        
+        
+        Cell[][] cells = Board.blankBoard(20, 23);
+        /*
         cells[1][4] = new Cell(CellType.WALL);
         cells[2][4] = new Cell(CellType.WALL);
         cells[3][4] = new Cell(CellType.WALL);
@@ -192,8 +193,8 @@ public class Level {
         cells[1][17] = new Teleporter(26, 17);
         cells[26][17] = new Teleporter(1, 17);
 
-        cells[13][1] = new Teleporter(30, 14);
-        cells[30][14] = new Teleporter(13, 1);
+        cells[13][1] = new Teleporter(14, 30);
+        cells[30][14] = new Teleporter(1, 13);
 
         cells[30][17] = new Cell(CellType.GOAL);
 
@@ -202,17 +203,20 @@ public class Level {
         cells[15][9] = new Cell(CellType.TOKEN);
 
         cells[2][11] = new TokenDoor(3);
-
-        board = new Board(cells, 20, 32, 9, 3);
+		*/
+        board = new Board(cells, 20, 23, 9, 3);
         player = new Player(1, 3);
+       
         enemies = new Enemy[4];
         enemies[0] = new WallFollowingEnemy(9, 12);
         enemies[1] = new StraightLineEnemy(18, 17, Direction.LEFT); //note: im guessing the direction since it wasnt defined
         enemies[2] = new DumbTargetingEnemy(6, 10, player);
         enemies[3] = new SmartTargetingEnemy(30, 12, player);
         
-        level = new Level(board, player, enemies, new UserProfile("liam", 2, "dev"));
-        String levelData = level.toString();
+        
+        level = new Level(board, player, null, new UserProfile("liam", 2, "dev"));
+    
+        System.out.print(level.toString());
     }
 
     public void setUser(UserProfile user) {
