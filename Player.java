@@ -98,18 +98,6 @@ public class Player extends Moveable {
         switch (type) {
             case WALL:
                 return false;
-            case WATER:
-                if (this.hasItem(Item.FLIPPERS)) {
-                    return true;
-                } else {
-                    return false;
-                }
-            case FIRE:
-                if (this.hasItem(Item.FIREBOOTS)) {
-                    return true;
-                } else {
-                    return false;
-                }
             case RED_DOOR:
                 if (this.hasItem(Item.RED_KEY)) {
                     return true;

@@ -120,7 +120,8 @@ public class Level {
      * @return True is player has been killed, false otherwise.
      */
     public boolean isPlayerDead() {
-        if (enemies != null) {
+        //enemies
+    	if (enemies != null) {
             for (Enemy elem : enemies) {
                 if (elem.getXCoord() == player.getXCoord()
                         && elem.getYCoord() == player.getYCoord()) {
@@ -128,8 +129,16 @@ public class Level {
                 }
             }
         }
-
-        return false;
+        //water or fire
+        if (this.board.getCell(player.getXCoord(), player.getYCoord()).getType().equals(CellType.FIRE)
+        		&& !this.player.hasItem(Item.FIREBOOTS)){
+        	return true;
+        } else if (this.board.getCell(player.getXCoord(), player.getYCoord()).getType().equals(CellType.WATER)
+        		&& !this.player.hasItem(Item.FLIPPERS)){
+        	return true;
+        } else {
+        	return false;
+        }
     }
 
     /**
