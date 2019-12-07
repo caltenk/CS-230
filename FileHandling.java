@@ -13,8 +13,8 @@ import java.io.File;
  */
 public class FileHandling {
 
-    private static final File USER_PROFILES = new File("src" + File.separator +  "testFiles" + File.separator + "userProfiles.txt");
-    private static final File GAME_LEVELS = new File("src" + File.separator +  "testFiles" + File.separator +  "levels.txt");
+    private static final File USER_PROFILES = new File("src" + File.separator + "testFiles" + File.separator + "userProfiles.txt");
+    private static final File GAME_LEVELS = new File("src" + File.separator + "testFiles" + File.separator + "levels.txt");
 
     private static FileReader reader;
     private static BufferedReader buffRead;
@@ -125,8 +125,8 @@ public class FileHandling {
     /**
      * deletes a user record from USER_PROFILES if they exist there.
      *
-     * @param user UserProfile of the user to delete
-     * (note: deletes all with matching usernames).
+     * @param user UserProfile of the user to delete (note: deletes all with
+     * matching usernames).
      */
     public static boolean deleteUser(UserProfile user) {
         boolean success;
@@ -144,20 +144,43 @@ public class FileHandling {
      * @return the requested Level if found, null if not.
      */
     public static Level loadLevel(int levelNum) {
-        String[] levelRecord = searchFile(GAME_LEVELS, Integer.toString(levelNum)).split(",");
-        if (levelRecord.length < 3) {
-            System.out.println("ERROR - search level failure.");
+        String levelRecord = searchFile(GAME_LEVELS, Integer.toString(levelNum));
+        if (levelRecord != null) {
+            String[] splitRecord = levelRecord.split(",");
+            if (splitRecord.length < 3) {
+                System.out.println("ERROR - search level failure.");
+                return null;
+            } else {
+                return new Level(splitRecord[2]);
+            }
+        } else{
             return null;
+        }
+    }
+
+    public static boolean updateTheme(UserProfile user, String theme) {
+        String[] oldUserRecord = searchFile(USER_PROFILES, user.getName()).split(",");
+        String newUserRecord;
+        newUserRecord = oldUserRecord[0] + ","
+                + oldUserRecord[1] + ","
+                + theme + ","
+                + oldUserRecord[3];
+
+        if (!editFile(USER_PROFILES, user.getName(), newUserRecord)) {
+            System.out.println("ERROR - update user higest level failure "
+                    + "check file: " + USER_PROFILES.getPath() + " :"
+                    + "for user: " + user.getName() + " :");
+            return false;
         } else {
-            return new Level(levelRecord[2]);
+            return true;
         }
     }
 
     /**
-     * checks if the user has advanced a level and updates their
-     * 'level reached' in USER_PROFILES (assuming the input UserProfile already
-     * has their 'level reached' updated), checks if they have set a high score
-     * for the level and updates the leader board in GAME_LEVELS if so.
+     * checks if the user has advanced a level and updates their 'level reached'
+     * in USER_PROFILES (assuming the input UserProfile already has their 'level
+     * reached' updated), checks if they have set a high score for the level and
+     * updates the leader board in GAME_LEVELS if so.
      *
      * @param user UserProfile of the user who completed the level.
      * @param levelNum which level they completed.
@@ -176,7 +199,7 @@ public class FileHandling {
             leaders = new LeaderBoard(levelRecord[1]);
             completedLevel = new Level(levelRecord[2]);
             //update user originalLevel reached if applicable
-            if (user.getHighestLevel() == levelNum - 1) {
+            if (user.getHighestLevel() == levelNum) {
 
                 newUserRecord = oldUserRecord[0] + ","
                         + Integer.toString(user.getHighestLevel()) + ","
@@ -232,9 +255,9 @@ public class FileHandling {
     }
 
     /**
-     * load a user's saved level state from their user record in the 
-     * USER_PROFILES file if there is one,
-     * (note: each player can have only one save state).
+     * load a user's saved level state from their user record in the
+     * USER_PROFILES file if there is one, (note: each player can have only one
+     * save state).
      *
      * @param user the UserProfile to load the save state of.
      * @return the Level if found, null if not.
@@ -320,13 +343,15 @@ public class FileHandling {
     }
 
     /**
-     * rewrites a file with any records matching starting with matchData being 
-     * overwritten with newRecord (or deleted if newRecord = null) if any error 
-     * occurs, the changes are undone
-     *(note: edits/deletes all matching records).
+     * rewrites a file with any records matching starting with matchData being
+     * overwritten with newRecord (or deleted if newRecord = null) if any error
+     * occurs, the changes are undone (note: edits/deletes all matching
+     * records).
+     *
      * @param file file being edited.
      * @param matchData primary key of the record being edited/deleted.
-     * @param newRecord new record to replace matching records with/null to delete.
+     * @param newRecord new record to replace matching records with/null to
+     * delete.
      * @return success/failure.
      */
     private static boolean editFile(File file, String matchData, String newRecord) {
@@ -375,7 +400,8 @@ public class FileHandling {
      * match conditions.
      *
      * @param matchData primary key/record starting with the primary key.
-     * @param newRecord whole record to replace matching records with (null if deleting).
+     * @param newRecord whole record to replace matching records with (null if
+     * deleting).
      * @return success/failure.
      */
     private static boolean editRecord(String matchData, String newRecord) {

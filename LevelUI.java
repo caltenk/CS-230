@@ -53,9 +53,10 @@ public class LevelUI extends Application {
     // The canvas in the GUI. This needs to be a global variable
     private Canvas canvas;
     private Canvas itemCanvas;
-    
+
     /**
      * Creates a new levelUI.
+     *
      * @param stage The stage the UI is shown on.
      * @param level The level the UI is showing.
      * @param user The user who is playing the level.
@@ -98,7 +99,7 @@ public class LevelUI extends Application {
         camera.setY((level.getPlayer().getYCoord()) * GRID_CELL_HEIGHT);
         gameWindow.getChildren().add(camera);
         //Creating a clip
-        
+
         createClip(scene, gameWindow);
 
         drawGame();
@@ -192,9 +193,10 @@ public class LevelUI extends Application {
 
         return root;
     }
-    
+
     /**
      * Adds functionality to the toolbar.
+     *
      * @param toolbar The toolbar being built upon.
      */
     private void buildToolBar(HBox toolbar) {
@@ -265,12 +267,12 @@ public class LevelUI extends Application {
         gameWindow.translateXProperty().bind(clip.xProperty().multiply(BIND_MULT));
         gameWindow.translateYProperty().bind(clip.yProperty().multiply(BIND_MULT));
     }
-    
+
     /**
      * Draws the canvas which displays the inventory.
      */
     private void drawItemCanvas() {
-    	//some local variables
+        //some local variables
         final String themeFile = "themes" + File.separator;
         final int Y_POS = 0;
         int xPos = 0;
@@ -281,92 +283,92 @@ public class LevelUI extends Application {
 
         gc.clearRect(0, 0, itemCanvas.getWidth(), itemCanvas.getHeight());
 
-        try{
-        	//displays num of tokens
-        	gc.drawImage(new Image(themeFile + user.getTheme() + File.separator + CellType.TOKEN + ".png", TOOLBAR_CELL_WIDTH,
-        			TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
-        	gc.strokeText(Integer.toString(level.getPlayer().getTokenNum()),
-        			textPos, TOOLBAR_HEIGHT);
-        
-        	xPos += spacing;
-        	textPos += spacing;
-        
-        	int[] numKeys = getNumKeys();
-        
-        	gc.drawImage(new Image(themeFile + user.getTheme() + File.separator + CellType.RED_KEY + ".png", TOOLBAR_CELL_WIDTH,
-        			TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
-        	gc.strokeText(Integer.toString(numKeys[0]),
-        			textPos, TOOLBAR_HEIGHT);
-        
-        	xPos += spacing;
-        	textPos += spacing;
-        
-        	gc.drawImage(new Image(themeFile + user.getTheme() + File.separator + CellType.BLUE_KEY + ".png", TOOLBAR_CELL_WIDTH,
-        			TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
-        	gc.strokeText(Integer.toString(numKeys[1]),
-        			textPos, TOOLBAR_HEIGHT);
-        
-        	xPos += spacing;
-        	textPos += spacing;
-        
-        	gc.drawImage(new Image(themeFile + user.getTheme() + File.separator + CellType.GREEN_KEY + ".png", TOOLBAR_CELL_WIDTH,
-        			TOOLBAR_HEIGHT,false,false), xPos, Y_POS);
-        	gc.strokeText(Integer.toString(numKeys[2]),
-        			textPos, TOOLBAR_HEIGHT);
-        	
+        try {
+            //displays num of tokens
+            gc.drawImage(new Image(themeFile + user.getTheme() + File.separator + CellType.TOKEN + ".png", TOOLBAR_CELL_WIDTH,
+                    TOOLBAR_HEIGHT, false, false), xPos, Y_POS);
+            gc.strokeText(Integer.toString(level.getPlayer().getTokenNum()),
+                    textPos, TOOLBAR_HEIGHT);
+
             xPos += spacing;
             textPos += spacing;
-            
-          
+
+            int[] numKeys = getNumKeys();
+
+            gc.drawImage(new Image(themeFile + user.getTheme() + File.separator + CellType.RED_KEY + ".png", TOOLBAR_CELL_WIDTH,
+                    TOOLBAR_HEIGHT, false, false), xPos, Y_POS);
+            gc.strokeText(Integer.toString(numKeys[0]),
+                    textPos, TOOLBAR_HEIGHT);
+
+            xPos += spacing;
+            textPos += spacing;
+
+            gc.drawImage(new Image(themeFile + user.getTheme() + File.separator + CellType.BLUE_KEY + ".png", TOOLBAR_CELL_WIDTH,
+                    TOOLBAR_HEIGHT, false, false), xPos, Y_POS);
+            gc.strokeText(Integer.toString(numKeys[1]),
+                    textPos, TOOLBAR_HEIGHT);
+
+            xPos += spacing;
+            textPos += spacing;
+
+            gc.drawImage(new Image(themeFile + user.getTheme() + File.separator + CellType.GREEN_KEY + ".png", TOOLBAR_CELL_WIDTH,
+                    TOOLBAR_HEIGHT, false, false), xPos, Y_POS);
+            gc.strokeText(Integer.toString(numKeys[2]),
+                    textPos, TOOLBAR_HEIGHT);
+
+            xPos += spacing;
+            textPos += spacing;
+
             if (level.getPlayer().hasItem(Item.FLIPPERS)) {
                 gc.drawImage(new Image(themeFile + user.getTheme() + File.separator + CellType.FLIPPERS + ".png", TOOLBAR_CELL_WIDTH,
-                		TOOLBAR_HEIGHT,false,false), xPos + spacing, Y_POS);
-                
+                        TOOLBAR_HEIGHT, false, false), xPos + spacing, Y_POS);
+
             }
-            
+
             xPos += spacing;
             textPos += spacing;
-            
+
             if (level.getPlayer().hasItem(Item.FIREBOOTS)) {
-                gc.drawImage(new Image(themeFile + user.getTheme() + "\\" + CellType.FIREBOOTS +".png", TOOLBAR_CELL_WIDTH,
-                		TOOLBAR_HEIGHT,false,false), xPos + spacing, Y_POS);
+                gc.drawImage(new Image(themeFile + user.getTheme() + "\\" + CellType.FIREBOOTS + ".png", TOOLBAR_CELL_WIDTH,
+                        TOOLBAR_HEIGHT, false, false), xPos + spacing, Y_POS);
             }
-       
-         
-            
-        }catch(IllegalArgumentException e){
+
+        } catch (IllegalArgumentException e) {
             System.out.println("ERROR - file not found, check file: " + themeFile + user.getTheme() + " :");
         }
     }
-    
+
     /**
-     * A method to get the number of coloured keys currently in the players inventory.
-     * @return An array where each element represents the number of keys of one colour.
+     * A method to get the number of coloured keys currently in the players
+     * inventory.
+     *
+     * @return An array where each element represents the number of keys of one
+     * colour.
      */
     private int[] getNumKeys() {
-    	int numRedKey = 0;
+        int numRedKey = 0;
         int numBlueKey = 0;
         int numGreenKey = 0;
-        for (Item item: level.getPlayer().getInventory()) {
-        	switch (item) {
-        		case RED_KEY:
-        			numRedKey ++;
-        			break;
-        		case BLUE_KEY:
-        			numBlueKey ++;
-        			break;
-        		case GREEN_KEY:
-        			numGreenKey ++;
-        			break;
-        		default:
-        			break;
-        	}
+        for (Item item : level.getPlayer().getInventory()) {
+            switch (item) {
+                case RED_KEY:
+                    numRedKey++;
+                    break;
+                case BLUE_KEY:
+                    numBlueKey++;
+                    break;
+                case GREEN_KEY:
+                    numGreenKey++;
+                    break;
+                default:
+                    break;
+            }
         }
         int numKeys[] = new int[3];
         numKeys[0] = numRedKey;
         numKeys[1] = numBlueKey;
         numKeys[2] = numGreenKey;
-        
+
         return numKeys;
     }
 
@@ -387,16 +389,16 @@ public class LevelUI extends Application {
         }
         return value;
     }
-    
+
     /**
-     * Method to update all necessary values when a player wins the game.
-     * Allows user to move to the next level.
+     * Method to update all necessary values when a player wins the game. Allows
+     * user to move to the next level.
      */
     private void win() {
-    	
+        Button leaveLevelButton;
         Stage newStage = new Stage();
-        
-        if(user.getHighestLevel() == level.getLevelNum() - 1){
+
+        if (user.getHighestLevel() == level.getLevelNum() - 1) {
             user.setHighestLevel(user.getHighestLevel() + 1);
         }
         FileHandling.completeLevel(this.user, this.level.getLevelNum(),
@@ -409,14 +411,22 @@ public class LevelUI extends Application {
 
         messageBox.getChildren().addAll(winMess, timeMess);
 
-        Button nextLevelButton = new Button("Next Level!");
-        nextLevelButton.setOnAction(e -> {
-            loadLevel(level.getLevelNum() + 1);
-            newStage.close();
-        });
+        if (FileHandling.loadLevel(level.getLevelNum() + 1) != null) {
+            leaveLevelButton = new Button("Next Level!");
+            leaveLevelButton.setOnAction(e -> {
+                loadLevel(level.getLevelNum() + 1);
+                newStage.close();
+            });
+        } else {
+            leaveLevelButton = new Button(" that was the last level\nreturn to level select");
+            leaveLevelButton.setOnAction(e -> {
+                new LevelSelect(stage, user);
+                newStage.close();
+            });
+        }
 
         newWindow.setTop(messageBox);
-        newWindow.setCenter(nextLevelButton);
+        newWindow.setCenter(leaveLevelButton);
 
         //get rid of the numbers
         Scene secondScene = new Scene(newWindow, 230, 100);
@@ -430,15 +440,15 @@ public class LevelUI extends Application {
 
         newStage.show();
     }
-    
+
     /**
      * Method which handles the situation where they user is killed by an enemy.
      */
     private void gameOver() {
-        
+
         Stage newStage = new Stage();
-        
-    	BorderPane newWindow = new BorderPane();
+
+        BorderPane newWindow = new BorderPane();
 
         Label winMess = new Label("You Died");
 
@@ -463,9 +473,10 @@ public class LevelUI extends Application {
 
         newStage.show();
     }
-    
+
     /**
      * Changes the level the UI is playing. Or resets the level if required.
+     *
      * @param levelNum The number of the level to be loaded.
      */
     private void loadLevel(int levelNum) {

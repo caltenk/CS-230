@@ -26,10 +26,11 @@ public class LevelSelect extends Application {
 
     private static final int LB_WINDOW_WIDTH = 200;
     private static final int LB_WINDOW_HEIGHT = 200;
-    
+
     /**
      * constructor for the UI
-     * @param stage The stage the UI is shown on. 
+     *
+     * @param stage The stage the UI is shown on.
      * @param user The user of the UI.
      */
     public LevelSelect(Stage stage, UserProfile user) {
@@ -37,7 +38,7 @@ public class LevelSelect extends Application {
         this.stage = stage;
         start(stage);
     }
-    
+
     /**
      * The start method for the application.
      */
@@ -51,9 +52,10 @@ public class LevelSelect extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-    
+
     /**
-     * Builds the GUI. 
+     * Builds the GUI.
+     *
      * @return The pane containing the GUI.
      */
     private ScrollPane buildGUI() {
@@ -94,16 +96,17 @@ public class LevelSelect extends Application {
         root.setContent(levelsAndLeaderboards);
         return root;
     }
-    
+
     /**
      * Gets the message of the day.
+     *
      * @return The message of the day.
      */
     private String setMessageOfTheDay() {
         MessageOfTheDay message = new MessageOfTheDay();
         return message.getMessage();
     }
-    
+
     /**
      * Sets the user's themes to the selected value.
      */
@@ -112,7 +115,7 @@ public class LevelSelect extends Application {
         ObservableList<String> options
                 = FXCollections.observableArrayList(
                         "dev",
-                		"Synth"
+                        "Synth"
                 //place new theme names here or store em somewhere	
                 );
 
@@ -120,16 +123,15 @@ public class LevelSelect extends Application {
         themes.setValue("dev");
         BorderPane newWindow = new BorderPane();
         newWindow.setCenter(themes);
-        
+
         Button selectButton = new Button("Select theme");
         selectButton.setOnAction(e -> {
-        	this.user.setTheme(themes.getValue());
-        	newStage.close();
+            this.user.setTheme(themes.getValue());
+            newStage.close();
         });
-        
+
         newWindow.setBottom(selectButton);
         Scene secondScene = new Scene(newWindow, 230, 100);
-        
 
         newStage.setTitle("Theme Select");
         newStage.setScene(secondScene);
@@ -139,11 +141,12 @@ public class LevelSelect extends Application {
         newStage.setY(stage.getY() + 100);
 
         newStage.show();
-    
+
     }
-    
+
     /**
      * Loads a requested level.
+     *
      * @param str The value of the level button.
      */
     private void loadLevel(String str) {
@@ -164,9 +167,10 @@ public class LevelSelect extends Application {
         }
 
     }
-    
+
     /**
      * Asks the user if they want to load a saved state (if they have one).
+     *
      * @param savedLevel The saved level state.
      * @param level The reset level state.
      */
@@ -206,25 +210,27 @@ public class LevelSelect extends Application {
         newStage.show();
 
     }
-    
+
     /**
      * Load the levelUI for the requested level.
+     *
      * @param level The level to be loaded and played.
      */
     private void loadLevel(Level level) {
         level.setUser(this.user);
-        
-    	if (user.getTheme() != null) {
+
+        if (user.getTheme() != null) {
             level.setTheme(user.getTheme());
-        } else{
+        } else {
             level.setTheme("Synth");
         }
 
         new LevelUI(stage, level, this.user);
     }
-    
+
     /**
      * Loads a visual representation of a requested leaderboard.
+     *
      * @param str The value of the leaderboard button.
      */
     private void loadLeaderBoard(String str) {
@@ -235,15 +241,19 @@ public class LevelSelect extends Application {
         VBox newWindow = new VBox();
         for (int i = 0; i < leaderboard.getLeaders().length; i++) {
             UserProfile user = leaderboard.getLeaders()[i];
+            Label label;
 
-            Label label = new Label(user.getName() + ": "
-                    + leaderboard.getLeaderTimes()[i]);
-            label.setMinSize(LB_WINDOW_WIDTH, LB_WINDOW_HEIGHT / (leaderboard.getLeaders().length + 1));
+            if (user == null) {
+                label = new Label("______ : ______");
+            } else {
+                label = new Label(user.getName() + ": " + leaderboard.getLeaderTimes()[i]);
+            }
+            label.setMinSize(LB_WINDOW_WIDTH, LB_WINDOW_HEIGHT / (leaderboard.getLeaders().length));
 
             newWindow.getChildren().add(label);
         }
 
-        Scene secondScene = new Scene(newWindow, 230, 100);
+        Scene secondScene = new Scene(newWindow, LB_WINDOW_WIDTH, LB_WINDOW_HEIGHT);
 
         // New window (Stage)
         Stage newStage = new Stage();

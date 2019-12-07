@@ -17,6 +17,7 @@ public class UserProfile {
     public UserProfile(String name, int highestLevel, String theme) {
         this.name = name;
         this.highestLevel = highestLevel;
+        this.theme = theme;
     }
     
     /**
@@ -25,6 +26,7 @@ public class UserProfile {
      */
     public void setTheme(String theme){
         this.theme = theme;
+        FileHandling.updateTheme(this, theme);
     }
     
     public String getTheme(){
