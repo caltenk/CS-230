@@ -75,7 +75,6 @@ public class FileHandling {
         enemies[3] = new SmartTargetingEnemy(1, 2, null);
 
         player = new Player(4, 3);
-        player.giveStuff();
 
         originalLevel = new Level(board, player, enemies, null);
 

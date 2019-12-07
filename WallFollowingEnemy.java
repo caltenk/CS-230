@@ -8,7 +8,7 @@
  */
 public class WallFollowingEnemy extends Enemy {
 
-    Direction currentDirection = Direction.DOWN;
+    Direction currentDirection;
     boolean turning = true;
 
     /**
@@ -57,12 +57,15 @@ public class WallFollowingEnemy extends Enemy {
         boolean up = super.isMoveValid(super.getNextCell(Direction.UP, board));
         boolean left = super.isMoveValid(super.getNextCell(Direction.LEFT, board));
         boolean right = super.isMoveValid(super.getNextCell(Direction.RIGHT, board));
-        Direction result = null;
+        Direction result =  Direction.DOWN;
+        if(currentDirection == null){
+            currentDirection = startDirection(board);
+        }
 
         System.out.println("Enemy:" + xCoord + ", " + yCoord + ", " + currentDirection + " :\n"
-                + turning + "\n" +
-                up + " : " + down + " : " + left + " : " + right + " : ");
-        
+                + turning + "\n"
+                + up + " : " + down + " : " + left + " : " + right + " : ");
+
         if (!up || !down || !left || !right || turning) {
             switch (currentDirection) {
                 case DOWN:
@@ -139,6 +142,26 @@ public class WallFollowingEnemy extends Enemy {
             turning = true;
         }
         System.out.println(result + "\n");
+        return result;
+    }
+
+    private Direction startDirection(Board board) {
+        boolean down = super.isMoveValid(super.getNextCell(Direction.DOWN, board));
+        boolean up = super.isMoveValid(super.getNextCell(Direction.UP, board));
+        boolean left = super.isMoveValid(super.getNextCell(Direction.LEFT, board));
+        boolean right = super.isMoveValid(super.getNextCell(Direction.RIGHT, board));
+        Direction result = Direction.DOWN;
+
+        if (!left && down) {
+            result = Direction.DOWN;
+        } else if (!up && left) {
+            result = Direction.LEFT;
+        } else if (!right && up) {
+            result = Direction.UP;
+        } else if (!down && right) {
+            result = Direction.RIGHT;
+        }
+        
         return result;
     }
 }
