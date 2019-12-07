@@ -472,6 +472,7 @@ public class LevelUI extends Application {
         this.level = FileHandling.loadLevel(levelNum);
         level.setTheme(user.getTheme());
         level.setUser(this.user);
+        this.stopwatch.startStopwatch();
         drawGame();
         drawItemCanvas();
     }
