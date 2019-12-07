@@ -57,15 +57,17 @@ public class WallFollowingEnemy extends Enemy {
         boolean up = super.isMoveValid(super.getNextCell(Direction.UP, board));
         boolean left = super.isMoveValid(super.getNextCell(Direction.LEFT, board));
         boolean right = super.isMoveValid(super.getNextCell(Direction.RIGHT, board));
-        Direction result =  Direction.DOWN;
-        if(currentDirection == null){
+        Direction result = Direction.DOWN;
+        if (currentDirection == null) {
             currentDirection = startDirection(board);
         }
 
+        /*
         System.out.println("Enemy:" + xCoord + ", " + yCoord + ", " + currentDirection + " :\n"
                 + turning + "\n"
                 + up + " : " + down + " : " + left + " : " + right + " : ");
-
+         */
+        
         if (!up || !down || !left || !right || turning) {
             switch (currentDirection) {
                 case DOWN:
@@ -141,7 +143,7 @@ public class WallFollowingEnemy extends Enemy {
         } else {
             turning = true;
         }
-        System.out.println(result + "\n");
+        //System.out.println(result + "\n");
         return result;
     }
 
@@ -161,7 +163,7 @@ public class WallFollowingEnemy extends Enemy {
         } else if (!down && right) {
             result = Direction.RIGHT;
         }
-        
+
         return result;
     }
 }
