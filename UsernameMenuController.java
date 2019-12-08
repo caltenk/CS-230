@@ -28,7 +28,6 @@ public class UsernameMenuController {
     }
 
 
-
     public void setStage(Stage stage, Boolean newUser) {
         this.stage = stage;
         this.newUser = newUser;

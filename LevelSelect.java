@@ -61,12 +61,25 @@ public class LevelSelect extends Application {
     private ScrollPane buildGUI() {
         ScrollPane root = new ScrollPane();
         Button themeButton = new Button("Select Theme");
+        Button deleteButton = new Button("Delete current profile");
         themeButton.setOnAction(e -> {
             setTheme();
         });
+
+        deleteButton.setOnAction(e -> {
+            FileHandling.deleteUser(this.user);
+            BackButton bb = new BackButton();
+            try {
+                bb.back("loginmenu.fxml", this.stage);
+            } catch(Exception ex) {
+                System.out.println(ex);
+                System.out.println("Could not load controller");
+            }
+        });
+
         VBox levelsAndLeaderboards = new VBox();
         Label messageOfTheDay = new Label(setMessageOfTheDay());
-        levelsAndLeaderboards.getChildren().add(messageOfTheDay);
+        levelsAndLeaderboards.getChildren().addAll(messageOfTheDay, deleteButton);
 
         int levelButtonNum = 1;
         while (levelButtonNum <= (user.getHighestLevel() + 1)) {
