@@ -1,7 +1,7 @@
 
 /**
  * A wall following enemy: Enemy that moves in the direction of walls towards
- * the player
+ * the player.
  *
  * @author Ahmed Ajaj
  * @version 1.0
@@ -61,13 +61,6 @@ public class WallFollowingEnemy extends Enemy {
         if (currentDirection == null) {
             currentDirection = startDirection(board);
         }
-
-        /*
-        System.out.println("Enemy:" + xCoord + ", " + yCoord + ", " + currentDirection + " :\n"
-                + turning + "\n"
-                + up + " : " + down + " : " + left + " : " + right + " : ");
-         */
-        
         if (!up || !down || !left || !right || turning) {
             switch (currentDirection) {
                 case DOWN:
@@ -148,13 +141,11 @@ public class WallFollowingEnemy extends Enemy {
     }
 
     /**
-     * calculates the starting direction of the wall following enemy,
-     * if possible they follow a wall on their left and start by moving down,
-     * or left, or up, or right in that order of priority
-     * if they are not next to a wall they will default to moving down.
-     * 
      * @param board the board on which the enemy is placed.
      * @return the direction in which the enemy should start moving.
+     * This method sets the starting direction of the enemy.
+     * @param board Reference to the board the enemy is on.
+     * @return The start direction of the enemy.
      */
     private Direction startDirection(Board board) {
         boolean down = super.isMoveValid(super.getNextCell(Direction.DOWN, board));
