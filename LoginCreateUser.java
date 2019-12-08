@@ -35,6 +35,7 @@ public class LoginCreateUser extends Application {
 			System.out.println(e);
 		}
 	}
+
 	/**
 	 * The start method for this application.
 	 */
@@ -50,9 +51,6 @@ public class LoginCreateUser extends Application {
 		
 		stage.setScene(scene);
 		stage.show();
-
-
-		
 	}
 
 }

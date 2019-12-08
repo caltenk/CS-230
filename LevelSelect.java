@@ -14,6 +14,12 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
+/**
+ * Class for building and controlling the level select interface
+ * This UI was not built using FXML due to it not being static
+ * @author George Manning, Cameron Altenkirch
+ * @version 2.0
+ */
 public class LevelSelect extends Application {
 
     private UserProfile user;

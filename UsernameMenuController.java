@@ -1,4 +1,3 @@
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -8,7 +7,11 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
-
+/**
+ * Controller class to manage the username/login menu
+ * @author Cameron Altenkirch
+ * @version 1.0
+ */
 public class UsernameMenuController {
     private Stage stage;
     private Boolean newUser;
@@ -22,12 +25,11 @@ public class UsernameMenuController {
     @FXML
     private GridPane root;
 
-    @FXML
-    private void intialize(){
-
-    }
-
-
+    /**
+     * Method to pass in current stage and run some initialization code.
+     * @param stage Current stage to display scene on
+     * @param newUser Boolean, true means this user is being created
+     */
     public void setStage(Stage stage, Boolean newUser) {
         this.stage = stage;
         this.newUser = newUser;
@@ -40,11 +42,19 @@ public class UsernameMenuController {
         submitButton.setDefaultButton(true);
     }
 
+    /**
+     * Method to handle what happens when submit button clicked
+     */
     @FXML
-    private void handleSubmitButton(ActionEvent event) {
+    private void handleSubmitButton() {
         submitButtonAction(root, textField.getText());
     }
 
+    /**
+     * Code to be executed when submit button is clicked
+     * @param root The pane of this button
+     * @param username String entered in input box
+     */
     private void submitButtonAction(Pane root, String username) {
         //the default number of levels a new user has completed.
         final int DEFAULT_LEVELS_COMPLETE = 0;
@@ -89,6 +99,9 @@ public class UsernameMenuController {
         new LevelSelect(stage, user);
     }
 
+    /**
+     * Method for handling behaviour of back button. Works with BackButton class.
+     */
     @FXML
     private void handleBackButton() {
         BackButton bb = new BackButton();

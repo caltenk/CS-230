@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * The UI which asks the user if they wish to login as an existing user
  * or create a new user.
- * @author George Manning
+ * @author George Manning, Cameron Altenkirch
  * @version 1.0
  */
 public class Login extends Application {
@@ -55,7 +55,11 @@ public class Login extends Application {
 		primaryStage.show();
 
 	}
-	
+
+	/**
+	 * Main class.
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
