@@ -8,8 +8,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 public class LevelSelect extends Application {
@@ -67,14 +69,7 @@ public class LevelSelect extends Application {
         });
 
         deleteButton.setOnAction(e -> {
-            FileHandling.deleteUser(this.user);
-            BackButton bb = new BackButton();
-            try {
-                bb.back("loginmenu.fxml", this.stage);
-            } catch(Exception ex) {
-                System.out.println(ex);
-                System.out.println("Could not load controller");
-            }
+            showPopup();
         });
 
         VBox levelsAndLeaderboards = new VBox();
@@ -108,6 +103,39 @@ public class LevelSelect extends Application {
         levelsAndLeaderboards.getChildren().add(themeButton);
         root.setContent(levelsAndLeaderboards);
         return root;
+    }
+
+    private void showPopup() {
+        Button yesSure = new Button("Yes");
+        Button noSure = new Button("No");
+        Label sureLabel = new Label("Are you sure?");
+        Popup confirmSure = new Popup();
+        GridPane surePane = new GridPane();
+
+        yesSure.setOnAction(e -> {
+            FileHandling.deleteUser(this.user);
+            BackButton bb = new BackButton();
+            try {
+                bb.back("loginmenu.fxml", this.stage);
+            } catch(Exception ex) {
+                System.out.println(ex);
+                System.out.println("Could not load controller");
+            }
+            confirmSure.hide();
+        });
+
+        noSure.setOnAction(e -> {
+            confirmSure.hide();
+        });
+        surePane.add(sureLabel, 0, 0);
+        surePane.add(yesSure, 0, 1);
+        surePane.add(noSure, 1,1);
+        confirmSure.getContent().addAll(surePane);
+        confirmSure.centerOnScreen();
+        confirmSure.show(this.stage);
+
+
+
     }
 
     /**
