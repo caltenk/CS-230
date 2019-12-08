@@ -15,12 +15,11 @@ public class SmartTargetingEnemy extends TargetingEnemy {
 
     /**
      * This method constructs a smart targeting enemy using the constructor in
-     * the super class
+     * the super class.
      *
      * @param x The initial x co-ordinate.
      * @param y The initial y co-ordinate.
-     * @param image The image used to present the moveable object
-     * @param player Reference to the player
+     * @param player Reference to the player.
      */
     public SmartTargetingEnemy(int x, int y, Player player) {
         super(x, y, player);
@@ -86,18 +85,18 @@ public class SmartTargetingEnemy extends TargetingEnemy {
 
     /**
      * This method calculates the direction the smart targeting enemy will move
-     * in while the move is valid and meets the criteria in the isMoveValid
-     * method
+     * in by getting the shortest path to the player
+     * and assigning the second node in the path as the next move to be made.
      *
-     * @param board Reference to the board class
-     * @return The direction the enemy will move in
+     * @param board Reference to the board class.
+     * @return The direction the enemy will move in.
      */
     public Direction calculateDirection(Board board) {
         ShortestPath sPath = new ShortestPath(board, getXCoord(), getYCoord(), player.getXCoord(), player.getYCoord());
-        ArrayList<Node> path = sPath.findPath(); //gets the shortest path to the player
+        ArrayList<Node> path = sPath.findPath();
         Node nextMove;
         if (path != null) {
-            nextMove = path.get(1);//the second node in the path is the next move
+            nextMove = path.get(1);
         } else {
             return Direction.DOWN;
         }
