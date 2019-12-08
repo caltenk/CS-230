@@ -83,7 +83,7 @@ public class Player extends Moveable {
                 Teleporter teleporter = (Teleporter) board.getCell(this.xCoord, this.yCoord);
                 //method names may be wrong
                 super.setPosition(teleporter.getLinkedX(), teleporter.getLinkedY());
-            } 
+            }
         }
     }
 
@@ -127,29 +127,33 @@ public class Player extends Moveable {
 
         }
     }
+
     /**
      * Checks if the item exists in the player inventory.
+     *
      * @param item The item being checked.
      * @return True if the player item, false otherwise.
      */
     public boolean hasItem(Item item) {
         return this.inventory.contains(item);
     }
-    
+
     /**
      * Gets method for the number of tokens the player has.
+     *
      * @return The number of tokens.
      */
     public int getTokenNum() {
         return this.tokenNum;
     }
-    
+
     /**
      * Gets the inventory of the player.
+     *
      * @return An array list containing all items the player has.
      */
     public ArrayList<Item> getInventory() {
-    	return this.inventory;
+        return this.inventory;
     }
 
     /**
@@ -162,6 +166,7 @@ public class Player extends Moveable {
 
     /**
      * Add the item to the players inventory.
+     *
      * @param type The type of the item cell being picked up.
      */
     private void pickUpItem(CellType type) {
@@ -191,6 +196,7 @@ public class Player extends Moveable {
 
     /**
      * Removes an item from the player.
+     *
      * @param type The type ofthe cell that needs the item.
      */
     private void removeItem(CellType type) {

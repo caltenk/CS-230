@@ -142,8 +142,6 @@ public class WallFollowingEnemy extends Enemy {
 
     /**
      * @param board the board on which the enemy is placed.
-     * @return the direction in which the enemy should start moving.
-     * This method sets the starting direction of the enemy.
      * @param board Reference to the board the enemy is on.
      * @return The start direction of the enemy.
      */

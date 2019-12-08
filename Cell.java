@@ -1,8 +1,10 @@
 /**
  * A class for an individual cell.
+ *
  * @author Daniel Rothwell
  * @version 3.0
  */
+
 import javafx.scene.image.Image;
 
 public class Cell {
@@ -39,7 +41,7 @@ public class Cell {
         }
         return cellData;
     }
-    
+
     /**
      * Gets the type of the cell.
      * @return The type of the cell.
@@ -47,7 +49,7 @@ public class Cell {
     public CellType getType() {
         return this.type;
     }
-    
+
     /**
      * Gets the image used to represent the cell.
      * @return The image of the cell.
@@ -55,7 +57,7 @@ public class Cell {
     public Image getImage() {
         return this.image;
     }
-    
+
     /**
      * Sets the cells image.
      * @param image The image the cell is being set to.

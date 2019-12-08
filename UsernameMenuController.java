@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 
 /**
  * Controller class to manage the username/login menu
+ *
  * @author Cameron Altenkirch
  * @version 1.0
  */
@@ -27,7 +28,8 @@ public class UsernameMenuController {
 
     /**
      * Method to pass in current stage and run some initialization code.
-     * @param stage Current stage to display scene on
+     *
+     * @param stage   Current stage to display scene on
      * @param newUser Boolean, true means this user is being created
      */
     public void setStage(Stage stage, Boolean newUser) {
@@ -52,7 +54,8 @@ public class UsernameMenuController {
 
     /**
      * Code to be executed when submit button is clicked
-     * @param root The pane of this button
+     *
+     * @param root     The pane of this button
      * @param username String entered in input box
      */
     private void submitButtonAction(Pane root, String username) {
@@ -92,10 +95,11 @@ public class UsernameMenuController {
 
     /**
      * Loads an existing user.
+     *
      * @param username The users username.
      * @throws NullPointerException If user doesn't exist.
      */
-    private void loadUser(UserProfile user) throws NullPointerException{
+    private void loadUser(UserProfile user) throws NullPointerException {
         new LevelSelect(stage, user);
     }
 
@@ -108,11 +112,11 @@ public class UsernameMenuController {
         try {
             bb.back(Login.fxmlval.get(Login.fxmlval.size() - 1),
                     Login.stageval.get(Login.stageval.size() - 1));
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
             System.out.println("Error occurred in back button");
         }
-        Login.fxmlval.remove(Login.fxmlval.size() -1 );
+        Login.fxmlval.remove(Login.fxmlval.size() - 1);
         Login.stageval.remove(Login.stageval.size() - 1);
     }
 }

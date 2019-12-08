@@ -66,7 +66,7 @@ public class FileHandling {
      * deletes a user record from USER_PROFILES if they exist there.
      *
      * @param user UserProfile of the user to delete (note: deletes all with
-     * matching usernames).
+     *             matching usernames).
      */
     public static boolean deleteUser(UserProfile user) {
         boolean success;
@@ -93,7 +93,7 @@ public class FileHandling {
             } else {
                 return new Level(splitRecord[2]);
             }
-        } else{
+        } else {
             return null;
         }
     }
@@ -101,8 +101,8 @@ public class FileHandling {
     /**
      * changes the selected theme of a user in USER_PROFILES which is used to
      * select the game theme on all levels they play.
-     * 
-     * @param user the user whos theme selection should be changed.
+     *
+     * @param user  the user whos theme selection should be changed.
      * @param theme the theme they want to use.
      * @return success/failure
      */
@@ -130,9 +130,9 @@ public class FileHandling {
      * reached' updated), checks if they have set a high score for the level and
      * updates the leader board in GAME_LEVELS if so.
      *
-     * @param user UserProfile of the user who completed the level.
+     * @param user     UserProfile of the user who completed the level.
      * @param levelNum which level they completed.
-     * @param time the time in which the level was completed.
+     * @param time     the time in which the level was completed.
      */
     public static boolean completeLevel(UserProfile user, int levelNum, double time) {
 
@@ -186,7 +186,7 @@ public class FileHandling {
      * overwriting the previous save if there is one.
      *
      * @param level level state to be saved (may be changed through gameplay)
-     * @param user UserProfile who is saving their progress.
+     * @param user  UserProfile who is saving their progress.
      */
     public static boolean saveProgress(Level level, UserProfile user) {
         if (level.getBoard() != null) {
@@ -236,7 +236,7 @@ public class FileHandling {
      * being that the first part (assuming CSV format) of matchData matches the
      * first part of the record.
      *
-     * @param file the file being searched
+     * @param file      the file being searched
      * @param matchData primary key of the requested record.
      * @return the whole record if found, null if not.
      */
@@ -268,7 +268,7 @@ public class FileHandling {
     /**
      * appends a record to a file.
      *
-     * @param file the file being added to.
+     * @param file   the file being added to.
      * @param record the record being added.
      * @return success/failure.
      */
@@ -296,10 +296,10 @@ public class FileHandling {
      * occurs, the changes are undone (note: edits/deletes all matching
      * records).
      *
-     * @param file file being edited.
+     * @param file      file being edited.
      * @param matchData primary key of the record being edited/deleted.
      * @param newRecord new record to replace matching records with/null to
-     * delete.
+     *                  delete.
      * @return success/failure.
      */
     private static boolean editFile(File file, String matchData, String newRecord) {
@@ -349,7 +349,7 @@ public class FileHandling {
      *
      * @param matchData primary key/record starting with the primary key.
      * @param newRecord whole record to replace matching records with (null if
-     * deleting).
+     *                  deleting).
      * @return success/failure.
      */
     private static boolean editRecord(String matchData, String newRecord) {

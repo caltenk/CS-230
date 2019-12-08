@@ -120,17 +120,19 @@ public class LeaderBoard {
 
         return leadData;
     }
-    
+
     /**
      * Gets the array containing the leaders on the leaderboard.
+     *
      * @return The array of leaders.
      */
     public UserProfile[] getLeaders() {
         return this.leaders;
     }
-    
+
     /**
      * Gets the array containing the times of the leaderboard.
+     *
      * @return The array containing the leader's times.
      */
     public double[] getLeaderTimes() {

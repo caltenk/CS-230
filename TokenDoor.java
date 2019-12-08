@@ -4,7 +4,6 @@
  *
  * @author Liam Date
  * @version 1.0
- *
  */
 public class TokenDoor extends Cell {
 

@@ -1,5 +1,6 @@
 /**
  * A straight line enemy: Enemy that moves in a straight line towards the player
+ *
  * @author Ahmed Ajaj
  * @version 1.0
  */
@@ -13,8 +14,8 @@ public class StraightLineEnemy extends Enemy {
      * using the constructor in the super class
      * with the addition of direction as a parameter.
      *
-     * @param x The initial x co-ordinate.
-     * @param y The initial y co-ordinate.
+     * @param x         The initial x co-ordinate.
+     * @param y         The initial y co-ordinate.
      * @param direction The direction that the enemy will move in.
      */
     public StraightLineEnemy(int x, int y, Direction direction) {
@@ -51,9 +52,11 @@ public class StraightLineEnemy extends Enemy {
         straightData += direction;
         return straightData;
     }
+
     /**
      * This method calculates the direction the enemy will move in
      * while meets the criteria in the isMoveValid method.
+     *
      * @param board Reference to the board class.
      * @return The direction the enemy will move in.
      */

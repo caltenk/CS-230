@@ -1,5 +1,6 @@
 /**
  * Method to store some constant variables that are used globally.
+ *
  * @author Cameron Altenkirch
  * @version 1.0
  */

@@ -1,5 +1,6 @@
 /**
  * Class that is used to count time taken for given level
+ *
  * @author Sean Beck
  * @version 1.0
  */
@@ -26,6 +27,7 @@ public class Stopwatch {
 
     /**
      * Calculates the actual time taken of level.
+     *
      * @return time The time taken to complete level in seconds.
      */
     public long calculateTime() {

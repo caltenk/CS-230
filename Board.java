@@ -1,5 +1,6 @@
 
 import java.io.File;
+
 import javafx.scene.image.Image;
 
 /**
@@ -19,13 +20,13 @@ public class Board {
     private int goalY;
 
     /**
-     * The constructor for a board object. 
+     * The constructor for a board object.
      *
      * @param board A 2d array of GameCells that make up the board.
-     * @param x The number of columns the board has.
-     * @param y The number of rows the board has.
-     * @param gx The x-coordinate of the goal.
-     * @param gy The y-coordinate of the goal.
+     * @param x     The number of columns the board has.
+     * @param y     The number of rows the board has.
+     * @param gx    The x-coordinate of the goal.
+     * @param gy    The y-coordinate of the goal.
      */
     public Board(Cell[][] board, int x, int y, int gx, int gy) {
         this.board = board;
@@ -82,11 +83,12 @@ public class Board {
         }
     }
 
-    /** is test code must delete before submission
+    /**
+     * is test code must delete before submission
      * returns a Cell array with each edge Cell being a wall and all others
      * being ground cells.
      *
-     * @param width width of the board.
+     * @param width  width of the board.
      * @param height height of the board.
      * @return
      */
@@ -145,7 +147,7 @@ public class Board {
      */
     public void updateCell(int x, int y, String theme) {
         board[y][x] = new Cell(CellType.GROUND);
-        getCell(x,y).setImage(new Image(theme + File.separator + CellType.GROUND + ".png"));
+        getCell(x, y).setImage(new Image(theme + File.separator + CellType.GROUND + ".png"));
     }
 
     /**
@@ -197,14 +199,16 @@ public class Board {
 
     /**
      * Get method for the y co-ordinate of the goal.
+     *
      * @return The y co-ordinate of the goal.
      */
     public int getGoalY() {
         return this.goalY;
     }
-    
+
     /**
      * Sets the images for the cells in the board.
+     *
      * @param themeLocation The file path for the images.
      */
     public void setTheme(String themeLocation) {
@@ -226,10 +230,10 @@ public class Board {
                             board[i][j].setImage(new Image(themeLocation + File.separator + CellType.RED_KEY + ".png"));
                             break;
                         case BLUE_DOOR:
-                        	board[i][j].setImage(new Image(themeLocation + "\\" + CellType.BLUE_DOOR + ".png"));
+                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.BLUE_DOOR + ".png"));
                             break;
                         case BLUE_KEY:
-                        	board[i][j].setImage(new Image(themeLocation + "\\" + CellType.BLUE_KEY + ".png"));
+                            board[i][j].setImage(new Image(themeLocation + "\\" + CellType.BLUE_KEY + ".png"));
                             break;
                         case GREEN_DOOR:
                             board[i][j].setImage(new Image(themeLocation + "\\" + CellType.GREEN_DOOR + ".png"));
@@ -244,25 +248,25 @@ public class Board {
                             board[i][j].setImage(new Image(themeLocation + File.separator + CellType.TOKEN + ".png"));
                             break;
                         case TOKEN_DOOR:
-                        	TokenDoor tokenD = (TokenDoor) board[i][j];
-                        	switch(tokenD.getNumTokensNeeded()) {
-                        		case 1:
-                        			board[i][j].setImage(new Image(themeLocation + "\\" + CellType.TOKEN_DOOR + "1.png"));
-                        			break;
-                        		case 2:
-                        			board[i][j].setImage(new Image(themeLocation + "\\" + CellType.TOKEN_DOOR + "2.png"));
-                        			break;
-                        		case 3:
-                        			board[i][j].setImage(new Image(themeLocation + "\\" + CellType.TOKEN_DOOR + "3.png"));
-                        			break;
-                        		case 4:
-                        			board[i][j].setImage(new Image(themeLocation + "\\" + CellType.TOKEN_DOOR + "4.png"));
-                        			break;
-                        		case 5:
-                        			board[i][j].setImage(new Image(themeLocation + "\\" + CellType.TOKEN_DOOR + "5.png"));
-                        			break;
-                        	}
-                        	break;
+                            TokenDoor tokenD = (TokenDoor) board[i][j];
+                            switch (tokenD.getNumTokensNeeded()) {
+                                case 1:
+                                    board[i][j].setImage(new Image(themeLocation + "\\" + CellType.TOKEN_DOOR + "1.png"));
+                                    break;
+                                case 2:
+                                    board[i][j].setImage(new Image(themeLocation + "\\" + CellType.TOKEN_DOOR + "2.png"));
+                                    break;
+                                case 3:
+                                    board[i][j].setImage(new Image(themeLocation + "\\" + CellType.TOKEN_DOOR + "3.png"));
+                                    break;
+                                case 4:
+                                    board[i][j].setImage(new Image(themeLocation + "\\" + CellType.TOKEN_DOOR + "4.png"));
+                                    break;
+                                case 5:
+                                    board[i][j].setImage(new Image(themeLocation + "\\" + CellType.TOKEN_DOOR + "5.png"));
+                                    break;
+                            }
+                            break;
                         case FLIPPERS:
                             board[i][j].setImage(new Image(themeLocation + "\\" + CellType.FLIPPERS + ".png"));
                             break;

@@ -14,54 +14,55 @@ import java.util.List;
 /**
  * The UI which asks the user if they wish to login as an existing user
  * or create a new user.
+ *
  * @author George Manning, Cameron Altenkirch
  * @version 1.0
  */
 public class Login extends Application {
-	
-	private static final int WINDOW_WIDTH = 500;
-	private static final int WINDOW_HEIGHT = 500;
+    public static List<String> fxmlval = new ArrayList<String>();
+    public static List<Stage> stageval = new ArrayList<Stage>();
 
-	public static List<String> fxmlval = new ArrayList<String>();
-	public static List<Stage>stageval = new ArrayList<Stage>();
+    private static final int WINDOW_WIDTH = 500;
+    private static final int WINDOW_HEIGHT = 500;
 
-	
-	//The stage this application and all the connected application will perform(?) on.
-	private Stage stage;
+    //The stage this application and all the connected application will perform(?) on.
+    private Stage stage;
 
-	private MediaPlayer player;
-	
-	/**
-	 * The start method for this applciaton.
-	 * @param primaryStage The stage this application is shown on.
-	 */
-	public void start(Stage primaryStage) throws IOException {
-		String musicFile = "src/music.mp3";
-		Media media = new Media(new File(musicFile).toURI().toString());
-		player = new MediaPlayer(media);
+    private MediaPlayer player;
 
-		stage = primaryStage;
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("loginmenu.fxml"));
-		Pane root = (Pane) loader.load();
-		LoginMenuController controller = (LoginMenuController)loader.getController();
-		controller.setStage(stage);
+    /**
+     * The start method for this applciaton.
+     *
+     * @param primaryStage The stage this application is shown on.
+     */
+    public void start(Stage primaryStage) throws IOException {
+        String musicFile = "src/music.mp3";
+        Media media = new Media(new File(musicFile).toURI().toString());
+        player = new MediaPlayer(media);
 
-		
-		Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
-		player.play();
-		primaryStage.setTitle("LOGIN");
-		primaryStage.setScene(scene);
-		primaryStage.show();
+        stage = primaryStage;
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("loginmenu.fxml"));
+        Pane root = (Pane) loader.load();
+        LoginMenuController controller = loader.getController();
+        controller.setStage(stage);
 
-	}
 
-	/**
-	 * Main class.
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		launch(args);
-	}
-	
+        Scene scene = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
+        player.play();
+        primaryStage.setTitle("LOGIN");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+    }
+
+    /**
+     * Main class.
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
+
 }

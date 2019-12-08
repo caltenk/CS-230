@@ -59,7 +59,7 @@ public class LevelUI extends Application {
      *
      * @param stage The stage the UI is shown on.
      * @param level The level the UI is showing.
-     * @param user The user who is playing the level.
+     * @param user  The user who is playing the level.
      */
     public LevelUI(Stage stage, Level level, UserProfile user) {
         this.stage = stage;
@@ -244,7 +244,7 @@ public class LevelUI extends Application {
      * Creates the clip that allows only part of the canvas to be displayed at
      * any time. C
      *
-     * @param scene The scene the UI is on.
+     * @param scene      The scene the UI is on.
      * @param gameWindow The pane containing the canvas.
      */
     private void createClip(Scene scene, Pane gameWindow) {
@@ -376,8 +376,8 @@ public class LevelUI extends Application {
      * Method to stop camera from going out of bounds.
      *
      * @param value The current x or y location of the camera.
-     * @param min The minimum edge.
-     * @param max The maximun edge.
+     * @param min   The minimum edge.
+     * @param max   The maximun edge.
      * @return
      */
     private double clampRange(double value, double min, double max) {

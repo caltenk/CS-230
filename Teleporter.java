@@ -4,7 +4,6 @@
  *
  * @author Liam Date
  * @version 1.0
- *
  */
 public class Teleporter extends Cell {
 
@@ -24,7 +23,7 @@ public class Teleporter extends Cell {
     }
 
     /**
-     * saves the teleporter cell as a string from which a copy can later be loaded, 
+     * saves the teleporter cell as a string from which a copy can later be loaded,
      * used to save the teleporter cell to a text file.
      *
      * @return a string containing all information needed to load a copy of this

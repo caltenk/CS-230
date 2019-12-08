@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 /**
  * Class for building and controlling the level select interface
  * This UI was not built using FXML due to it not being static
+ *
  * @author George Manning, Cameron Altenkirch
  * @version 2.0
  */
@@ -39,7 +40,7 @@ public class LevelSelect extends Application {
      * constructor for the UI
      *
      * @param stage The stage the UI is shown on.
-     * @param user The user of the UI.
+     * @param user  The user of the UI.
      */
     public LevelSelect(Stage stage, UserProfile user) {
         this.user = user;
@@ -126,7 +127,7 @@ public class LevelSelect extends Application {
             BackButton bb = new BackButton();
             try {
                 bb.back("loginmenu.fxml", this.stage);
-            } catch(Exception ex) {
+            } catch (Exception ex) {
                 System.out.println(ex);
                 System.out.println("Could not load controller");
             }
@@ -138,7 +139,7 @@ public class LevelSelect extends Application {
         });
         surePane.add(sureLabel, 0, 0);
         surePane.add(yesSure, 0, 1);
-        surePane.add(noSure, 1,1);
+        surePane.add(noSure, 1, 1);
         confirmSure.getContent().addAll(surePane);
         confirmSure.centerOnScreen();
         confirmSure.show(this.stage);
@@ -162,10 +163,10 @@ public class LevelSelect extends Application {
         Stage newStage = new Stage();
         ObservableList<String> options
                 = FXCollections.observableArrayList(
-                        "dev",
-                        "Synth"
+                "dev",
+                "Synth"
                 //place new theme names here or store em somewhere	
-                );
+        );
 
         ComboBox<String> themes = new ComboBox<String>(options);
         themes.setValue("dev");
@@ -220,7 +221,7 @@ public class LevelSelect extends Application {
      * Asks the user if they want to load a saved state (if they have one).
      *
      * @param savedLevel The saved level state.
-     * @param level The reset level state.
+     * @param level      The reset level state.
      */
     private void loadSavedLevel(Level savedLevel, Level level) {
         Stage newStage = new Stage();

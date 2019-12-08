@@ -37,7 +37,7 @@ public abstract class Moveable {
         setPosition(Integer.parseInt(splitData[0]), Integer.parseInt(splitData[1]));
     }
 
-    
+
     /**
      * saves the Moveable character as a string from which a copy can later be loaded using
      * the Moveable(String) constructor, used to save the moveable character to a text file.
@@ -49,9 +49,10 @@ public abstract class Moveable {
         String moveableData = Integer.toString(xCoord) + "/" + Integer.toString(yCoord);
         return moveableData;
     }
-    
+
     /**
      * Moves a moveable object one space in a given direction.
+     *
      * @param direction The direction to move in.
      */
     public void move(Direction direction) {
@@ -72,7 +73,7 @@ public abstract class Moveable {
                 default:
                     break; //do nothing
             }
-        } else{
+        } else {
             System.out.println("enemy at: " + getXCoord() + ", " + getYCoord() + " :cant move");
         }
     }
@@ -87,9 +88,10 @@ public abstract class Moveable {
         this.xCoord = x;
         this.yCoord = y;
     }
-    
+
     /**
      * Sets the image.
+     *
      * @param image The image to be set.
      */
     public void setImage(Image image) {
@@ -98,6 +100,7 @@ public abstract class Moveable {
 
     /**
      * Gets the x coord of the moveable object.
+     *
      * @return The objects x coord.
      */
     public int getXCoord() {
@@ -106,14 +109,16 @@ public abstract class Moveable {
 
     /**
      * Gets the y coord of the moveable object.
+     *
      * @return The objects y coord.
      */
     public int getYCoord() {
         return this.yCoord;
     }
-    
+
     /**
      * Gets the image that represents the object.
+     *
      * @return The objects image.
      */
     public Image getImage() {
@@ -124,7 +129,7 @@ public abstract class Moveable {
      * Gets the type of the cell that the moveable object wants to move to.
      *
      * @param direction The direction the the cell whose type is being found.
-     * @param board The board the moveable object is moving on.
+     * @param board     The board the moveable object is moving on.
      * @return The cell type of the requested cell.
      */
     protected Cell getNextCell(Direction direction, Board board) {

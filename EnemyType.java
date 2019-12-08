@@ -1,5 +1,6 @@
 /**
  * the type of an enemy, referring to the end subclasses of Enemy.
+ *
  * @author Daniel Rothwell
  * @version 1.0
  */
