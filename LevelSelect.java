@@ -105,6 +105,9 @@ public class LevelSelect extends Application {
         return root;
     }
 
+    /**
+     * Builds a popup window to confirm user deletion of profile
+     */
     private void showPopup() {
         Button yesSure = new Button("Yes");
         Button noSure = new Button("No");
@@ -133,8 +136,6 @@ public class LevelSelect extends Application {
         confirmSure.getContent().addAll(surePane);
         confirmSure.centerOnScreen();
         confirmSure.show(this.stage);
-
-
 
     }
 
