@@ -1,9 +1,9 @@
 
 /**
- * holds the top 3 completion times of a level by users.
+ * holds the top 3 completion times of a level by 3 users.
  *
  * @author Daniel Rothwell
- * @version 1.0
+ * @version 2.0
  */
 public class LeaderBoard {
 
@@ -58,8 +58,8 @@ public class LeaderBoard {
      * adds a leader to the leaderboard if they have achieved a top 3 completion
      * times, the leaderboard stores leaders in order of their completion time.
      *
-     * @param user
-     * @param time
+     * @param user the user who completed the level.
+     * @param time the time in which they completed the level.
      * @return whether or not the user achieved a top 3 time.
      */
     public boolean addleader(UserProfile user, double time) {

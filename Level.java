@@ -12,6 +12,7 @@ import javafx.scene.input.KeyEvent;
  */
 public class Level {
 
+    //location of all graphics themes
     private static final String themeFile = "themes" + File.separator;
     private Board board;
     private Player player;
@@ -160,7 +161,7 @@ public class Level {
     }
 
     /**
-     * Sets the theme for each level.
+     * Sets and loads the graphical theme for the level.
      *
      * @param theme The selected theme.
      */

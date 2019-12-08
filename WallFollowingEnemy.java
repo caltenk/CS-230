@@ -16,7 +16,6 @@ public class WallFollowingEnemy extends Enemy {
      *
      * @param x The starting x co-ordinate.
      * @param y The starting y co-ordiante.
-     * @param image The image that will represent the Enemy.
      */
     public WallFollowingEnemy(int x, int y) {
         super(x, y);
@@ -46,7 +45,8 @@ public class WallFollowingEnemy extends Enemy {
     }
 
     /**
-     * Calculates the direction the Enemy will move in.
+     * Calculates the direction the Enemy will move in,
+     * wall following enemies will try to follow a wall on their left.
      *
      * @param board The Board the Enemy is moving on.
      * @return The direction the enemy will move in.
@@ -147,6 +147,15 @@ public class WallFollowingEnemy extends Enemy {
         return result;
     }
 
+    /**
+     * calculates the starting direction of the wall following enemy,
+     * if possible they follow a wall on their left and start by moving down,
+     * or left, or up, or right in that order of priority
+     * if they are not next to a wall they will default to moving down.
+     * 
+     * @param board the board on which the enemy is placed.
+     * @return the direction in which the enemy should start moving.
+     */
     private Direction startDirection(Board board) {
         boolean down = super.isMoveValid(super.getNextCell(Direction.DOWN, board));
         boolean up = super.isMoveValid(super.getNextCell(Direction.UP, board));

@@ -16,7 +16,6 @@ public class Player extends Moveable {
      *
      * @param x The initial x co-ordinate of the player.
      * @param y The initial y co-ordinate of the player.
-     * @param image The image used to represent the player.
      */
     public Player(int x, int y) {
         super(x, y);

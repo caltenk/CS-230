@@ -13,6 +13,7 @@ public class UserProfile {
      * Create a user profile with a given name and their highest level.
      * @param name The name of the user.
      * @param highestLevel The highest level achieved by the user.
+     * @param theme the theme that the user wants to use.
      */
     public UserProfile(String name, int highestLevel, String theme) {
         this.name = name;

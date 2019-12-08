@@ -13,7 +13,6 @@ public abstract class TargetingEnemy extends Enemy {
      *
      * @param x The initial x co-ordinate.
      * @param y The initial y co-ordinate.
-     * @param image The image used to present the moveable object.
      * @param player Reference to the player.
      */
     public TargetingEnemy(int x, int y, Player player) {

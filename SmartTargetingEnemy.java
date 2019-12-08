@@ -15,12 +15,11 @@ public class SmartTargetingEnemy extends TargetingEnemy {
 
     /**
      * This method constructs a smart targeting enemy using the constructor in
-     * the super class
+     * the super class.
      *
      * @param x The initial x co-ordinate.
      * @param y The initial y co-ordinate.
-     * @param image The image used to present the moveable object
-     * @param player Reference to the player
+     * @param player Reference to the player.
      */
     public SmartTargetingEnemy(int x, int y, Player player) {
         super(x, y, player);

@@ -9,88 +9,28 @@ import java.io.File;
  * a class to carry out all file handling and directly related data processing.
  *
  * @author Daniel Rothwell
- * @version 2.0
+ * @version 3.0
  */
 public class FileHandling {
 
-    private static final File USER_PROFILES = new File("src" + File.separator + "testFiles" + File.separator + "userProfiles.txt");
-    private static final File GAME_LEVELS = new File("src" + File.separator + "testFiles" + File.separator + "levels.txt");
+    //location of the user profiles file
+    private static final File USER_PROFILES = new File("src" + File.separator +
+            "gameFiles" + File.separator + "userProfiles.txt");
+    //location of the levels file
+    private static final File GAME_LEVELS = new File("src" + File.separator +
+            "gameFiles" + File.separator + "levels.txt");
 
+    //a sinlge reader is used at a time
     private static FileReader reader;
     private static BufferedReader buffRead;
+    //a single writer is used at a time
     private static FileWriter writer;
     private static BufferedWriter buffWrite;
 
     /**
-     * a few basic tests.
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        System.out.println(createUser(new UserProfile("dan", 1, "dev")));
-        System.out.println(createUser(new UserProfile("bob", 1, "dev")));
-        System.out.println(createUser(new UserProfile("jeff", 1, "dev")));
-        System.out.println(loadUser("bob").getName());
-        System.out.println(deleteUser(new UserProfile("jeff", 1, "dev")) + "\n");
-
-        System.out.println(loadLevel(1));
-        System.out.println(completeLevel(new UserProfile("bob", 1, "dev"), 2, 5.3));
-        System.out.println(loadLeaders(1) + "\n");
-
-        //System.out.println(saveProgress(new Level(""), new UserProfile("dan", 1, "dev")));
-        System.out.println(loadProgress(new UserProfile("bob", 0, "dev")));
-        levelTest();
-    }
-
-    /**
-     * a basic level saving test
-     */
-    public static void levelTest() {
-        Cell[][] cells;
-        Board board;
-        Player player;
-        Enemy[] enemies;
-        Level originalLevel;
-        Level savedLevel;
-
-        String levelSave;
-
-        System.out.println("\n Level test:\n");
-
-        CellType[] cellTypes = CellType.values();
-        EnemyType[] enemyTypes = EnemyType.values();
-
-        cells = new Cell[4][4];
-        for (int i = 0; i < 14; i++) {
-            cells[i / 4][i % 4] = new Cell(cellTypes[i]);
-        }
-        cells[3][2] = new TokenDoor(5);
-        cells[3][3] = new Teleporter(2, 3);
-        board = new Board(cells, 4, 4, 2, 3);
-
-        enemies = new Enemy[4];
-        enemies[0] = new StraightLineEnemy(1, 2, Direction.DOWN);
-        enemies[1] = new WallFollowingEnemy(1, 2);
-        enemies[2] = new DumbTargetingEnemy(1, 2, null);
-        enemies[3] = new SmartTargetingEnemy(1, 2, null);
-
-        player = new Player(4, 3);
-
-        originalLevel = new Level(board, player, enemies, null);
-
-        levelSave = originalLevel.toString();
-
-        savedLevel = new Level(levelSave);
-
-        System.out.println(levelSave.equals(savedLevel.toString()));
-
-        System.out.println("\n End of level test");
-    }
-
-    /**
      * writes a new user record in USER_PROFILES if the username is original.
      *
-     * @param username username the user wants to use.
+     * @param user the user being saved.
      * @return success/failure.
      */
     public static boolean createUser(UserProfile user) {
@@ -158,6 +98,14 @@ public class FileHandling {
         }
     }
 
+    /**
+     * changes the selected theme of a user in USER_PROFILES which is used to
+     * select the game theme on all levels they play.
+     * 
+     * @param user the user whos theme selection should be changed.
+     * @param theme the theme they want to use.
+     * @return success/failure
+     */
     public static boolean updateTheme(UserProfile user, String theme) {
         String[] oldUserRecord = searchFile(USER_PROFILES, user.getName()).split(",");
         String newUserRecord;
